@@ -1,0 +1,123 @@
+Hi Pritam & Raj,
+
+Sharing the key points we discussed in yesterday’s meeting so that we have everything aligned before starting the landing page design.
+
+**Project: Join With Me – Landing Page Revamp**
+
+### 1. Scope & Commercials
+
+We discussed three options:
+
+* **₹10,000** – Landing Page Design
+* **₹25,000** – Landing Page design+ development 
+* **₹35,000** – Premium Landing Page design + development  with deeper research and enhanced design strategy
+
+As discussed, we will **first proceed with the landing page design**. Based on the design outcome, we can then decide on moving forward with the revamp/development scope.
+
+### 2. Inputs Required from Join With Me
+
+From your side, the following will be shared:
+
+* Required design file format/requirements (Figma, PNG, PDF, etc.)
+* Existing content/resources available with you, including videos, images and other visual assets
+* Existing landing page content will also be used as a reference for the revamped design
+
+### 3. Design Timeline
+
+* The initial landing page design will be completed and shared **within 3 days, by 14th August**.
+* The design will cover the different sections of the landing page.
+* We will share the visual direction/design of the individual sections in the group for feedback and alignment.
+
+### 4. Revisions & Feedback
+
+* Minor changes/feedback can be shared during the design process and will be incorporated accordingly.
+* We discussed allowing revisions/iterations within a **15-day period**.
+* Alternatively, if we consider the revision scope on a fixed-count basis, we can accommodate approximately **5 revisions**.
+* The objective is to make sure the final design is properly aligned before moving ahead.
+
+### 5. Brand & Visual Direction
+
+* **Primary brand colour:** Green
+* **Secondary colour:** Yellow
+* We will also suggest suitable colour variations/options where required to improve the overall visual appearance.
+* Typography, font sizes, numbers, spacing and design styles will be selected keeping consistency and responsiveness in mind.
+
+### 6. Responsive & Content Considerations
+
+The design will be created with a **mobile-first approach**.
+
+The design should also remain flexible if the content changes later. For example:
+
+* If the wording becomes longer/shorter, the layout should adapt accordingly.
+* Text should wrap properly without breaking the overall design.
+* Font sizes, numbers, spacing and other UI elements should remain consistent.
+* The design should work properly across different screen sizes.
+
+### 7. Visual Assets
+
+Where additional visuals are required for the design, we can create them with the help of **AI tools** or utilise the existing resources shared by Join With Me.
+
+### 8. Development
+
+The current scope is for **design only**.
+
+Development will not be handled from our side as part of this design scope. The development can subsequently be handled by the Join With Me team/their developer.
+
+### 9. Landing Page Structure / Wireframe
+
+The design will follow the wireframe shared by the Join With Me team:
+
+**01. Hero Section**
+
+* Hero Image
+* Experience Name
+* Trust Signal / Google Reviews
+* Price
+* Next Batch
+* Urgency
+* Primary CTA
+
+**02. Highlights**
+
+**03. 5000+ People Reconnected with Nature**
+
+**04. Itinerary**
+
+**05. Gallery & Video**
+
+**06. What's Included | What to Carry**
+
+**07. Location**
+
+**08. What People Say / Testimonials**
+
+**09. FAQs**
+
+**10. Need Help**
+
+**11. Footer**
+
+**Additional:**
+
+* Book Now button journey
+* Sticky bottom CTA – always visible
+
+### 10. Content
+
+For the initial design, we will take the **existing Join With Me landing page as the primary content reference** and use the available content/data while creating the revamped design.
+
+Once the design is approved, any further content changes can be incorporated as required.
+
+### 11. Meeting Participants
+
+**From our side:**
+
+* Aarav
+* Ashutosh
+
+**From Join With Me:**
+
+* Pritam
+* Raj
+
+So, as discussed, the immediate next step is to **proceed with the landing page design**, with the required resources/content and design-format requirements to be shared from the Join With Me side. We will target sharing the initial design **by 14th August**.
