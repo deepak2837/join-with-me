@@ -1,0 +1,3414 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="sahyadri">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Join With Me — Nature. For Everyone. (Sahyadri)</title>
+<meta name="description" content="[Sahyadri palette — Deep forest green + the logo's lime yellow] Guided, beginner-friendly nature walks around Mumbai for children, parents, grandparents and pets. 16,000+ people reconnected with nature.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   JOIN WITH ME — Landing page design
+   Design direction: "THE TRAIL" — a field journal you walk down
+   Themes: Sahyadri (default) · Monsoon · Terracotta Trail
+   ============================================================ */
+
+/* ---------- 1. TOKENS ---------- */
+:root{
+  /* Theme: SAHYADRI — deep forest + logo lime */
+  --ink:#10221A;
+  --forest:#143C2B;
+  --forest-2:#1B4C36;
+  --primary:#1F6B47;
+  --primary-700:#175338;
+  --primary-100:#E2EFE7;
+  --primary-50:#EFF6F1;
+  --accent:#D9E64A;
+  --accent-700:#B9C62B;
+  --accent-ink:#2A3208;
+  --paper:#F7F4EC;
+  --paper-2:#EFEADE;
+  --surface:#FFFFFF;
+  --line:#DCD6C6;
+  --line-soft:#E8E3D6;
+  --muted:#5C6B60;
+  --on-dark:#F1F0E7;
+  --on-dark-muted:#A9BCAE;
+  --status-full:#B4483C;
+  --status-filling:#C98A16;
+  --status-open:#1F6B47;
+  /* atmospheric tints — sections bleed into each other with these, never a hard edge */
+  --paper-0:rgba(247,244,236,0);
+  --grass-a:#2E7D4F; --grass-b:#17482F;
+  --olive:#3B4A2C;
+  --glow-a:rgba(31,107,71,.16);
+  --glow-b:rgba(217,230,74,.13);
+  --glow-dark-a:rgba(74,150,105,.26);
+  --glow-dark-b:rgba(217,230,74,.10);
+
+  /* Type */
+  --f-display:"Fraunces",Georgia,serif;
+  --f-sans:"Plus Jakarta Sans",system-ui,sans-serif;
+  --f-mono:"DM Mono",ui-monospace,monospace;
+
+  --t-display-xl:clamp(3rem,8.4vw,7.2rem);
+  --t-display-l:clamp(2.5rem,5.6vw,4.6rem);
+  --t-h2:clamp(2rem,4.2vw,3.5rem);
+  --t-h3:clamp(1.3rem,2.1vw,1.75rem);
+  --t-h4:1.125rem;
+  --t-lead:clamp(1.05rem,1.35vw,1.25rem);
+  --t-body:1rem;
+  --t-small:.875rem;
+  --t-label:.72rem;
+
+  /* Space */
+  --gutter:clamp(20px,5vw,64px);
+  --max:1320px;
+  --sec-y:clamp(80px,11vw,160px);
+
+  /* Shape */
+  --r-xs:6px; --r-sm:12px; --r-md:20px; --r-lg:28px; --r-xl:40px; --r-pill:999px;
+  --sh-1:0 1px 2px rgba(16,34,26,.06),0 4px 16px rgba(16,34,26,.05);
+  --sh-2:0 2px 6px rgba(16,34,26,.07),0 18px 48px rgba(16,34,26,.10);
+  --sh-3:0 8px 24px rgba(16,34,26,.10),0 40px 90px rgba(16,34,26,.16);
+  --ease:cubic-bezier(.22,.72,.24,1);
+}
+
+/* Theme: MONSOON — river teal-green + golden yellow */
+html[data-theme="monsoon"]{
+  --ink:#0A2320; --forest:#0D3833; --forest-2:#12554B;
+  --primary:#0E7C63; --primary-700:#0A5F4B; --primary-100:#DCEFE9; --primary-50:#EDF7F3;
+  --accent:#F2C230; --accent-700:#D4A413; --accent-ink:#3A2C00;
+  --paper:#F2F6F2; --paper-2:#E6EEE9; --surface:#FFFFFF;
+  --line:#CFDDD6; --line-soft:#DFE9E3; --muted:#4F6660;
+  --on-dark:#EAF3EF; --on-dark-muted:#9FBDB3;
+  --status-full:#B4483C; --status-filling:#C98A16; --status-open:#0E7C63;
+  --paper-0:rgba(242,246,242,0);
+  --grass-a:#12876C; --grass-b:#0A4A3B;
+  --olive:#2C4636;
+  --glow-a:rgba(14,124,99,.16); --glow-b:rgba(242,194,48,.13);
+  --glow-dark-a:rgba(26,168,134,.26); --glow-dark-b:rgba(242,194,48,.10);
+}
+
+/* Theme: TERRACOTTA TRAIL — farm olive + ochre */
+html[data-theme="terracotta"]{
+  --ink:#1F1C13; --forest:#2E3A24; --forest-2:#3E4E2F;
+  --primary:#4E7A3A; --primary-700:#3C602C; --primary-100:#E7EDDD; --primary-50:#F2F5EA;
+  --accent:#E2A32E; --accent-700:#C2861A; --accent-ink:#3A2705;
+  --paper:#F8F1E4; --paper-2:#F0E6D4; --surface:#FFFDF8;
+  --line:#DED0B6; --line-soft:#E9DFC9; --muted:#6A6350;
+  --on-dark:#F4EEE1; --on-dark-muted:#B9B39C;
+  --status-full:#AE4A32; --status-filling:#C2861A; --status-open:#4E7A3A;
+  --paper-0:rgba(248,241,228,0);
+  --grass-a:#5C8A44; --grass-b:#33502A;
+  --olive:#464F28;
+  --glow-a:rgba(78,122,58,.16); --glow-b:rgba(226,163,46,.14);
+  --glow-dark-a:rgba(120,168,86,.26); --glow-dark-b:rgba(226,163,46,.12);
+}
+
+/* ---------- 2. BASE ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;overflow-x:hidden}
+body{
+  margin:0;color:var(--ink);
+  background-color:var(--paper);
+  background-image:url("assets/img/paper-grain.png");
+  background-size:180px 180px;background-repeat:repeat;
+  font-family:var(--f-sans);font-size:var(--t-body);line-height:1.6;
+  font-weight:400;-webkit-font-smoothing:antialiased;
+  /* NOTE: overflow-x lives on <html>, never here — on <body> it turns body into
+     a scroll container and silently breaks every position:sticky on the page. */
+}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+h1,h2,h3,h4{margin:0;font-family:var(--f-display);font-weight:600;letter-spacing:-.025em;line-height:1.03}
+p{margin:0}
+ul{margin:0;padding:0;list-style:none}
+
+.wrap{width:100%;max-width:var(--max);margin-inline:auto;padding-inline:var(--gutter)}
+.section{padding-block:var(--sec-y);position:relative}
+section[id]{scroll-margin-top:96px}
+.section h2,.help h2{font-size:var(--t-h2)}
+
+/* ---------- 3. UTILITY TYPE ---------- */
+.label{
+  font-family:var(--f-mono);font-size:var(--t-label);font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;
+}
+.lead{font-size:var(--t-lead);line-height:1.62;color:var(--muted)}
+.serif-it{font-style:italic;font-weight:400}
+.u-accent{
+  background-image:linear-gradient(var(--accent),var(--accent));
+  background-repeat:no-repeat;background-position:0 88%;background-size:100% .22em;
+}
+
+/* Section eyebrow: the waypoint marker of the trail */
+.waypoint{display:flex;align-items:center;gap:14px;margin-bottom:26px}
+.waypoint__dot{
+  width:11px;height:11px;border-radius:50%;background:var(--primary);
+  box-shadow:0 0 0 4px var(--primary-100);flex:none
+}
+.waypoint__num{font-family:var(--f-mono);font-size:var(--t-label);color:var(--primary);letter-spacing:.1em}
+.waypoint__txt{
+  font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.2em;
+  text-transform:uppercase;color:var(--muted);white-space:nowrap
+}
+.waypoint__rule{flex:1;height:1px;border-top:1.5px dashed var(--line);min-width:24px}
+.on-forest .waypoint__dot{background:var(--accent);box-shadow:0 0 0 4px rgba(217,230,74,.16)}
+.on-forest .waypoint__num{color:var(--accent)}
+.on-forest .waypoint__txt{color:var(--on-dark-muted)}
+.on-forest .waypoint__rule{border-color:rgba(255,255,255,.22)}
+
+/* ---------- 4. BUTTONS ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:16px 28px;border-radius:var(--r-pill);font-weight:600;font-size:.95rem;
+  letter-spacing:-.01em;transition:transform .35s var(--ease),background .25s,box-shadow .35s,color .25s;
+  white-space:nowrap
+}
+.btn svg{flex:none;transition:transform .35s var(--ease)}
+.btn--primary{background:var(--primary);color:#fff;box-shadow:var(--sh-1)}
+.btn--primary:hover{background:var(--primary-700);transform:translateY(-2px);box-shadow:var(--sh-2)}
+.btn--primary:hover svg{transform:translateX(4px)}
+.btn--accent{background:var(--accent);color:var(--accent-ink)}
+.btn--accent:hover{background:var(--accent-700);transform:translateY(-2px)}
+.btn--ghost{border:1.5px solid var(--line);color:var(--ink);background:var(--surface)}
+.btn--ghost:hover{border-color:var(--primary);color:var(--primary);transform:translateY(-2px)}
+.btn--onforest{border:1.5px solid rgba(255,255,255,.28);color:var(--on-dark)}
+.btn--onforest:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+.btn--sm{padding:11px 20px;font-size:.85rem}
+
+/* ---------- 5. HEADER — a wide floating capsule in grass green ---------- */
+.hdr{
+  position:sticky;top:0;z-index:60;padding-top:14px;padding-bottom:2px;
+  pointer-events:none;transition:padding-top .35s var(--ease);
+  /* the hero starts underneath the capsule — no seam between them */
+  margin-bottom:-90px
+}
+.hdr.is-stuck{padding-top:10px}
+.hdr .wrap{pointer-events:none}
+.navbar{
+  pointer-events:auto;
+  display:flex;align-items:center;gap:clamp(10px,1.4vw,22px);
+  height:72px;padding:0 10px 0 16px;border-radius:var(--r-pill);
+  background-image:linear-gradient(115deg,var(--grass-a) 0%,var(--grass-b) 100%);
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 10px 34px rgba(16,34,26,.24),0 2px 6px rgba(16,34,26,.16),
+             inset 0 1px 0 rgba(255,255,255,.14);
+  transition:box-shadow .35s var(--ease),height .35s var(--ease)
+}
+.hdr.is-stuck .navbar{height:66px;box-shadow:0 14px 40px rgba(16,34,26,.34),
+  0 2px 6px rgba(16,34,26,.2),inset 0 1px 0 rgba(255,255,255,.14)}
+
+.brand{display:flex;align-items:center;gap:10px;flex:none;padding-right:6px}
+/* the lime mark sits straight on the grass — no container box needed */
+.brand__mark{
+  width:40px;height:40px;display:flex;align-items:center;justify-content:center;flex:none
+}
+.brand__mark img{width:40px;height:auto}
+.brand__name{display:block;font-family:var(--f-display);font-size:1rem;font-weight:600;
+  letter-spacing:-.02em;line-height:1.15;white-space:nowrap;color:var(--accent)}
+.brand__sub{display:block;font-family:var(--f-mono);font-size:.55rem;letter-spacing:.16em;
+  text-transform:uppercase;color:rgba(255,255,255,.62);white-space:nowrap;line-height:1.4}
+
+.nav{display:flex;align-items:center;gap:2px;margin-inline:auto}
+.nav a{
+  display:flex;align-items:center;gap:7px;
+  padding:10px 15px;border-radius:var(--r-pill);font-size:.88rem;font-weight:600;
+  color:rgba(255,255,255,.82);white-space:nowrap;
+  transition:background .25s,color .25s
+}
+.nav a svg{opacity:.7;flex:none;transition:opacity .25s}
+.nav a:hover{background:rgba(255,255,255,.12);color:#fff}
+.nav a:hover svg{opacity:1}
+.nav a.is-active{background:rgba(255,255,255,.16);color:#fff;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+.nav a.is-active svg{opacity:1;color:var(--accent)}
+
+.nav__cta{display:flex;align-items:center;gap:8px;flex:none}
+.navbtn{
+  display:flex;align-items:center;gap:8px;padding:11px 18px;border-radius:var(--r-pill);
+  font-size:.85rem;font-weight:700;white-space:nowrap;
+  transition:transform .3s var(--ease),background .25s,box-shadow .3s
+}
+.navbtn svg{flex:none}
+.navbtn--accent{background:var(--accent);color:var(--accent-ink)}
+.navbtn--accent:hover{background:var(--accent-700);transform:translateY(-1px);
+  box-shadow:0 6px 18px rgba(0,0,0,.22)}
+.navbtn--dark{background:rgba(0,0,0,.3);color:#fff;border:1px solid rgba(255,255,255,.14)}
+.navbtn--dark:hover{background:rgba(0,0,0,.45);transform:translateY(-1px)}
+
+.burger{display:none;width:44px;height:44px;border-radius:14px;flex:none;
+  background:rgba(0,0,0,.26);border:1px solid rgba(255,255,255,.14);color:#fff;
+  align-items:center;justify-content:center}
+
+/* ---------- 6. HERO — full-bleed film, layered foliage, drifting rail ----------
+   Three depth planes: the film behind, the words in the middle, foliage in
+   front and out of focus. The rail along the bottom keeps moving so the
+   section never feels like a still image. */
+.hero{
+  position:relative;min-height:100svh;display:flex;flex-direction:column;
+  justify-content:center;overflow:hidden;background:var(--ink);
+  padding-top:clamp(88px,11vh,132px)
+}
+.hero__bg{position:absolute;inset:0;z-index:0}
+.hero__bg video,.hero__bg img{width:100%;height:100%;object-fit:cover;display:block}
+.hero__veil{
+  position:absolute;inset:0;
+  background-image:
+    radial-gradient(120% 80% at 50% 30%, rgba(4,14,9,.18) 0%, rgba(4,14,9,.72) 68%, rgba(4,14,9,.9) 100%),
+    linear-gradient(180deg, rgba(4,14,9,.72) 0%, rgba(4,14,9,.28) 26%,
+      rgba(4,14,9,.55) 62%, var(--paper) 100%)
+}
+/* out-of-focus foliage in front of everything */
+.hero__leaf{position:absolute;z-index:3;pointer-events:none;opacity:.6}
+.hero__leaf img{width:100%;height:auto;display:block;filter:blur(5px) saturate(1.05) brightness(.85)}
+.hero__leaf--br{bottom:-22%;right:-19%;width:min(30vw,390px);transform:rotate(184deg)}
+html.anim .hero__leaf--br{animation:sway2 16s ease-in-out infinite}
+@keyframes sway2{0%,100%{transform:rotate(184deg) translate3d(0,0,0)}50%{transform:rotate(187deg) translate3d(-12px,-10px,0)}}
+
+.hero__inner{position:relative;z-index:2;text-align:center;padding-bottom:clamp(28px,4vh,54px)}
+.hero .hero__eyebrow{justify-content:center}
+.hero .pin{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.86);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.hero .pin__dot{background:var(--accent)}
+.hero h1{
+  font-size:clamp(3rem,9vw,7.6rem);letter-spacing:-.045em;line-height:.9;
+  color:#fff;margin-bottom:22px;text-shadow:0 4px 40px rgba(0,0,0,.4)
+}
+.hero h1 em{display:inline;font-style:italic;font-weight:400;color:var(--accent)}
+.hero__deck{max-width:56ch;margin:0 auto 30px;color:rgba(255,255,255,.84)}
+.hero__actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;
+  margin-top:clamp(18px,4.5vh,48px);margin-bottom:clamp(26px,5vh,54px)}
+.hero__proof{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
+  gap:clamp(16px,2.6vw,38px);padding-top:20px;
+  border-top:1.5px dashed rgba(255,255,255,.22)
+}
+.hero .proof__n{color:#fff}
+.hero .proof__l{color:rgba(255,255,255,.66)}
+.hero .faces__row img{border-color:rgba(255,255,255,.5)}
+.hero .stars{color:var(--accent)}
+
+/* word-by-word entrance */
+.hw{display:inline-block}
+html.anim .hw{opacity:0;transform:translateY(26px) rotate(1.5deg)}
+html.anim .hero.in .hw{opacity:1;transform:none;
+  transition:opacity .9s var(--ease),transform .9s var(--ease)}
+html.anim .hero.in .hw:nth-child(2){transition-delay:.1s}
+html.anim .hero.in .hw:nth-child(3){transition-delay:.2s}
+
+/* CTA 1 — walkers move through the button */
+.cta-walk{
+  display:inline-flex;align-items:center;gap:0;padding:0 26px 0 8px;height:60px;
+  border-radius:var(--r-pill);background:var(--accent);color:var(--accent-ink);
+  font-weight:700;font-size:1rem;letter-spacing:-.01em;
+  box-shadow:0 10px 30px rgba(0,0,0,.28);
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease)
+}
+.cta-walk:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.36)}
+.cta-walk__lane{
+  width:96px;height:44px;border-radius:var(--r-pill);overflow:hidden;flex:none;
+  background:rgba(0,0,0,.14);margin-right:14px;position:relative
+}
+.cta-walk__file{display:flex;align-items:center;gap:6px;height:100%;width:max-content;
+  padding-inline:8px}
+html.anim .cta-walk__file{animation:walkby 9s linear infinite}
+@keyframes walkby{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.cta-walk__file img{width:32px;height:32px;border-radius:50%;object-fit:cover;flex:none;
+  border:1.5px solid rgba(255,255,255,.75)}
+.cta-walk svg{margin-left:10px;transition:transform .35s var(--ease)}
+.cta-walk:hover svg{transform:translateX(4px)}
+
+/* CTA 2 — a little screen playing the film */
+.cta-film{
+  display:inline-flex;align-items:center;gap:11px;padding:6px 20px 6px 6px;height:60px;
+  border-radius:var(--r-pill);color:#fff;font-weight:600;font-size:.95rem;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  transition:background .3s,transform .35s var(--ease)
+}
+.cta-film:hover{background:rgba(255,255,255,.18);transform:translateY(-3px)}
+.cta-film__screen{
+  width:48px;height:48px;border-radius:14px;overflow:hidden;flex:none;position:relative;
+  background:#0b1410;border:1.5px solid rgba(255,255,255,.3)
+}
+.cta-film__screen video,.cta-film__screen img{width:100%;height:100%;object-fit:cover;display:block}
+.cta-film__play{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.6)
+}
+
+/* the drifting rail */
+.hero__rail{position:relative;z-index:2;padding-bottom:14px}
+/* Badges and buttons share one row under the rail — proof on the left, the two
+   calls to action on the right — and the row sits low in the section. */
+.hero__trust{
+  position:relative;z-index:2;padding-bottom:clamp(20px,3.5vh,40px);
+  display:flex;align-items:center;justify-content:space-between;
+  gap:clamp(24px,4vw,72px);margin-top:clamp(14px,2.6vh,34px)
+}
+.hero__trust .hero__proof{flex:1 1 auto;justify-content:flex-start;border-top:0;padding-top:0}
+.hero__trust .hero__actions{flex:none;margin:0}
+
+/* Desktop: the copy centres itself in the space above, while the rail and the
+   trust row sit at the foot of the section.
+   The sunflower is fixed 22px off the bottom and stands 86px tall, so its
+   middle sits 65px up. The trust row's own content is ~60px tall, so a 49px
+   pad puts its middle on exactly the same line (49 + 30 = 79 ≈ 65 + the 14px
+   the hero stops short of the viewport). */
+@media (min-width:901px){
+  .hero{justify-content:flex-start}
+  .hero__inner{margin-block:auto}
+  .hero__rail{margin-top:0;padding-bottom:12px}
+  .hero__trust{margin-top:clamp(10px,1.8vh,22px);padding-bottom:49px}
+}
+.rail__track{display:flex;align-items:stretch;gap:5px;width:max-content;padding-inline:5px}
+html.anim .rail__track{animation:railmove 46s linear infinite}
+@keyframes railmove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.hero__rail:hover .rail__track{animation-play-state:paused}
+.rcard{
+  flex:none;width:196px;height:112px;border-radius:16px;overflow:hidden;position:relative;
+  border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)
+}
+.rcard img,.rcard video{width:100%;height:100%;object-fit:cover;display:block}
+.rcard__cap{
+  position:absolute;left:0;right:0;bottom:0;padding:9px 12px;color:#fff;font-size:.76rem;
+  font-weight:600;line-height:1.25;
+  background-image:linear-gradient(180deg,rgba(4,14,9,0) 0%,rgba(4,14,9,.82) 100%)
+}
+
+/* Phone: no frames at all. The clips are nodes in a flow, linked by a short
+   connector that alternates — one joins along the top edge, the next along the
+   bottom — so the strip reads as a chain rather than a row of tiles. */
+@media (max-width:720px){
+  .hero .hero__rail{padding:8px 0;overflow:hidden;background:none;box-shadow:none;border:0}
+  .hero .hero__rail::before,.hero .hero__rail::after{content:none}
+
+  /* the gap is the connector's length, so it stays short */
+  .hero .rail__track{gap:14px;padding-inline:14px}
+  /* <figure> carries a 40px UA margin each side — that, not the track gap,
+     was what held the clips 80px apart */
+  .hero .rcard{margin:0;
+    width:118px;height:70px;border:0;border-radius:8px;overflow:visible;
+    background:none;backdrop-filter:none;-webkit-backdrop-filter:none;
+    box-shadow:0 5px 16px rgba(4,10,6,.4)
+  }
+  /* the media does the clipping now that the card itself does not */
+  .hero .rcard img,.hero .rcard video{border-radius:8px}
+  .hero .rcard__cap{padding:4px 6px;font-size:.55rem;line-height:1.15;border-radius:0 0 8px 8px}
+
+  /* connector: a lime run between two clips, with a node on it */
+  .hero .rcard::after{
+    content:"";position:absolute;right:-14px;width:14px;height:2px;
+    background:rgba(217,230,74,.9);z-index:4
+  }
+  .hero .rcard::before{
+    content:"";position:absolute;right:-10px;width:6px;height:6px;border-radius:50%;
+    background:var(--accent);z-index:5;box-shadow:0 0 0 2px rgba(4,10,6,.35)
+  }
+  /* alternate which edge it leaves from */
+  .hero .rcard:nth-child(odd)::after{top:13px}
+  .hero .rcard:nth-child(odd)::before{top:11px}
+  .hero .rcard:nth-child(even)::after{bottom:13px}
+  .hero .rcard:nth-child(even)::before{bottom:11px}
+  .hero .rcard:last-child::after,.hero .rcard:last-child::before{content:none}
+
+  /* the trust badges are cut on a phone — the same numbers carry the whole of
+     section 03, so the hero drops them and ends on the film chain */
+  .hero .hero__proof{display:none}
+  /* the actions moved into this wrapper for the desktop row; here the wrapper
+     is lifted back above the film chain so the phone layout is unchanged */
+  .hero .hero__trust{padding-bottom:0;margin-top:auto;display:block}
+  /* the chain stays last; the actions row slots in above it */
+  .hero .hero__rail{order:1}
+
+  /* Top to bottom: the locations sit right under the navbar, then the headline
+     and its deck, then all the slack, then the buttons, then the chain at the
+     foot. The copy reads first and the actions land where a thumb reaches.
+     The sunflower now sits lower, over the chain, so the band between the
+     buttons and the chain is only breathing room. */
+  .hero{justify-content:flex-start;padding-top:clamp(74px,10.5vh,96px)}
+  .hero .hero__inner{
+    flex:0 0 auto;display:flex;flex-direction:column;
+    margin-top:0;padding-bottom:0
+  }
+  .hero .hero__eyebrow{margin-bottom:16px}
+  /* sized so the deck holds three lines instead of four */
+  .hero .hero__deck{font-size:.86rem;line-height:1.5;margin-bottom:0}
+  .hero .hero__rail{margin-top:10px;margin-bottom:18px}
+
+  /* both calls to action on one line, sharing the width evenly — and the
+     auto top margin is what collects the slack above them */
+  .hero .hero__actions{
+    flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:center;gap:8px;
+    margin:0 0 22px
+  }
+  .hero .hero__actions>*{
+    flex:1 1 0;min-width:0;width:auto;height:46px;
+    justify-content:center;padding-inline:10px;font-size:.86rem;white-space:nowrap
+  }
+  /* the buttons keep their size; the faces and the little screen take more of
+     it, since they are what makes the pair worth looking at */
+  .hero .cta-walk{padding:0 12px 0 5px;gap:0}
+  .hero .cta-walk__lane{width:66px;height:38px;margin-right:8px}
+  .hero .cta-walk__file{gap:4px;padding-inline:5px}
+  .hero .cta-walk__file img{width:30px;height:30px;border-width:1.5px}
+  .hero .cta-walk svg{margin-left:6px}
+  .hero .cta-film{padding:4px 12px 4px 4px;gap:8px}
+  /* the little screen echoes the pill it sits in: rounded on its outer edge,
+     squarer where it meets the label */
+  .hero .cta-film__screen{width:44px;height:38px;border-radius:19px 9px 9px 19px}
+  /* the faces walk the other way — into the button, left to right */
+  html.anim .hero .cta-walk__file{animation-direction:reverse}
+  .hero .hero__actions>*{font-size:.8rem}
+}
+
+@media (max-width:900px){
+  .hero{min-height:100svh;padding-top:clamp(96px,13vh,132px)}
+  .hero__inner{padding-bottom:20px}
+  .hero__deck{margin-bottom:22px}
+  .hero__actions{margin-bottom:22px;gap:10px}
+  .hero__leaf--br{width:52vw;bottom:-12%;right:-26%}
+  .hero__rail{padding-bottom:10px}
+  .rcard{width:150px;height:88px}
+  .cta-walk,.cta-film{height:52px}
+  .cta-walk__lane{width:72px;height:36px}
+  .cta-walk__file img{width:26px;height:26px}
+  .cta-film__screen{width:54px;height:36px}
+}
+
+/* ---------- 6b. SHARED HERO PARTS ---------- */
+.hero__eyebrow{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:26px}
+.pin{
+  display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:var(--r-pill);
+  background:var(--surface);border:1px solid var(--line-soft);
+  font-family:var(--f-mono);font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)
+}
+.pin__dot{width:6px;height:6px;border-radius:50%;background:var(--primary);flex:none}
+
+/* Phone: the four locations wrapped onto two rows and pushed the headline
+   down. They hold one line — tighter pills, smaller tracking, and the gap
+   scaled to the viewport so the row fits at 360px too. */
+@media (max-width:720px){
+  .hero .hero__eyebrow{flex-wrap:nowrap;gap:1.4vw;margin-bottom:18px}
+  .hero .hero__eyebrow .pin{
+    padding:5px 2.1vw;font-size:2.55vw;letter-spacing:.06em;gap:1.2vw;white-space:nowrap
+  }
+  .hero .hero__eyebrow .pin__dot{width:4px;height:4px}
+}
+.proof{display:flex;flex-direction:column;gap:2px}
+.proof__n{font-family:var(--f-display);font-size:1.7rem;font-weight:600;letter-spacing:-.03em;line-height:1}
+.proof__l{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.faces{display:flex;align-items:center;gap:12px}
+.faces__row{display:flex}
+.faces__row img{
+  width:38px;height:38px;border-radius:50%;object-fit:cover;
+  border:2.5px solid var(--paper);margin-left:-12px;background:var(--paper-2)
+}
+.faces__row img:first-child{margin-left:0}
+.stars{display:flex;gap:2px;color:var(--accent-700)}
+
+/* Hero photo stack */
+.hero__media{position:relative}
+.hero__frame{position:relative}
+.hero__photo{
+  position:relative;border-radius:var(--r-lg);overflow:hidden;
+  aspect-ratio:4/5;box-shadow:var(--sh-3);background:var(--paper-2)
+}
+.hero__photo img{width:100%;height:100%;object-fit:cover;object-position:50% 66%;transform:scale(1.02)}
+.hero__inset{
+  position:absolute;left:-6%;bottom:-7%;width:47%;border-radius:var(--r-md);overflow:hidden;
+  border:7px solid var(--paper);box-shadow:var(--sh-2);aspect-ratio:4/3;background:var(--paper-2)
+}
+.hero__inset img{width:100%;height:100%;object-fit:cover}
+.nextcard{
+  position:absolute;right:-4%;top:7%;width:min(268px,74%);background:var(--surface);
+  border-radius:var(--r-md);padding:18px;box-shadow:var(--sh-3);border:1px solid var(--line-soft)
+}
+.nextcard__top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.nextcard__ttl{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.dotpulse{width:8px;height:8px;border-radius:50%;background:var(--status-open)}
+.nextcard__date{font-family:var(--f-display);font-size:1.5rem;font-weight:600;letter-spacing:-.03em;margin-bottom:2px}
+.nextcard__place{font-size:.85rem;color:var(--muted);margin-bottom:14px}
+.nextcard__row{display:flex;align-items:center;justify-content:space-between;
+  padding-top:13px;border-top:1px dashed var(--line)}
+.nextcard__price{font-family:var(--f-display);font-size:1.2rem;font-weight:600}
+.nextcard__price span{font-size:.7rem;font-family:var(--f-mono);color:var(--muted);letter-spacing:.08em}
+.urgent{
+  display:inline-flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:.66rem;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--status-filling)
+}
+
+/* ---------- 7. MARQUEE ---------- */
+.marquee{
+  color:var(--on-dark);overflow:hidden;padding:17px 0;
+  background-image:linear-gradient(180deg,var(--forest-2) 0%,var(--forest) 48%,var(--forest-2) 100%)
+}
+.marquee__track{display:flex;gap:0;width:max-content;animation:slide 42s linear infinite}
+.marquee__set{display:flex;align-items:center;gap:0;flex:none}
+.marquee__item{
+  display:inline-flex;align-items:center;gap:14px;padding-inline:22px;
+  font-family:var(--f-mono);font-size:.76rem;letter-spacing:.17em;text-transform:uppercase;white-space:nowrap
+}
+.marquee__item i{width:5px;height:5px;border-radius:50%;background:var(--accent);flex:none}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ---------- 8. GENERIC SECTION HEAD ---------- */
+/* Ambient blooms on the light sections so paper never reads as a flat slab.
+   Painted on a full-bleed pseudo-element: these sections are width-capped
+   containers, so a background on the section itself would clip at the gutter
+   and show a hard vertical seam. Alternating sides drifts colour down the page. */
+.bloom,.bloom--r{position:relative}
+/* The layer runs past the top and bottom of its section so the gradient's own
+   falloff — not the element's edge — is what you see. That is what removes the
+   horizontal seam between two adjacent light sections. */
+.bloom::before,.bloom--r::before{
+  content:"";position:absolute;top:-22%;height:144%;
+  left:calc(50% - 50vw);width:100vw;
+  pointer-events:none;z-index:-1
+}
+.bloom::before{background-image:
+  radial-gradient(46% 30% at 82% 18%, var(--glow-a) 0%, rgba(0,0,0,0) 70%),
+  radial-gradient(38% 26% at 12% 84%, var(--glow-b) 0%, rgba(0,0,0,0) 72%)}
+.bloom--r::before{background-image:
+  radial-gradient(44% 29% at 14% 20%, var(--glow-a) 0%, rgba(0,0,0,0) 72%),
+  radial-gradient(36% 25% at 88% 82%, var(--glow-b) 0%, rgba(0,0,0,0) 70%)}
+
+.head{max-width:74ch}
+.head h2{font-size:var(--t-h2);margin-bottom:20px}
+.head--split{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(24px,4vw,64px);align-items:end;max-width:none}
+
+/* ---------- 9. PILLARS ---------- */
+.pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,1.6vw,22px);margin-top:56px}
+.pillar{
+  background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--r-lg);
+  overflow:hidden;transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .4s
+}
+.pillar:hover{transform:translateY(-6px);box-shadow:var(--sh-2);border-color:var(--line)}
+.pillar__img{aspect-ratio:4/3;overflow:hidden;background:var(--paper-2)}
+.pillar__img img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.pillar:hover .pillar__img img{transform:scale(1.06)}
+.pillar__b{padding:24px 22px 26px}
+.pillar__ico{
+  width:40px;height:40px;border-radius:12px;background:var(--primary-50);color:var(--primary);
+  display:flex;align-items:center;justify-content:center;margin-bottom:14px
+}
+.pillar h3{font-size:1.18rem;margin-bottom:9px;letter-spacing:-.02em}
+.pillar p{font-size:.9rem;color:var(--muted);line-height:1.58}
+
+/* Mobile: four stacked photo cards ran to about four screens. Each pillar
+   becomes a row instead — photo left, words right — which keeps all four
+   visible in roughly the space one card used to take. */
+@media (max-width:720px){
+  .pillars{grid-template-columns:1fr;gap:7px;margin-top:20px}
+  /* Every row is the same height so the four read as one stack, and the photo
+     is arched at the top — the same doorway motif the walk cards use. */
+  .pillar{
+    display:grid;grid-template-columns:116px 1fr;align-items:center;
+    height:140px;padding:9px;border-radius:var(--r-md);overflow:hidden
+  }
+  .pillar:hover{transform:none}
+  .pillar__img{
+    aspect-ratio:auto;height:122px;border-radius:999px 999px var(--r-md) var(--r-md)
+  }
+  .pillar__ico{display:none}
+  .pillar__b{grid-area:1/2;padding:0 4px 0 14px;min-width:0}
+  .pillar__img{grid-area:1/1}
+  /* Alternating rows: the photo swaps to the right on every second card so the
+     stack zig-zags instead of running as one straight column of thumbnails. */
+  .pillar:nth-child(even){grid-template-columns:1fr 116px}
+  .pillar:nth-child(even) .pillar__img{grid-area:1/2}
+  .pillar:nth-child(even) .pillar__b{grid-area:1/1;padding:0 14px 0 4px;text-align:right}
+  .pillar h3{font-size:.94rem;line-height:1.22;margin-bottom:4px}
+  .pillar p{
+    font-size:.78rem;line-height:1.4;
+    display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow:hidden
+  }
+}
+
+/* Anyone-can banner */
+.anyone{
+  margin-top:clamp(28px,4vw,48px);margin-bottom:calc(var(--sec-y) * -0.42);background:var(--primary-50);border:1.5px dashed var(--primary);
+  border-radius:var(--r-lg);padding:clamp(26px,3.4vw,44px);
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px
+}
+.anyone h3{font-size:clamp(1.4rem,2.6vw,2.1rem);max-width:22ch;letter-spacing:-.03em}
+.anyone p{color:var(--muted);max-width:40ch;font-size:.95rem;margin-top:10px}
+
+/* ---------- 10. EXPERIENCE CARDS ---------- */
+.walks{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,1.8vw,26px);margin-top:52px}
+/* Each walk is a gate into it: the card is arched at the top like a doorway
+   cut through the trees, squared at the base where the practical detail sits. */
+.walk{
+  background:var(--surface);border:1px solid var(--line-soft);
+  border-radius:999px 999px var(--r-lg) var(--r-lg);
+  overflow:hidden;display:flex;flex-direction:column;
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease)
+}
+.walk:hover{transform:translateY(-7px);box-shadow:var(--sh-3)}
+.walk__media{position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--paper-2);
+  border-radius:999px 999px 0 0}
+.walk__media img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+.walk:hover .walk__media img{transform:scale(1.05)}
+.walk__place{
+  position:absolute;left:50%;translate:-50% 0;bottom:16px;display:inline-flex;align-items:center;gap:6px;
+  padding:7px 12px;border-radius:var(--r-pill);background:rgba(16,34,26,.66);color:#fff;
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  font-family:var(--f-mono);font-size:.64rem;letter-spacing:.13em;text-transform:uppercase
+}
+.walk__price{
+  position:absolute;right:16px;bottom:14px;background:var(--accent);color:var(--accent-ink);
+  border-radius:var(--r-pill);padding:9px 15px;text-align:center;line-height:1.1;
+  box-shadow:0 6px 18px rgba(16,34,26,.24)
+}
+.walk__price b{font-family:var(--f-display);font-size:1.12rem;font-weight:700;letter-spacing:-.02em}
+.walk__price span{display:block;font-family:var(--f-mono);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;opacity:.8}
+.walk__b{padding:24px 22px 24px;display:flex;flex-direction:column;flex:1}
+.walk h3{font-size:1.3rem;margin-bottom:10px;letter-spacing:-.025em;text-align:center}
+.walk__desc{font-size:.9rem;color:var(--muted);line-height:1.58;margin-bottom:16px;text-align:center}
+.walk__meta{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px;justify-content:center}
+.tag{
+  display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:var(--r-pill);
+  background:var(--paper-2);font-size:.74rem;font-weight:500;color:var(--muted)
+}
+.walk__dates{border-top:1px dashed var(--line);padding-top:16px;margin-top:auto}
+.dates__hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px}
+.dates__hd span{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{
+  display:inline-flex;flex-direction:column;align-items:center;gap:1px;min-width:60px;
+  padding:7px 9px;border-radius:10px;border:1px solid var(--line-soft);background:var(--paper);
+  transition:border-color .25s,background .25s
+}
+.chip:hover{border-color:var(--primary);background:var(--primary-50)}
+.chip b{font-size:.78rem;font-weight:600;letter-spacing:-.01em}
+.chip i{font-family:var(--f-mono);font-style:normal;font-size:.55rem;letter-spacing:.09em;text-transform:uppercase}
+.chip--open i{color:var(--status-open)}
+.chip--fill i{color:var(--status-filling)}
+.chip--full{opacity:.44}
+.chip--full i{color:var(--status-full)}
+.chip--full b{text-decoration:line-through}
+.walk__foot{display:flex;gap:10px;margin-top:18px}
+.walk__foot .btn{flex:1}
+.chips__more{display:none}
+
+/* Mobile: the gate goes full width, so a 1:1 arch makes a very tall card.
+   Shallower elliptical arch, tighter type, and only the next four dates —
+   the total is already stated above them, and Details has the rest. */
+@media (max-width:720px){
+  .walk{border-radius:50% 50% var(--r-lg) var(--r-lg) / 26% 26% var(--r-lg) var(--r-lg)}
+  .walk__media{aspect-ratio:7/5;border-radius:50% 50% 0 0 / 36% 36% 0 0}
+  .walk__place{bottom:12px;padding:6px 11px;font-size:.6rem}
+  .walk__price{right:12px;bottom:10px;padding:7px 12px}
+  .walk__price b{font-size:1rem}
+  .walk__b{padding:18px 16px 20px}
+  .walk h3{font-size:1.14rem;margin-bottom:7px}
+  .walk__desc{font-size:.85rem;line-height:1.5;margin-bottom:13px}
+  .walk__meta{gap:6px;margin-bottom:14px}
+  .walk__meta .tag{padding:4px 10px;font-size:.71rem}
+  .walk__dates{padding-top:13px}
+  .dates__hd{margin-bottom:9px}
+  .chips{gap:5px}
+  .chip{min-width:0;flex:1 1 auto;padding:6px 8px}
+  .chip b{font-size:.74rem}
+  .chips .chip:nth-child(n+5):not(.chips__more){display:none}
+  .chips__more{
+    display:inline-flex;align-items:center;padding:6px 12px;border-radius:10px;
+    border:1px dashed var(--line);background:transparent;color:var(--muted);
+    font-family:var(--f-mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase
+  }
+  .walk__foot{margin-top:15px}
+}
+
+/* ---------- 10b. FEATURE CARD — the arch ----------
+   Deliberately not another rounded rectangle. A tall arch cut into the card
+   like a window into the forest, a dashed trail curving out of it, and the
+   whole thing dark against the paper so it reads as a different kind of thing. */
+.feature{
+  grid-column:1 / -1;position:relative;overflow:hidden;
+  border-radius:var(--r-xl);background-color:var(--forest);
+  background-image:
+    radial-gradient(70% 60% at 88% 6%, var(--glow-dark-a) 0%, rgba(0,0,0,0) 62%),
+    radial-gradient(50% 50% at 4% 96%, var(--glow-dark-b) 0%, rgba(0,0,0,0) 60%);
+  color:var(--on-dark);
+  display:grid;grid-template-columns:minmax(240px,340px) 1fr;
+  gap:clamp(26px,4vw,64px);align-items:center;
+  padding:clamp(26px,3.4vw,46px)
+}
+.feature__arch{
+  position:relative;aspect-ratio:2/3;overflow:hidden;
+  /* the arch: fully round at the top, squared at the base */
+  border-radius:999px 999px 26px 26px;
+  border:1.5px solid rgba(255,255,255,.22);
+  box-shadow:0 26px 60px rgba(0,0,0,.4)
+}
+.feature__arch video,.feature__arch img{width:100%;height:100%;object-fit:cover;display:block}
+html.anim .feature__arch video{animation:archzoom 24s ease-in-out infinite alternate}
+@keyframes archzoom{from{transform:scale(1.02)}to{transform:scale(1.14)}}
+.feature__glow{position:absolute;inset:0;
+  background-image:linear-gradient(180deg,rgba(0,0,0,.16) 0%,rgba(0,0,0,0) 40%,rgba(6,18,12,.6) 100%)}
+.feature__badges{
+  position:absolute;left:50%;bottom:14px;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:6px
+}
+.feature__badge{
+  display:flex;align-items:center;gap:7px;white-space:nowrap;
+  padding:8px 14px;border-radius:var(--r-pill);background:var(--accent);color:var(--accent-ink);
+  font-family:var(--f-mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase
+}
+.feature__badge--price{
+  background:rgba(6,18,12,.78);color:#fff;border:1px solid rgba(255,255,255,.24);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  font-family:var(--f-display);font-size:1rem;font-weight:600;letter-spacing:-.02em;
+  text-transform:none;padding:6px 14px
+}
+.feature__badge--price small{font-family:var(--f-mono);font-size:.55rem;letter-spacing:.1em;opacity:.72}
+.feature__body{min-width:0}
+.feature__eyebrow{
+  display:inline-flex;align-items:center;gap:9px;margin-bottom:16px;
+  font-family:var(--f-mono);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--accent)
+}
+.feature__eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+html.anim .feature__eyebrow i{animation:pulse 2.2s ease-in-out infinite}
+.feature h3{font-size:clamp(1.8rem,3.6vw,3rem);letter-spacing:-.035em;line-height:1.02;margin-bottom:14px}
+.feature h3 em{font-style:italic;font-weight:400;color:var(--accent)}
+.feature__lede{color:var(--on-dark-muted);max-width:52ch;font-size:1rem;line-height:1.62;margin-bottom:24px}
+.feature__facts{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.ftag{
+  display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:var(--r-pill);
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);
+  font-size:.78rem;font-weight:500;color:var(--on-dark)
+}
+.ftag svg{color:var(--accent);flex:none}
+.feature__foot{display:flex;flex-wrap:wrap;align-items:center;gap:10px;
+  padding-top:20px;border-top:1.5px dashed rgba(255,255,255,.2)}
+.ftag--price{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:700}
+.ftag--price small{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.08em;opacity:.75}
+
+@media (max-width:820px){
+  /* the whole card tightens right down on a phone */
+  .feature{padding:18px;gap:16px;border-radius:var(--r-lg)}
+  .feature__arch{max-width:132px;aspect-ratio:2/3;margin-inline:0}
+  .feature__badges{bottom:10px;gap:4px}
+  .feature__badge{padding:5px 10px;font-size:.48rem}
+  .feature__badge--price{font-size:.88rem;padding:4px 11px}
+  .feature__eyebrow{margin-bottom:10px;font-size:.58rem;letter-spacing:.16em}
+  .feature h3{font-size:clamp(1.45rem,6.4vw,1.85rem);margin-bottom:9px}
+  .feature__lede{font-size:.85rem;line-height:1.48;margin-bottom:13px}
+  .feature__facts{gap:6px;margin-bottom:16px}
+  .ftag{padding:6px 11px;font-size:.72rem;gap:6px}
+  .ftag svg{width:12px;height:12px}
+  .feature__foot{padding-top:15px;gap:8px}
+  .feature__foot .btn{flex:1;justify-content:center}
+}
+
+@media (max-width:820px){
+  .feature{grid-template-columns:1fr;gap:24px;text-align:left}
+  .feature__arch{max-width:260px;margin-inline:auto;aspect-ratio:3/4}
+}
+
+/* ---------- 11. DARK BANDS ----------
+   Sections diffuse into each other instead of butting up against a hard rule.
+   Each dark band fades in from the paper above, holds, then fades back out —
+   with two soft colour blooms so the join reads as light, not as a seam. */
+.on-forest{
+  color:var(--on-dark);
+  background-color:var(--forest);
+  background-image:
+    radial-gradient(85% 50% at 12% 6%, var(--glow-dark-a) 0%, rgba(0,0,0,0) 64%),
+    radial-gradient(65% 45% at 90% 94%, var(--glow-dark-b) 0%, rgba(0,0,0,0) 62%),
+    linear-gradient(180deg,
+      var(--paper) 0%, var(--paper-0) 18%,
+      var(--paper-0) 82%, var(--paper) 100%);
+}
+.on-forest .lead,.on-forest .muted{color:var(--on-dark-muted)}
+.on-forest h2,.on-forest h3{color:var(--on-dark)}
+
+/* ambient footage running under the stats band, held right back so the
+   numbers stay the loudest thing in the section */
+.on-forest{position:relative}
+.ambient{position:absolute;inset:0;overflow:hidden;z-index:0;pointer-events:none}
+.ambient video,.ambient img{width:100%;height:100%;object-fit:cover;display:block;opacity:.2}
+.ambient__veil{position:absolute;inset:0;
+  background-image:linear-gradient(180deg,var(--forest) 0%,rgba(0,0,0,0) 26%,
+    rgba(0,0,0,0) 74%,var(--forest) 100%)}
+.on-forest .wrap{position:relative;z-index:1}
+
+/* ---- the numbers band: olive, quiet footage, framed people ---- */
+/* No colour wash over the footage — a neutral scrim only, just enough for the
+   type to hold. The green now comes from the film itself, not a tint. */
+#numbers{background-color:var(--ink)}
+#numbers .ambient video,#numbers .ambient img{opacity:.34}
+#numbers .ambient__veil{
+  background-image:
+    linear-gradient(90deg,rgba(8,20,14,.86) 0%,rgba(8,20,14,.55) 46%,rgba(8,20,14,.2) 100%),
+    linear-gradient(180deg,var(--ink) 0%,rgba(0,0,0,0) 20%,rgba(0,0,0,0) 80%,var(--ink) 100%)}
+.numbers__grid{display:grid;grid-template-columns:1.05fr .95fr;
+  gap:clamp(28px,4vw,72px);align-items:center}
+
+/* photos pinned at slight angles, each drifting on its own clock */
+.cluster{position:relative;height:clamp(340px,38vw,470px)}
+.pframe{
+  position:absolute;margin:0;border-radius:18px;overflow:hidden;
+  border:5px solid var(--on-dark);background:var(--forest);
+  box-shadow:0 18px 44px rgba(0,0,0,.42);
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease)
+}
+.pframe img{width:100%;height:100%;object-fit:cover;display:block}
+.pframe figcaption{
+  position:absolute;left:0;right:0;bottom:0;padding:16px 12px 9px;
+  font-family:var(--f-mono);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;
+  color:#fff;background-image:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.78))
+}
+.pframe:hover{transform:scale(1.05) rotate(0deg)!important;z-index:9;
+  box-shadow:0 24px 60px rgba(0,0,0,.5)}
+/* positioned so no frame covers a neighbour's caption */
+.pframe--1{width:42%;aspect-ratio:4/5;left:0;top:0;transform:rotate(-6deg);z-index:5}
+.pframe--2{width:36%;aspect-ratio:1/1;right:2%;top:2%;transform:rotate(5deg);z-index:3}
+.pframe--3{width:40%;aspect-ratio:5/4;right:0;bottom:4%;transform:rotate(-3deg);z-index:2}
+.pframe--4{width:32%;aspect-ratio:3/4;left:4%;bottom:0;transform:rotate(4deg);z-index:6}
+.pframe--5{width:25%;aspect-ratio:1/1;left:40%;top:44%;transform:rotate(-8deg);z-index:7}
+html.anim .pframe--1{animation:drift 9s ease-in-out infinite}
+html.anim .pframe--2{animation:drift 11s ease-in-out .6s infinite}
+html.anim .pframe--3{animation:drift 10s ease-in-out 1.2s infinite}
+html.anim .pframe--4{animation:drift 12s ease-in-out .3s infinite}
+html.anim .pframe--5{animation:drift 8.5s ease-in-out .9s infinite}
+@keyframes drift{
+  0%,100%{translate:0 0}
+  50%{translate:0 -14px}
+}
+
+/* Mobile: this band was running to nearly two screens. Stats stay 2x2 at a
+   smaller size and the photo cluster compresses to a shallow strip. */
+@media (max-width:900px){
+  #numbers{padding-block:clamp(56px,9vw,88px)}
+  .numbers__grid{gap:26px}
+  #numbers h2{font-size:clamp(1.75rem,7.4vw,2.4rem)}
+  #numbers .lead{font-size:.98rem;max-width:none}
+  .stats{grid-template-columns:repeat(2,1fr);gap:6px 14px;margin-top:22px}
+  .stat{padding:13px 0 0}
+  .stat__n{font-size:clamp(1.7rem,7.6vw,2.2rem);margin-bottom:2px}
+  .stat__l{font-size:.72rem;max-width:none;line-height:1.35;
+    font-family:var(--f-mono);letter-spacing:.06em;text-transform:uppercase}
+  .cluster{height:clamp(196px,52vw,248px)}
+  .pframe{border-width:3.5px;border-radius:13px}
+  .pframe figcaption{font-size:.5rem;padding:12px 8px 6px;letter-spacing:.1em}
+  .pframe--1{width:38%;left:0;top:2%}
+  .pframe--2{width:33%;right:1%;top:0}
+  .pframe--3{width:36%;right:0;bottom:2%}
+  .pframe--4{width:30%;left:3%;bottom:0}
+  .pframe--5{width:23%;left:40%;top:40%}
+}
+
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(16px,2vw,28px);margin-top:44px}
+.stat{padding:30px 0;border-top:1.5px solid rgba(255,255,255,.16)}
+.stat__n{font-family:var(--f-display);font-size:clamp(2.6rem,5.4vw,4.4rem);font-weight:600;
+  letter-spacing:-.045em;line-height:1;color:var(--accent);margin-bottom:12px}
+.stat__l{font-size:.92rem;color:var(--on-dark-muted);max-width:22ch;line-height:1.5}
+
+/* Mobile: the dark olive band read as a hard slab between two paper sections,
+   so on phones it drops the film and sits on paper like everything around it.
+   The four numbers become badges — a star rosette behind each figure — which
+   is both shorter and easier to scan than four full-width rows. */
+@media (max-width:720px){
+  #numbers{
+    background:var(--paper);background-image:none;color:var(--ink);
+    padding-block:clamp(34px,7vw,52px)
+  }
+  #numbers .ambient{display:none}
+  #numbers h2,#numbers h3{color:var(--ink)}
+  #numbers .lead{color:var(--muted);font-size:.9rem;margin-top:10px!important}
+  #numbers h2{font-size:clamp(1.5rem,6.4vw,1.95rem)}
+  #numbers .waypoint__num{color:var(--primary)}
+  #numbers .waypoint__txt{color:var(--muted)}
+  #numbers .waypoint__rule{border-color:var(--line)}
+  #numbers .waypoint__dot{background:var(--primary);box-shadow:0 0 0 4px var(--primary-50)}
+  .numbers__grid{gap:18px}
+
+  .stats{grid-template-columns:repeat(2,1fr);gap:8px;margin-top:16px}
+  .stat{
+    position:relative;overflow:hidden;padding:12px 12px 13px;border:1px solid var(--line);
+    border-top:1px solid var(--line);border-radius:var(--r-md);background:var(--primary-50)
+  }
+  /* the rosette: a six-point star sitting behind the figure, quiet enough to
+     read as texture rather than as another element competing for attention */
+  .stat::before{
+    content:"";position:absolute;right:-12px;top:-12px;width:64px;height:64px;
+    background:var(--accent);opacity:.55;
+    clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)
+  }
+  .stat__n{
+    position:relative;font-size:clamp(1.5rem,6.8vw,1.95rem);color:var(--primary);margin-bottom:3px
+  }
+  .stat__l{
+    font-size:.63rem;color:var(--muted);max-width:none;line-height:1.3;
+    font-family:var(--f-mono);letter-spacing:.05em;text-transform:uppercase
+  }
+  /* The scattered board needed a lot of room to be legible and, squeezed onto a
+     phone, it read as five thumbnails at odd angles. Here it becomes a mosaic
+     built around one big photo in the middle, laid almost straight — the tilt
+     survives only as a hint so it still reads as a board, not a gallery grid. */
+  .cluster{
+    position:static;height:auto;
+    display:grid;grid-template-columns:repeat(3,1fr);
+    grid-template-rows:88px 186px 88px;gap:8px
+  }
+  .pframe{
+    position:static;width:auto;aspect-ratio:auto;left:auto;right:auto;top:auto;bottom:auto;
+    border:3px solid var(--surface,#fff);border-radius:12px;
+    box-shadow:0 8px 20px rgba(16,34,26,.16)
+  }
+  html.anim .pframe{animation:none}
+  .pframe--1{grid-area:1/1/2/3;transform:rotate(-1.2deg)}
+  .pframe--2{grid-area:1/3/2/4;transform:rotate(1.2deg)}
+  .pframe--3{grid-area:2/1/3/4;transform:rotate(-.6deg)}   /* the big one, centre band */
+  .pframe--4{grid-area:3/1/4/2;transform:rotate(1.4deg)}
+  .pframe--5{grid-area:3/2/4/4;transform:rotate(-1.2deg)}
+  .pframe figcaption{font-size:.52rem;padding:14px 8px 6px}
+}
+
+/* ---------- 12. ITINERARY — a horizontal trail ----------
+   The day runs left to right like a real route. It is a native horizontal
+   scroller (so touch, trackpad and keyboard all work), and while the section
+   is on screen page scroll also walks it along — until you grab it yourself. */
+.trail{
+  margin-top:44px;position:relative;
+  overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;
+  scroll-snap-type:x proximity;
+  scrollbar-width:none;-ms-overflow-style:none;
+  padding-bottom:6px
+}
+.trail::-webkit-scrollbar{display:none}
+/* stretch, not flex-start: the cards have to be equal height for the photos'
+   margin-top:auto to pull them onto one baseline */
+.trail__track{display:flex;align-items:stretch;width:max-content;padding-inline:var(--gutter)}
+.stop{
+  --stop-gap:clamp(16px,2vw,28px);
+  flex:none;width:clamp(232px,25vw,306px);scroll-snap-align:center;
+  padding-right:var(--stop-gap)
+}
+.stop__time{
+  font-family:var(--f-mono);font-size:.82rem;font-weight:500;color:var(--primary);
+  letter-spacing:.04em;margin-bottom:14px;display:block
+}
+/* pip sits on a continuous line — each card's line segment abuts the next */
+.stop__rail{position:relative;height:22px;margin-bottom:18px}
+/* the line has to cross the gap between cards, so it runs into the padding */
+.stop__line{position:absolute;left:0;right:calc(-1 * var(--stop-gap));top:50%;height:0;
+  border-top:1.5px dashed var(--primary);opacity:.45}
+.stop:last-child .stop__line{right:50%}
+.stop:first-child .stop__line{left:50%}
+.stop__pip{
+  position:absolute;left:0;top:50%;translate:0 -50%;
+  width:15px;height:15px;border-radius:50%;background:var(--paper);
+  border:2.5px solid var(--primary);z-index:2;
+  transition:transform .35s var(--ease),background .3s
+}
+.stop:hover .stop__pip{transform:scale(1.25);background:var(--primary)}
+.stop--end .stop__pip{background:var(--primary)}
+/* Cards are a column so the photo can be pushed to the bottom — otherwise
+   each image starts wherever its paragraph happens to end and the row of
+   photos looks ragged. */
+.stop{display:flex;flex-direction:column}
+.stop h3{font-size:1.16rem;letter-spacing:-.025em;margin-bottom:8px}
+.stop p{font-size:.88rem;line-height:1.55;color:var(--muted);margin-bottom:16px}
+.stop__img{margin-top:auto}
+.stop__img{
+  border-radius:var(--r-md);overflow:hidden;aspect-ratio:4/3;background:var(--paper-2);
+  box-shadow:var(--sh-1);transition:transform .5s var(--ease),box-shadow .5s var(--ease);
+  margin-top:auto
+}
+.stop__img img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.stop:hover .stop__img{transform:translateY(-5px);box-shadow:var(--sh-2)}
+.stop:hover .stop__img img{transform:scale(1.06)}
+
+/* progress + hint under the trail */
+.trail__foot{display:flex;align-items:center;gap:18px;margin-top:26px}
+.trail__bar{flex:1;height:3px;border-radius:3px;background:var(--line-soft);overflow:hidden}
+.trail__bar i{display:block;height:100%;width:14%;border-radius:3px;background:var(--primary);
+  transition:width .2s linear}
+.trail__hint{
+  font-family:var(--f-mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);white-space:nowrap;display:flex;align-items:center;gap:8px
+}
+html.anim .trail__hint svg{animation:nudge 1.9s ease-in-out infinite}
+@keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(5px)}}
+
+/* The wrapper is invisible to layout everywhere except phones, where it
+   becomes the pinned frame. */
+.day__pin{display:contents}
+
+@media (max-width:720px){
+  .stop{width:min(78vw,290px)}
+  .trail__track{padding-inline:20px}
+
+  /* Phone: the day pins to the top of the screen and the hours walk sideways
+     as you keep scrolling down, then the page releases and moves on. The extra
+     section height IS the scroll budget — more height, slower walk. */
+  #day{padding-block:0;height:280vh;position:relative}
+  .day__pin{
+    display:flex;flex-direction:column;justify-content:center;
+    position:sticky;top:0;height:100vh;overflow:hidden;padding-block:22px
+  }
+  /* The trail must never be squeezed by the pinned frame — as a flex item it
+     was shrinking below its content height and cropping every card's photo. */
+  .day__pin .trail{flex:none;margin-top:18px}
+  .day__pin .trail__foot{flex:none;margin-top:14px}
+  .day__pin .itin__note{flex:none;margin-top:12px}
+  .day__pin .head{flex:none}
+  /* and the card itself gets a little shorter so the whole day fits one screen */
+  .day__pin .stop__img{aspect-ratio:16/10}
+  .day__pin .stop h3{font-size:1.04rem;margin-bottom:6px}
+  .day__pin .stop p{font-size:.82rem;line-height:1.45;margin-bottom:12px}
+  .day__pin .stop__time{margin-bottom:10px}
+  .day__pin .stop__rail{margin-bottom:14px}
+}
+
+/* Shorter phones cannot hold the full frame at once, and a pinned section that
+   overflows crops its own heading. The intro line and the footnotes step aside
+   there — the hours themselves are what the pin exists to show. */
+@media (max-width:720px) and (max-height:760px){
+  .day__pin{padding-block:12px}
+  .day__pin .lead,.day__pin .itin__note{display:none}
+  #day .day__pin h2{font-size:1.42rem}
+  .day__pin .trail{margin-top:14px}
+  .day__pin .stop p{
+    font-size:.8rem;display:-webkit-box;-webkit-box-orient:vertical;
+    -webkit-line-clamp:3;overflow:hidden
+  }
+}
+
+/* ---------- 12b. LEGACY ITINERARY ---------- */
+.itin{margin-top:56px;display:grid;gap:0}
+.step{
+  display:grid;grid-template-columns:110px 34px 1fr 300px;gap:clamp(14px,2.4vw,34px);
+  align-items:start;padding-block:clamp(20px,2.6vw,32px);border-top:1.5px dashed var(--line)
+}
+.step:last-child{border-bottom:1.5px dashed var(--line)}
+.step__t{font-family:var(--f-mono);font-size:.86rem;font-weight:500;color:var(--primary);padding-top:4px;letter-spacing:.02em}
+.step__rail{position:relative;justify-self:center;width:34px;align-self:stretch;display:flex;justify-content:center}
+.step__line{width:1.5px;background:var(--line);height:100%}
+.step__pip{
+  position:absolute;top:4px;width:14px;height:14px;border-radius:50%;
+  background:var(--paper);border:2.5px solid var(--primary)
+}
+.step__pip--end{background:var(--primary)}
+.step__c h3{font-size:var(--t-h3);margin-bottom:8px}
+.step__c p{color:var(--muted);font-size:.95rem;max-width:52ch}
+.step__img{border-radius:var(--r-md);overflow:hidden;aspect-ratio:16/10;background:var(--paper-2)}
+.step__img img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.step:hover .step__img img{transform:scale(1.05)}
+.itin__note{
+  margin-top:26px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;
+  font-size:.88rem;color:var(--muted)
+}
+
+/* ---------- 13. FILM + GALLERY ---------- */
+.film{
+  position:relative;border-radius:var(--r-lg);overflow:hidden;margin-top:48px;
+  aspect-ratio:16/9;background:var(--forest);box-shadow:var(--sh-3)
+}
+.film video,.film img.film__poster{width:100%;height:100%;object-fit:cover;display:block}
+.film__veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,34,26,.34) 0%,rgba(16,34,26,0) 34%,rgba(16,34,26,.66) 100%)}
+.film__ui{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(18px,2.6vw,34px)}
+.film__top{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.film__tag{
+  display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:var(--r-pill);
+  background:rgba(255,255,255,.14);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.2);color:#fff;
+  font-family:var(--f-mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase
+}
+.film__bot{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.film__ttl{color:#fff;font-family:var(--f-display);font-size:clamp(1.4rem,3vw,2.5rem);
+  font-weight:600;letter-spacing:-.03em;max-width:18ch;line-height:1.05}
+.playbtn{
+  width:clamp(64px,7vw,92px);height:clamp(64px,7vw,92px);border-radius:50%;
+  background:var(--accent);color:var(--accent-ink);display:flex;align-items:center;justify-content:center;
+  box-shadow:0 12px 40px rgba(0,0,0,.3);transition:transform .4s var(--ease);flex:none
+}
+.playbtn:hover{transform:scale(1.08)}
+.film__center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.film__center .playbtn{pointer-events:auto}
+
+/* Gallery: photos laid over one another like a handful of prints dropped on a
+   table. Hovering lifts one clear of the pile, straightens it, and — where
+   there is footage — fades a silent clip in over the still. */
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  margin-top:clamp(4px,1vw,14px);padding:46px}
+.gal{
+  position:relative;aspect-ratio:1/1;border-radius:var(--r-sm);overflow:hidden;
+  background:var(--paper-2);margin:-30px;
+  border:7px solid var(--paper);box-shadow:0 16px 40px rgba(16,34,26,.24);
+  rotate:var(--r,0deg);translate:var(--tx,0) var(--ty,0);z-index:var(--z,1);
+  transition:transform .45s var(--ease),rotate .45s var(--ease),
+             box-shadow .45s var(--ease),z-index 0s
+}
+/* every print sits at its own angle and offset so the pile looks dropped,
+   not laid out — and each one has a distinct z so the overlap is readable */
+.gal:nth-child(8n+1){--r:-4.5deg;--tx:0;--ty:6px;--z:3}
+.gal:nth-child(8n+2){--r:4deg;--tx:-14px;--ty:-10px;--z:6}
+.gal:nth-child(8n+3){--r:-2.5deg;--tx:10px;--ty:14px;--z:4}
+.gal:nth-child(8n+4){--r:5.5deg;--tx:-8px;--ty:8px;--z:7}
+.gal:nth-child(8n+5){--r:-3deg;--tx:12px;--ty:-12px;--z:5}
+.gal:nth-child(8n+6){--r:2deg;--tx:-16px;--ty:10px;--z:8}
+.gal:nth-child(8n+7){--r:-5deg;--tx:8px;--ty:-6px;--z:4}
+.gal:nth-child(8n+8){--r:3.5deg;--tx:-10px;--ty:12px;--z:6}
+.gal img,.gal video{width:100%;height:100%;object-fit:cover;display:block}
+.gal video{position:absolute;inset:0;opacity:0;transition:opacity .45s var(--ease)}
+.gal:hover,.gal:focus-visible{
+  transform:translateY(-14px) scale(1.07);rotate:0deg;z-index:30;
+  box-shadow:0 32px 70px rgba(16,34,26,.36)
+}
+.gal:hover video{opacity:1}
+.gal--feature{grid-column:span 2;grid-row:span 2;aspect-ratio:1/1;--r:-2deg;--tx:0;--ty:0;--z:2}
+.gal__badge{
+  position:absolute;left:12px;top:12px;z-index:3;
+  display:flex;align-items:center;gap:6px;padding:6px 11px;border-radius:var(--r-pill);
+  background:rgba(6,18,12,.62);color:#fff;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  font-family:var(--f-mono);font-size:.54rem;letter-spacing:.14em;text-transform:uppercase;
+  opacity:0;transition:opacity .35s var(--ease)
+}
+.gal:hover .gal__badge{opacity:1}
+.gal__more{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  background:var(--forest);color:var(--on-dark);text-align:center;padding:16px
+}
+.gal__more b{font-family:var(--f-display);font-size:2rem;font-weight:600;color:var(--accent);letter-spacing:-.03em}
+.gal__more span{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;color:var(--on-dark-muted)}
+
+/* ---------- 14. INCLUDED / CARRY ---------- */
+.panels{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2vw,26px);margin-top:52px}
+.panel{border-radius:var(--r-lg);padding:clamp(26px,3vw,40px);border:1px solid var(--line-soft);background:var(--surface)}
+.panel--carry{background:var(--paper-2);border-color:var(--line)}
+.panel__hd{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.panel__ico{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex:none}
+.panel--inc .panel__ico{background:var(--primary);color:#fff}
+.panel--carry .panel__ico{background:var(--accent);color:var(--accent-ink)}
+.panel h3{font-size:var(--t-h3)}
+.panel__sub{color:var(--muted);font-size:.9rem;margin-bottom:24px}
+.panel li{display:flex;gap:12px;align-items:flex-start;padding-block:13px;border-top:1px dashed var(--line)}
+.panel li span{font-size:.95rem;line-height:1.5}
+.tick{width:20px;height:20px;flex:none;margin-top:2px;color:var(--primary)}
+.panel--carry .tick{color:var(--accent-700)}
+
+/* The switch is a phone-only control — desktop shows both panels at once. */
+.segs{display:none}
+
+/* Phone: twelve full-width rows with 24px of air each ran to nearly two
+   screens. They become two lists behind a switch — one on screen at a time,
+   each row arriving as its own beat with the tick drawing itself, the way
+   you'd strike an item off a packing list. */
+@media (max-width:720px){
+  .segs{
+    display:grid;grid-template-columns:1fr 1fr;position:relative;
+    margin-top:18px;padding:4px;border-radius:var(--r-pill);
+    background:var(--paper-2);border:1px solid var(--line-soft)
+  }
+  .segs__pill{
+    position:absolute;left:4px;top:4px;width:calc(50% - 4px);height:calc(100% - 8px);
+    border-radius:var(--r-pill);background:var(--surface);box-shadow:var(--sh-1);
+    transition:transform .4s var(--ease),background .35s
+  }
+  .segs[data-view="carry"] .segs__pill{transform:translateX(100%);background:var(--accent)}
+  .seg{
+    position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:7px;
+    padding:9px 6px;font-size:.85rem;font-weight:600;color:var(--muted);
+    transition:color .3s var(--ease)
+  }
+  .seg.is-on{color:var(--ink)}
+  .seg b{
+    font-family:var(--f-mono);font-size:.64rem;padding:2px 6px;border-radius:999px;
+    background:var(--primary-50);color:var(--primary);transition:background .3s,color .3s
+  }
+  .seg[data-view="carry"].is-on b{background:rgba(16,34,26,.14);color:var(--accent-ink)}
+
+  /* only the chosen list is on screen */
+  .panels[data-view="inc"] .panel--carry,
+  .panels[data-view="carry"] .panel--inc{display:none}
+  .panels{gap:10px;margin-top:10px}
+  .panel{padding:15px 15px 9px;border-radius:var(--r-md);animation:panelin .4s var(--ease)}
+  .panel__hd{gap:10px;margin-bottom:5px}
+  .panel__ico{width:30px;height:30px;border-radius:9px}
+  .panel__ico svg{width:16px;height:16px}
+  .panel h3{font-size:1.04rem}
+  .panel__sub{font-size:.8rem;margin-bottom:10px}
+  .panel li{gap:9px;padding-block:8px}
+  .panel li span{font-size:.85rem;line-height:1.4}
+  .tick{width:16px;height:16px;margin-top:1px}
+
+  html.anim .panel li{opacity:0;translate:0 7px}
+  html.anim .panel li .tick path{stroke-dasharray:26;stroke-dashoffset:26}
+  html.anim .panel.in li{
+    animation:panelrow .42s var(--ease) forwards;
+    animation-delay:calc(var(--i,0) * 55ms)
+  }
+  html.anim .panel.in li .tick path{
+    animation:tickdraw .38s var(--ease) forwards;
+    animation-delay:calc(var(--i,0) * 55ms + 90ms)
+  }
+  .panel li:nth-child(1){--i:0}
+  .panel li:nth-child(2){--i:1}
+  .panel li:nth-child(3){--i:2}
+  .panel li:nth-child(4){--i:3}
+  .panel li:nth-child(5){--i:4}
+  .panel li:nth-child(6){--i:5}
+}
+@keyframes panelrow{to{opacity:1;translate:0 0}}
+@keyframes tickdraw{to{stroke-dashoffset:0}}
+@keyframes panelin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ---------- 15. TRUSTED BY ---------- */
+.logos{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(12px,1.5vw,20px);
+  margin-top:44px
+}
+.logowrap{
+  display:flex;align-items:center;justify-content:center;
+  height:clamp(96px,9vw,124px);padding:20px 24px;background:var(--surface);
+  border:1px solid var(--line-soft);border-radius:var(--r-md);
+  transition:border-color .35s,transform .45s var(--ease)
+}
+.logowrap:hover{border-color:var(--line);transform:translateY(-4px)}
+.logos img{max-height:100%;max-width:100%;width:auto;object-fit:contain;
+  filter:grayscale(1);opacity:.66;transition:filter .4s,opacity .4s}
+.logowrap:hover img{filter:grayscale(0);opacity:1}
+.usecases{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,1.8vw,22px);margin-top:44px}
+.usecase{padding:24px;border-radius:var(--r-md);background:var(--surface);border:1px solid var(--line-soft)}
+.usecase b{display:block;font-family:var(--f-display);font-size:1.1rem;font-weight:600;margin-bottom:6px;letter-spacing:-.02em}
+.usecase span{font-size:.87rem;color:var(--muted)}
+
+/* Phone: the logos went grey and the four cards stacked into one long column,
+   so the whole band read as a grey list. Logos come back into full colour at
+   three across, the cards pair up two-by-two, and each one carries its own
+   tint and a rule that wipes across as the row arrives. */
+@media (max-width:720px){
+  /* #trusted-scoped: a wider breakpoint later in the file also sets .logos */
+  #trusted .logos{grid-template-columns:repeat(6,1fr);gap:8px;margin-top:18px}
+  #trusted .logowrap{grid-column:span 2;height:64px;padding:9px 12px;border-radius:var(--r-md)}
+  /* five logos, so the trailing pair sits centred under the first three */
+  #trusted .logowrap:nth-child(4){grid-column:2/4}
+  #trusted .logowrap:nth-child(5){grid-column:4/6}
+  #trusted .logos img{filter:none;opacity:1}
+
+  .usecases{grid-template-columns:repeat(2,1fr);gap:8px;margin-top:16px}
+  .usecase{
+    position:relative;overflow:hidden;padding:13px 12px 14px;
+    border-color:transparent;background:var(--tint,var(--surface))
+  }
+  .usecase::before{
+    content:"";position:absolute;left:0;top:0;height:3px;width:100%;
+    background:var(--c,var(--primary));transform:scaleX(0);transform-origin:left
+  }
+  html.anim .usecases.in .usecase::before{
+    transform:scaleX(1);transition:transform .55s var(--ease);
+    transition-delay:calc(var(--i,0) * 90ms + 160ms)
+  }
+  .usecases:not(.in) .usecase::before{transform:scaleX(1)}
+  .usecase:active{transform:translateY(-2px)}
+  .usecase b{font-size:.94rem;margin-bottom:4px}
+  .usecase span{font-size:.75rem;line-height:1.4;display:block}
+
+  .usecase:nth-child(1){--c:var(--primary);--tint:var(--primary-50);--i:0}
+  .usecase:nth-child(2){--c:var(--accent-700);--tint:color-mix(in srgb,var(--accent) 16%,var(--surface));--i:1}
+  .usecase:nth-child(3){--c:var(--forest);--tint:color-mix(in srgb,var(--forest) 8%,var(--surface));--i:2}
+  .usecase:nth-child(4){--c:var(--primary-700,var(--primary));--tint:var(--paper-2);--i:3}
+}
+
+/* ---------- 16. MAP / WHERE ---------- */
+.where{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(26px,4vw,64px);align-items:center;margin-top:48px}
+.regions{margin-top:30px}
+.region{
+  display:flex;align-items:center;gap:16px;padding-block:18px;border-top:1.5px dashed rgba(255,255,255,.18);
+  transition:padding-left .35s var(--ease)
+}
+.region:last-child{border-bottom:1.5px dashed rgba(255,255,255,.18)}
+.region:hover{padding-left:8px}
+.region__i{font-family:var(--f-mono);font-size:.7rem;color:var(--accent);letter-spacing:.1em;flex:none;width:26px}
+.region__n{font-family:var(--f-display);font-size:1.3rem;font-weight:600;letter-spacing:-.025em;flex:1}
+.region__d{font-family:var(--f-mono);font-size:.72rem;color:var(--on-dark-muted);letter-spacing:.06em}
+.mapcard{position:relative;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-3);
+  aspect-ratio:4/3;background:var(--forest-2)}
+.mapcard img{width:100%;height:100%;object-fit:cover;opacity:.92}
+.mapchip{
+  position:absolute;display:flex;align-items:center;gap:8px;padding:9px 14px;border-radius:var(--r-pill);
+  background:rgba(255,255,255,.94);color:var(--ink);box-shadow:var(--sh-2);
+  font-family:var(--f-mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap
+}
+.mapchip i{width:7px;height:7px;border-radius:50%;background:var(--primary);flex:none}
+.mapchip--a{left:12%;top:26%}
+.mapchip--b{right:9%;top:47%}
+.mapchip--c{left:22%;bottom:16%}
+.reach{
+  margin-top:26px;display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;
+  font-family:var(--f-mono);font-size:.74rem;letter-spacing:.05em;color:var(--on-dark-muted)
+}
+.reach b{color:var(--accent);font-weight:500}
+
+/* ---------- 17. STORIES ---------- */
+.story{
+  display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(26px,4vw,64px);
+  align-items:center;margin-top:52px
+}
+.story__img{border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/5;box-shadow:var(--sh-2);background:var(--paper-2)}
+.story__img img{width:100%;height:100%;object-fit:cover}
+.quote{font-family:var(--f-display);font-size:clamp(1.35rem,2.5vw,2.05rem);font-weight:500;
+  letter-spacing:-.028em;line-height:1.3;margin-bottom:24px}
+.quote em{font-style:italic;color:var(--primary)}
+.story__body{color:var(--muted);font-size:1rem;line-height:1.7;margin-bottom:28px;max-width:56ch}
+.byline{display:flex;align-items:center;gap:14px;padding-top:22px;border-top:1.5px dashed var(--line)}
+.byline img{width:52px;height:52px;border-radius:50%;object-fit:cover;flex:none}
+.byline b{display:block;font-size:.98rem;font-weight:600}
+.byline span{font-size:.83rem;color:var(--muted)}
+.minis{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.8vw,22px);margin-top:clamp(30px,4vw,52px)}
+.mini{background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--r-md);padding:26px}
+.mini p{font-size:.93rem;line-height:1.62;color:var(--ink);margin-bottom:20px}
+.mini .byline{padding-top:18px}
+.mini .byline img{width:40px;height:40px}
+
+/* Phone: three review cards at 26px padding and 1.62 leading ran to 686px on
+   their own. The photo story above them is left alone — only the quote cards
+   tighten up. */
+@media (max-width:720px){
+  .minis{gap:8px;margin-top:18px}
+  .mini{padding:14px 14px 15px;border-radius:var(--r-md)}
+  .mini p{font-size:.84rem;line-height:1.48;margin-bottom:11px}
+  .mini .byline{padding-top:10px;gap:10px}
+  .mini .byline img{width:32px;height:32px}
+  .mini .byline b{font-size:.85rem}
+  .mini .byline span{font-size:.72rem}
+}
+
+/* ---------- 18. FAQ ---------- */
+.faq{margin-top:48px;display:grid;grid-template-columns:1fr;gap:0;max-width:960px}
+.qa{border-top:1.5px dashed var(--line)}
+.qa:last-child{border-bottom:1.5px dashed var(--line)}
+.qa__q{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding-block:clamp(18px,2.2vw,26px);text-align:left
+}
+.qa__q h3{font-size:clamp(1.05rem,1.7vw,1.3rem);font-weight:600;letter-spacing:-.02em}
+.qa__ic{
+  width:34px;height:34px;border-radius:50%;border:1.5px solid var(--line);flex:none;
+  display:flex;align-items:center;justify-content:center;transition:transform .4s var(--ease),background .3s,border-color .3s,color .3s
+}
+.qa[data-open="1"] .qa__ic{background:var(--primary);border-color:var(--primary);color:#fff;transform:rotate(45deg)}
+.qa__a{overflow:hidden;transition:height .45s var(--ease)}
+.qa__a p{padding-bottom:26px;color:var(--muted);max-width:70ch;font-size:.98rem;line-height:1.68}
+
+/* ---------- 19. HELP ---------- */
+.help{
+  border-radius:var(--r-xl);background:var(--forest);color:var(--on-dark);
+  padding:clamp(34px,5vw,76px);display:grid;grid-template-columns:1.1fr .9fr;
+  gap:clamp(28px,4vw,64px);align-items:center;position:relative;overflow:hidden
+}
+/* the texture is a full-card backdrop, not a grid item — so it must be
+   excluded from the rule that lifts the real children above it */
+.help>*:not(.help__tex){position:relative;z-index:1}
+.help__tex{position:absolute;inset:0;z-index:0;pointer-events:none}
+/* The photo runs raw — full opacity, no wash over it. Legibility comes from
+   the type itself (a shadow on the copy, solid chips on the contacts) rather
+   than from tinting the whole card. */
+.help__tex img{width:100%;height:100%;object-fit:cover;opacity:1}
+.help__tex span{display:none}
+.help h2,.help .lead{text-shadow:0 2px 16px rgba(8,20,14,.72),0 1px 3px rgba(8,20,14,.5)}
+.help .lead{color:rgba(255,255,255,.95)}
+.help h2{font-size:var(--t-h2);margin-bottom:18px}
+.contacts{display:grid;gap:12px}
+.contact{
+  display:flex;align-items:center;gap:16px;padding:18px 22px;border-radius:var(--r-md);
+  /* the card behind these is a raw photo now, so the chips carry their own
+     dark glass instead of relying on a tinted backdrop */
+  background:rgba(9,24,17,.62);border:1px solid rgba(255,255,255,.3);
+  backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
+  box-shadow:0 6px 20px rgba(8,20,14,.3);
+  transition:background .3s,transform .35s var(--ease)
+}
+.contact:hover{background:rgba(9,24,17,.76);transform:translateX(4px)}
+.contact__i{width:42px;height:42px;border-radius:12px;background:var(--accent);color:var(--accent-ink);
+  display:flex;align-items:center;justify-content:center;flex:none}
+.contact b{display:block;font-family:var(--f-mono);font-size:.96rem;letter-spacing:.03em;
+  color:#fff}
+.contact span{font-size:.78rem;color:rgba(255,255,255,.88)}
+
+/* ---------- 19b. REELS — the scroll-driven finale ----------
+   One component, two behaviours. Page scroll drives it in both:
+   · mobile  — reels swipe vertically, one full-bleed at a time
+   · desktop — a filmstrip tracks sideways past a fixed quote panel
+   Nothing is a nested scroller, so the page never traps the user:
+   scroll past the fifth reel and the footer arrives normally. */
+/* No overflow clipping on this section — an overflow ancestor kills
+   position:sticky on the stage. Clipping happens on .reels__view instead. */
+/* Sits directly before Stories, so it carries the same paper base and the
+   same ambient bloom — the reels themselves supply all the darkness needed. */
+.reels{
+  color:var(--ink);position:relative;background-color:var(--paper);
+  background-image:
+    radial-gradient(50% 34% at 88% 8%, var(--glow-a) 0%, rgba(0,0,0,0) 68%),
+    radial-gradient(42% 30% at 8% 92%, var(--glow-b) 0%, rgba(0,0,0,0) 70%);
+}
+.reels__track{position:relative;height:calc(100vh + 5 * 76vh);padding-top:2px}
+.reels__stage{
+  position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden;
+  display:flex;align-items:center;padding-top:96px;padding-bottom:34px
+}
+.reels__inner{
+  width:100%;max-width:var(--max);margin-inline:auto;padding-inline:var(--gutter);
+  display:flex;flex-direction:column;gap:clamp(18px,2.4vw,32px);height:100%;justify-content:center
+}
+
+/* progress — story-style segments */
+.reels__bar{position:absolute;top:104px;left:var(--gutter);right:var(--gutter);display:flex;gap:6px;z-index:4}
+.reels__seg{flex:1;height:3px;border-radius:3px;background:var(--line-soft);overflow:hidden}
+.reels__seg i{display:block;height:100%;width:0%;background:var(--primary);border-radius:3px}
+
+/* compact meta bar — index, caption, link. Deliberately light on words. */
+.reels__meta{position:relative;display:flex;justify-content:center;flex:none}
+.reels__slides{position:relative;width:100%;max-width:760px}
+.reels__slide{
+  display:flex;align-items:center;justify-content:center;gap:clamp(14px,2vw,28px);
+  transition:opacity .38s var(--ease),transform .38s var(--ease)
+}
+.reels__slide[aria-hidden="true"]{position:absolute;inset:0;opacity:0;transform:translateY(10px);pointer-events:none}
+.reels__idx{
+  font-family:var(--f-display);font-size:clamp(1.7rem,2.6vw,2.4rem);font-weight:600;
+  letter-spacing:-.04em;line-height:1;color:var(--primary);flex:none
+}
+.reels__idx span{font-size:.44em;color:var(--muted);letter-spacing:.06em;margin-left:5px}
+.reels__cap{font-family:var(--f-display);font-size:clamp(1.05rem,1.7vw,1.5rem);font-weight:600;
+  letter-spacing:-.024em;line-height:1.2;text-align:center}
+.reels__by{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;color:var(--muted);flex:none}
+
+/* the stack — a fixed frame the reels fly out of */
+.reels__view{position:relative;flex:1;min-height:0;overflow:hidden;perspective:1600px}
+.reels__strip{position:absolute;inset:0;transform-style:preserve-3d}
+.reel{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  height:min(58vh,580px);aspect-ratio:9/16;width:auto;
+  border-radius:var(--r-lg);overflow:hidden;background:#0b1410;
+  box-shadow:var(--sh-3);will-change:transform,opacity;transform-origin:50% 50%;
+  backface-visibility:hidden
+}
+.reel video,.reel img.reel__poster{width:100%;height:100%;object-fit:cover;display:block}
+.reel__dim{position:absolute;inset:0;background:#04120c;opacity:0;pointer-events:none;z-index:6;
+  transition:opacity .25s linear}
+.reel__veil{position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(6,14,10,.5) 0%,rgba(6,14,10,0) 26%,rgba(6,14,10,0) 52%,rgba(6,14,10,.82) 100%)}
+.reel__ui{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:16px}
+.reel__top{display:flex;align-items:center;gap:9px}
+.reel__av{width:30px;height:30px;border-radius:50%;background:var(--forest);flex:none;
+  display:flex;align-items:center;justify-content:center;border:1.5px solid var(--accent)}
+.reel__av img{width:20px;height:auto}
+.reel__handle{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.04em;color:#fff}
+.reel__follow{margin-left:auto;font-family:var(--f-mono);font-size:.58rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--accent-ink);background:var(--accent);padding:5px 10px;border-radius:999px}
+.reel__bottom{display:flex;align-items:flex-end;gap:12px}
+.reel__cap{flex:1;font-size:.82rem;line-height:1.4;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.5)}
+.reel__rail{display:flex;flex-direction:column;gap:14px;align-items:center;color:#fff;flex:none}
+.reel__rail a,.reel__rail span{display:flex;color:#fff;opacity:.92}
+.reel__live{position:absolute;top:16px;right:16px;width:9px;height:9px;border-radius:50%;
+  background:var(--accent);opacity:0;transition:opacity .3s}
+.reel.is-active .reel__live{opacity:1}
+.reel__mute{
+  position:absolute;left:50%;bottom:64px;transform:translateX(-50%);
+  display:flex;align-items:center;gap:7px;padding:7px 13px;border-radius:999px;
+  background:rgba(0,0,0,.45);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  color:#fff;font-family:var(--f-mono);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase
+}
+
+/* Mobile: the frame stays put and each reel flies up out of it,
+   the next one already sitting behind — Instagram reels / a dating-app deck. */
+@media (max-width:900px){
+  .reels__inner{gap:0;padding-inline:20px}
+  .reels__meta{display:none}
+  .reels__bar{left:26px;right:26px;top:88px}
+  .reels__stage{padding-top:74px;padding-bottom:30px}
+  .reels__view{
+    flex:1;border-radius:var(--r-lg);overflow:hidden;perspective:1200px;
+    box-shadow:var(--sh-3);background:#0b1410
+  }
+  .reel{
+    inset:0;left:0;top:0;width:100%;height:100%;aspect-ratio:auto;
+    transform:none;border-radius:var(--r-lg);box-shadow:0 -18px 40px rgba(0,0,0,.45)
+  }
+  .reel__cap{font-size:.92rem}
+  .reel__ui{padding:18px}
+  .reel__av{width:34px;height:34px}
+  .reel__handle{font-size:.72rem}
+}
+
+/* Static fallback: export mode, no-JS and reduced motion all get a plain strip
+   with every reel visible — no pinning, no scroll maths. */
+/* The day is pinned on mobile with the section height acting as a scroll
+   budget. Frozen for export that leaves ~2 blank screens under the trail, so
+   collapse the runway and let the pin sit in normal flow. */
+html.export #day{height:auto!important;padding-block:clamp(56px,9vw,88px)!important}
+html.export .day__pin{position:static!important;height:auto!important;overflow:visible!important}
+
+html.export .reels__track,html.nojs .reels__track{height:auto}
+html.export .reels__stage,html.nojs .reels__stage{
+  position:static;height:auto;padding-top:0;padding-bottom:0;display:block}
+html.export .reels__inner,html.nojs .reels__inner{grid-template-columns:1fr;height:auto;gap:34px}
+html.export .reels__copy,html.nojs .reels__copy{display:block}
+html.export .reels__slide[aria-hidden="true"],html.nojs .reels__slide[aria-hidden="true"]{
+  position:static;opacity:1;transform:none}
+html.export .reels__slides,html.nojs .reels__slides{display:none}
+/* the progress bar is a scroll affordance — meaningless in the static view */
+html.export .reels__bar,html.nojs .reels__bar{display:none}
+html.export .reels__view,html.nojs .reels__view{
+  height:auto;display:block;padding-bottom:clamp(56px,7vw,96px)}
+/* Frozen for export, the deck is drawn statically rather than as a grid of
+   five squashed thumbnails: desktop keeps the overlapping fan, mobile shows
+   the single front reel in its frame, which is what the live section shows. */
+html.export .reels__strip,html.nojs .reels__strip{position:absolute;inset:0;transform:none}
+html.export .reel,html.nojs .reel{opacity:1!important}
+
+@media (min-width:901px){
+  html.export .reels__view,html.nojs .reels__view{
+    flex:none;height:min(58vh,580px);perspective:1600px}
+  html.export .reel,html.nojs .reel{position:absolute;left:50%;top:50%}
+  /* mirrors the live layout with reel 3 at the front */
+  html.export .reel:nth-child(1),html.nojs .reel:nth-child(1){
+    transform:translate(-50%,-50%) translateX(-336px) translateZ(-300px) rotateY(38deg) scale(.9);z-index:80}
+  html.export .reel:nth-child(2),html.nojs .reel:nth-child(2){
+    transform:translate(-50%,-50%) translateX(-168px) translateZ(-150px) rotateY(19deg) scale(.95);z-index:90}
+  html.export .reel:nth-child(3),html.nojs .reel:nth-child(3){
+    transform:translate(-50%,-50%);z-index:100}
+  html.export .reel:nth-child(4),html.nojs .reel:nth-child(4){
+    transform:translate(-50%,-50%) translateX(168px) translateZ(-150px) rotateY(-19deg) scale(.95);z-index:90}
+  html.export .reel:nth-child(5),html.nojs .reel:nth-child(5){
+    transform:translate(-50%,-50%) translateX(336px) translateZ(-300px) rotateY(-38deg) scale(.9);z-index:80}
+  html.export .reel__dim:nth-child(n),html.nojs .reel__dim{opacity:0}
+  html.export .reel:nth-child(1) .reel__dim,html.export .reel:nth-child(5) .reel__dim{opacity:.42}
+  html.export .reel:nth-child(2) .reel__dim,html.export .reel:nth-child(4) .reel__dim{opacity:.22}
+}
+@media (max-width:900px){
+  html.export .reels__view,html.nojs .reels__view{flex:none;height:min(74vh,620px)}
+  html.export .reel,html.nojs .reel{position:absolute;inset:0;transform:none!important}
+  html.export .reel:not(:first-child),html.nojs .reel:not(:first-child){display:none}
+  html.export .reel__dim,html.nojs .reel__dim{opacity:0}
+}
+html.export .reel__live,html.nojs .reel__live{opacity:1}
+
+/* ---------- 20. FOOTER ---------- */
+.ftr{background:var(--ink);color:var(--on-dark);padding-top:clamp(56px,7vw,96px)}
+.ftr__top{display:grid;grid-template-columns:1.35fr .9fr .9fr .9fr;gap:clamp(24px,3vw,48px);
+  padding-bottom:clamp(40px,5vw,64px)}
+.ftr__brand{max-width:34ch}
+.ftr__brand p{color:var(--on-dark-muted);font-size:.92rem;margin-top:20px;line-height:1.65}
+.ftr h4{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--on-dark-muted);font-weight:500;margin-bottom:18px}
+.ftr li{margin-bottom:11px}
+.ftr li a{font-size:.93rem;color:var(--on-dark);opacity:.86;transition:opacity .25s,color .25s}
+.ftr li a:hover{opacity:1;color:var(--accent)}
+.ftr__wordmark{
+  font-family:var(--f-display);font-weight:600;letter-spacing:-.05em;line-height:.8;
+  font-size:clamp(3.2rem,15vw,13rem);color:var(--accent);opacity:.9;
+  padding-bottom:18px;user-select:none
+}
+.ftr__bot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;
+  padding-block:26px;border-top:1px solid rgba(255,255,255,.12);
+  font-family:var(--f-mono);font-size:.7rem;letter-spacing:.08em;color:var(--on-dark-muted)}
+.ftr__bot a:hover{color:var(--accent)}
+.socials{display:flex;gap:9px;margin-top:24px}
+.socials a{width:40px;height:40px;border-radius:11px;border:1px solid rgba(255,255,255,.17);
+  display:flex;align-items:center;justify-content:center;transition:background .3s,border-color .3s}
+.socials a:hover{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+
+/* ---------- 21b. SPROUT — the nature-connect assistant ----------
+   The mark is a leaf that doubles as a speech bubble: the midrib is the
+   bubble's tail and the three "typing" dots grow along it like new shoots.
+   Idle it breathes; on hover it opens into a pill. */
+.sprout{
+  /* bottom offset leaves room for the drawn stem below the bloom */
+  position:fixed;right:22px;bottom:38px;z-index:75;
+  display:flex;align-items:center;gap:0;
+  height:86px;padding:0 0 0 4px;border-radius:var(--r-pill);
+  background:rgba(0,0,0,0);
+  transition:background .4s var(--ease),padding .45s var(--ease),
+             box-shadow .45s var(--ease),transform .45s var(--ease)
+}
+/* expands into a solid yellow pill */
+.sprout:hover{
+  background:var(--accent);padding-right:26px;transform:translateY(-3px);
+  box-shadow:0 16px 40px rgba(16,34,26,.3),0 3px 10px rgba(16,34,26,.2)
+}
+.sprout__mark{
+  width:82px;height:82px;flex:none;display:flex;align-items:center;justify-content:center;
+  position:relative
+}
+/* a real sunflower, cut out of its sky — no frame, no border */
+.sprout__mark img{
+  width:82px;height:82px;object-fit:contain;position:relative;z-index:2;
+  filter:drop-shadow(0 6px 16px rgba(16,34,26,.42));
+  transition:transform .6s var(--ease)
+}
+/* mostly stood up, but left with a slight lean so it still looks grown */
+.sprout__mark img{transform:rotate(-3.5deg)}
+/* a thin ring drawn around the bloom itself */
+.sprout:hover .sprout__mark img{transform:rotate(-14deg) scale(1.06)}
+
+/* a stem, drawn rather than cropped, so the bloom reads as growing out of the
+   corner instead of floating in it */
+.sprout__stem{
+  position:absolute;z-index:0;left:50%;top:58%;translate:-50% 0;
+  width:7px;height:54px;border-radius:0 0 4px 4px;
+  background:linear-gradient(180deg,#5C8A3E 0%,#3D6B2E 60%,#2F5626 100%);
+  transform-origin:top center;transform:rotate(1.5deg)
+}
+/* one leaf, angled off the stem */
+.sprout__stem::after{
+  content:"";position:absolute;left:5px;top:44%;
+  width:26px;height:15px;border-radius:0 100% 0 100%;
+  background:linear-gradient(135deg,#5C8A3E,#3D6B2E);
+  transform:rotate(12deg);transform-origin:left center;
+  transition:transform .6s var(--ease)
+}
+.sprout:hover .sprout__stem::after{transform:rotate(2deg) scaleX(1.08)}
+/* soft halo instead of a ring */
+.sprout__ring{
+  position:absolute;inset:6px;border-radius:50%;z-index:1;
+  background-image:radial-gradient(circle,var(--accent) 0%,rgba(0,0,0,0) 66%);
+  opacity:.34
+}
+.sprout__label{
+  max-width:0;opacity:0;white-space:nowrap;color:var(--accent-ink);
+  font-size:.95rem;font-weight:700;letter-spacing:-.01em;
+  transition:max-width .45s var(--ease),opacity .3s var(--ease)
+}
+.sprout:hover .sprout__label{max-width:220px;opacity:1;padding-left:4px}
+html.anim .sprout__ring{animation:breathe 3.6s ease-in-out infinite}
+@keyframes breathe{
+  0%,100%{transform:scale(.92);opacity:.3}
+  50%{transform:scale(1.16);opacity:.06}
+}
+@media (max-width:720px){
+  /* sits low, floating over the hero's film chain rather than above it */
+  .sprout{right:12px;bottom:18px;height:56px}
+  .sprout__mark,.sprout__mark img{width:54px;height:54px}
+  .sprout__stem{height:34px;width:5px}
+  .sprout__stem::after{width:17px;height:10px}
+}
+
+/* Touch: there is no hover to leave, so the pill used to open on tap and stay
+   open, sitting across whatever was behind it. On these devices the flower is
+   the whole control and the label never expands. */
+@media (hover:none){
+  .sprout__label{display:none}
+  .sprout:hover{background:none;padding-right:0;transform:none;box-shadow:none}
+}
+
+/* ---------- 22. THEME SWITCHER (demo tool, not part of the page) ---------- */
+.themer{
+  position:fixed;left:20px;bottom:88px;z-index:80;background:var(--surface);
+  border:1px solid var(--line);border-radius:var(--r-pill);padding:8px;display:flex;
+  align-items:center;gap:8px;box-shadow:var(--sh-2)
+}
+.themer__lbl{font-family:var(--f-mono);font-size:.6rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);padding-left:8px}
+.sw{width:30px;height:30px;border-radius:50%;border:2px solid transparent;position:relative;
+  transition:transform .3s var(--ease),border-color .3s}
+.sw:hover{transform:scale(1.12)}
+.sw[aria-pressed="true"]{border-color:var(--ink)}
+.sw--sahyadri{background:linear-gradient(135deg,#1F6B47 55%,#D9E64A 55%)}
+.sw--monsoon{background:linear-gradient(135deg,#0E7C63 55%,#F2C230 55%)}
+.sw--terracotta{background:linear-gradient(135deg,#4E7A3A 55%,#E2A32E 55%)}
+
+/* ---------- 23. LIGHTBOX ---------- */
+.lb{position:fixed;inset:0;z-index:100;background:rgba(10,20,15,.94);display:none;
+  align-items:center;justify-content:center;padding:4vw}
+.lb.is-on{display:flex}
+.lb img{max-width:94vw;max-height:88vh;width:auto;height:auto;border-radius:var(--r-md)}
+.lb__x{position:absolute;top:22px;right:22px;width:46px;height:46px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.3);color:#fff;display:flex;align-items:center;justify-content:center}
+
+/* ---------- 24. REVEAL (default state = visible, for clean Figma import) ---------- */
+.reveal{opacity:1;transform:none}
+html.anim .reveal{opacity:0;transform:translateY(26px)}
+html.anim .reveal.in{opacity:1;transform:none;
+  transition:opacity .85s var(--ease),transform .85s var(--ease)}
+html.anim .stagger>*{opacity:0;transform:translateY(20px)}
+html.anim .stagger.in>*{opacity:1;transform:none;
+  transition:opacity .7s var(--ease),transform .7s var(--ease)}
+html.anim .stagger.in>*:nth-child(2){transition-delay:.08s}
+html.anim .stagger.in>*:nth-child(3){transition-delay:.16s}
+html.anim .stagger.in>*:nth-child(4){transition-delay:.24s}
+html.anim .stagger.in>*:nth-child(5){transition-delay:.32s}
+html.anim .kenburns{animation:kb 22s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.11)}}
+html.anim .dotpulse{animation:pulse 2.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(31,107,71,.5)}50%{box-shadow:0 0 0 7px rgba(31,107,71,0)}}
+
+@media (prefers-reduced-motion:reduce){
+  html.anim .reveal,html.anim .stagger>*{opacity:1!important;transform:none!important}
+  html.anim .panel li{opacity:1!important;translate:none!important;animation:none!important}
+  html.anim .panel li .tick path{stroke-dashoffset:0!important;animation:none!important}
+  .marquee__track,html.anim .kenburns,html.anim .dotpulse{animation:none!important}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- 25. RESPONSIVE ---------- */
+@media (max-width:1100px){
+  .hero__grid{grid-template-columns:1fr;gap:44px}
+  .hero__media{max-width:560px;margin-inline:auto;width:100%}
+  .nextcard{right:0}
+  .pillars,.usecases,.stats{grid-template-columns:repeat(2,1fr)}
+  .walks{grid-template-columns:repeat(2,1fr)}
+  .step{grid-template-columns:82px 26px 1fr;gap:16px}
+  .step__img{grid-column:3;margin-top:16px;max-width:420px}
+  .where,.story,.help,.head--split,.numbers__grid{grid-template-columns:1fr}
+  .ftr__top{grid-template-columns:1fr 1fr}
+  .ftr__brand{grid-column:span 2}
+  /* nav links move into the menu; the capsule keeps logo + actions */
+  .nav{display:none}
+  .burger{display:flex}
+  .nav__cta{margin-left:auto}
+}
+@media (max-width:860px){
+  .navbtn--dark{display:none}
+  .logos{grid-template-columns:repeat(3,1fr)}
+}
+@media (max-width:620px){
+  /* capsule shrinks to logo + a call button + menu */
+  .navbar{height:64px;padding:0 8px 0 12px;gap:8px}
+  .hdr.is-stuck .navbar{height:60px}
+  .brand__sub{display:none}
+  .brand__name{font-size:.94rem}
+  .brand__mark,.brand__mark img{width:34px}
+  .navbtn--accent{padding:11px;font-size:0;gap:0}
+  .navbtn--accent svg{width:17px;height:17px}
+}
+@media (max-width:720px){
+  /* .usecases and .logos set their own mobile grid in section 15 — they are
+     deliberately not stacked to one column here. */
+  .pillars,.walks,.panels,.minis{grid-template-columns:1fr}
+  .gallery{grid-template-columns:repeat(2,1fr)}
+  .gal--feature{grid-column:span 2;grid-row:auto;aspect-ratio:4/3}
+  .gal--tall,.gal--wide{aspect-ratio:4/3;grid-row:auto;grid-column:auto}
+  .gallery{grid-template-columns:repeat(2,1fr)}
+  .hero__inset{width:44%;left:-4%}
+  .nextcard{position:static;width:100%;margin-top:56px;box-shadow:var(--sh-2)}
+  /* A <figure> carries a 40px UA margin on each side, so the film card was
+     sitting 80px narrower than its column. Reclaiming most of that gives it
+     back about a fifth of its width without touching the section gutter. */
+  .film{aspect-ratio:4/5;margin-inline:16px}
+  .themer{left:12px;bottom:96px;padding:6px}
+  .themer__lbl{display:none}
+  .ftr__top{grid-template-columns:1fr}
+  .ftr__brand{grid-column:span 1}
+  .anyone{flex-direction:column;align-items:flex-start;gap:14px;padding:18px 16px;margin-top:18px}
+  .anyone h3{font-size:1.12rem;line-height:1.3;max-width:none}
+  .anyone p{font-size:.84rem;line-height:1.45;margin-top:6px;max-width:none}
+  #promise .head--split{gap:10px}
+  #promise .head--split .lead{font-size:.86rem;line-height:1.5}
+}
+
+/* Export mode (?flat=1) — freezes every animation in its final state and strips
+   review-only chrome, so the page imports into Figma exactly as designed.
+   The sticky CTA un-sticks and lands after the footer as its own component board. */
+html.export .themer,html.export .lb,html.export .sprout{display:none!important}
+html.export .marquee__track{animation:none!important}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════ HEADER ══════════════════ -->
+<header class="hdr" id="site-header">
+  <div class="wrap">
+    <div class="navbar">
+      <a class="brand" href="#top" aria-label="Join With Me home">
+        <span class="brand__mark"><img src="assets/img/jwm-logo.png" alt="Join With Me logo"></span>
+        <span>
+          <span class="brand__name">Join With Me</span>
+          <span class="brand__sub">Nature, one step at a time</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a class="is-active" href="#top">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10.5 12 3.5l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg>
+          Home
+        </a>
+        <a href="#walks">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m15.2 8.8-1.9 4.5-4.5 1.9 1.9-4.5Z"/></svg>
+          Walks
+        </a>
+        <a href="#day">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.2l3.4 2"/></svg>
+          The Day
+        </a>
+        <a href="#gallery">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="15" rx="3"/><path d="m4.5 16 4.2-4.2a2 2 0 0 1 2.8 0L16 16.5"/><circle cx="15.6" cy="9.2" r="1.4"/></svg>
+          Gallery
+        </a>
+        <a href="#where">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+          Locations
+        </a>
+        <a href="#faq">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2 2 0 0 1 6 3.5h5v17H6a2 2 0 0 1-2-2Z"/><path d="M20 5.5a2 2 0 0 0-2-2h-5v17h5a2 2 0 0 0 2-2Z"/></svg>
+          FAQs
+        </a>
+      </nav>
+
+      <div class="nav__cta">
+        <a class="navbtn navbtn--accent" href="tel:+918850733138">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z"/></svg>
+          CONTACT US
+        </a>
+        <a class="navbtn navbtn--dark" href="#help">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.6"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg>
+          LOGIN
+        </a>
+        <button class="burger" aria-label="Open menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ══════════════════ 01 · HERO ══════════════════ -->
+<section class="hero" id="hero">
+
+  <!-- the film, running behind everything -->
+  <div class="hero__bg" aria-hidden="true">
+    <video autoplay muted loop playsinline preload="auto"
+           poster="assets/img/hero-loop-poster.jpg" src="assets/video/hero-loop.mp4"></video>
+    <span class="hero__veil"></span>
+  </div>
+
+  <!-- foliage in front, deliberately out of focus -->
+  <div class="hero__leaf hero__leaf--br" aria-hidden="true"><img src="assets/img/leaf-branch.png" alt=""></div>
+
+  <div class="wrap hero__inner">
+    <div class="hero__eyebrow reveal">
+      <span class="pin"><i class="pin__dot"></i>Karjat</span>
+      <span class="pin"><i class="pin__dot"></i>Badlapur</span>
+      <span class="pin"><i class="pin__dot"></i>Palghar</span>
+      <span class="pin"><i class="pin__dot"></i>Mumbai</span>
+    </div>
+
+    <h1><span class="hw">Nature.</span> <span class="hw">For</span> <span class="hw"><em class="serif-it">everyone.</em></span></h1>
+
+    <p class="lead hero__deck reveal">
+      Guided, beginner-friendly nature walks around Mumbai — designed so every
+      age, pets included, can walk the same trail at their own pace.
+    </p>
+
+  </div>
+
+  <!-- the rail keeps drifting so the section is never a still image -->
+  <div class="hero__rail" aria-label="What a Join With Me day includes">
+    <div class="rail__track">
+        <figure class="rcard"><img src="assets/img/waterfall-with-kids.jpg" alt=""><figcaption class="rcard__cap">Waterfalls shallow enough for children</figcaption></figure>
+        <figure class="rcard"><video autoplay muted loop playsinline preload="none" poster="assets/img/rail-stream-poster.jpg" src="assets/video/rail/rail-stream.mp4"></video><figcaption class="rcard__cap">Streams you can walk straight into</figcaption></figure>
+        <figure class="rcard"><img src="assets/img/join-with-me-s-riverside-nature-walk-rice-plantation-tree-plantation.jpg" alt=""><figcaption class="rcard__cap">Plant rice in a real paddy field</figcaption></figure>
+        <figure class="rcard"><video autoplay muted loop playsinline preload="none" poster="assets/img/rail-falls-poster.jpg" src="assets/video/rail/rail-falls.mp4"></video><figcaption class="rcard__cap">Monsoon waterfalls</figcaption></figure>
+        <figure class="rcard"><img src="assets/img/pet-frindly-join-with-me-s-exclusive-family-friendly-pet-friendly-lake.jpg" alt=""><figcaption class="rcard__cap">Dogs welcome on most walks</figcaption></figure>
+        <figure class="rcard"><video autoplay muted loop playsinline preload="none" poster="assets/img/rail-mist-poster.jpg" src="assets/video/rail/rail-mist.mp4"></video><figcaption class="rcard__cap">Mornings before the heat</figcaption></figure>
+        <figure class="rcard"><img src="assets/img/join-with-me-s-riverside-nature-walk-farm-to-table-food.jpg" alt=""><figcaption class="rcard__cap">Farm-to-table meals, included</figcaption></figure>
+        <figure class="rcard"><img src="assets/img/join-with-me-s-kids-friendly-hike-with-botanist.jpg" alt=""><figcaption class="rcard__cap">Guided by naturalists</figcaption></figure>
+        <figure class="rcard"><video autoplay muted loop playsinline preload="none" poster="assets/img/rail-forest-poster.jpg" src="assets/video/rail/rail-forest.mp4"></video><figcaption class="rcard__cap">Shade the whole way</figcaption></figure>
+        <figure class="rcard"><img src="assets/img/join-with-me-sunflowerfarm.jpg" alt=""><figcaption class="rcard__cap">Sunflower fields in Boisar</figcaption></figure>
+        <figure class="rcard"><img src="assets/img/best-lake-view-join-with-me-s-exclusive-family-friendly-lakeside-natur.jpg" alt=""><figcaption class="rcard__cap">Lakeside afternoons doing nothing</figcaption></figure>
+        <figure class="rcard"><img src="assets/img/waterfall-with-kids.jpg" alt=""><figcaption class="rcard__cap">Waterfalls shallow enough for children</figcaption></figure>
+        <figure class="rcard"><video autoplay muted loop playsinline preload="none" poster="assets/img/rail-stream-poster.jpg" src="assets/video/rail/rail-stream.mp4"></video><figcaption class="rcard__cap">Streams you can walk straight into</figcaption></figure>
+        <figure class="rcard"><img src="assets/img/join-with-me-s-riverside-nature-walk-rice-plantation-tree-plantation.jpg" alt=""><figcaption class="rcard__cap">Plant rice in a real paddy field</figcaption></figure>
+        <figure class="rcard"><video autoplay muted loop playsinline preload="none" poster="assets/img/rail-falls-poster.jpg" src="assets/video/rail/rail-falls.mp4"></video><figcaption class="rcard__cap">Monsoon waterfalls</figcaption></figure>
+        <figure class="rcard"><img src="assets/img/pet-frindly-join-with-me-s-exclusive-family-friendly-pet-friendly-lake.jpg" alt=""><figcaption class="rcard__cap">Dogs welcome on most walks</figcaption></figure>
+        <figure class="rcard"><video autoplay muted loop playsinline preload="none" poster="assets/img/rail-mist-poster.jpg" src="assets/video/rail/rail-mist.mp4"></video><figcaption class="rcard__cap">Mornings before the heat</figcaption></figure>
+        <figure class="rcard"><img src="assets/img/join-with-me-s-riverside-nature-walk-farm-to-table-food.jpg" alt=""><figcaption class="rcard__cap">Farm-to-table meals, included</figcaption></figure>
+        <figure class="rcard"><img src="assets/img/join-with-me-s-kids-friendly-hike-with-botanist.jpg" alt=""><figcaption class="rcard__cap">Guided by naturalists</figcaption></figure>
+        <figure class="rcard"><video autoplay muted loop playsinline preload="none" poster="assets/img/rail-forest-poster.jpg" src="assets/video/rail/rail-forest.mp4"></video><figcaption class="rcard__cap">Shade the whole way</figcaption></figure>
+        <figure class="rcard"><img src="assets/img/join-with-me-sunflowerfarm.jpg" alt=""><figcaption class="rcard__cap">Sunflower fields in Boisar</figcaption></figure>
+        <figure class="rcard"><img src="assets/img/best-lake-view-join-with-me-s-exclusive-family-friendly-lakeside-natur.jpg" alt=""><figcaption class="rcard__cap">Lakeside afternoons doing nothing</figcaption></figure>
+    </div>
+  </div>
+
+  <!-- trust row sits under the rail -->
+  <div class="wrap hero__trust">
+    <div class="hero__proof reveal">
+      <div class="proof">
+        <span class="proof__n">16,000+</span>
+        <span class="proof__l">People reconnected</span>
+      </div>
+      <div class="proof">
+        <span class="proof__n">898+</span>
+        <span class="proof__l">Walks led</span>
+      </div>
+      <div class="faces">
+        <span class="faces__row">
+          <img src="assets/img/whatsapp-image-2026-05-20-at-14-14-48-1.jpg" alt="">
+          <img src="assets/img/whatsapp-image-2026-05-20-at-14-14-48-3.jpg" alt="">
+          <img src="assets/img/whatsapp-image-2026-01-09-at-22-30-41.jpg" alt="">
+          <img src="assets/img/whatsapp-image-2026-05-20-at-14-13-26-2.jpg" alt="">
+        </span>
+        <span>
+          <span class="stars" aria-label="4.9 out of 5">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8Z"/></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8Z"/></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8Z"/></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8Z"/></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8Z"/></svg>
+          </span>
+          <span class="proof__l">4.9 · 1,000+ reviews</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- The calls to action sit beside the badges: badges left, buttons right.
+         On a phone the badges are hidden and CSS lifts this row back above the
+         film chain, which is where it has always been there. -->
+    <div class="hero__actions reveal">
+      <!-- walkers file through the button -->
+      <a class="cta-walk" href="#walks">
+        <span class="cta-walk__lane" aria-hidden="true">
+          <span class="cta-walk__file">
+            <img src="assets/img/walker-1.jpg" alt=""><img src="assets/img/walker-2.jpg" alt="">
+            <img src="assets/img/walker-3.jpg" alt=""><img src="assets/img/walker-4.jpg" alt="">
+            <img src="assets/img/walker-5.jpg" alt="">
+            <img src="assets/img/walker-1.jpg" alt=""><img src="assets/img/walker-2.jpg" alt="">
+            <img src="assets/img/walker-3.jpg" alt=""><img src="assets/img/walker-4.jpg" alt="">
+            <img src="assets/img/walker-5.jpg" alt="">
+          </span>
+        </span>
+        Find your walk
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+
+      <!-- a little screen, already playing -->
+      <button class="cta-film" id="play-film">
+        <span class="cta-film__screen" aria-hidden="true">
+          <video autoplay muted loop playsinline preload="auto"
+                 poster="assets/img/video-poster.jpg" src="assets/video/jwm-ambient-720.mp4"></video>
+          <span class="cta-film__play">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.1v13.8c0 .8.9 1.3 1.5.8l10-6.9a1 1 0 0 0 0-1.6l-10-6.9A1 1 0 0 0 8 5.1Z"/></svg>
+          </span>
+        </span>
+        Watch the film
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ MARQUEE ══════════════════ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <div class="marquee__set">
+      <span class="marquee__item"><i></i>Kid-friendly</span>
+      <span class="marquee__item"><i></i>Pet-friendly</span>
+      <span class="marquee__item"><i></i>Grandparent-friendly</span>
+      <span class="marquee__item"><i></i>Naturalist-guided</span>
+      <span class="marquee__item"><i></i>Farm-to-table meals</span>
+      <span class="marquee__item"><i></i>First-aid trained hosts</span>
+      <span class="marquee__item"><i></i>Offbeat, crowd-free trails</span>
+      <span class="marquee__item"><i></i>90 minutes from Mumbai</span>
+    </div>
+    <div class="marquee__set">
+      <span class="marquee__item"><i></i>Kid-friendly</span>
+      <span class="marquee__item"><i></i>Pet-friendly</span>
+      <span class="marquee__item"><i></i>Grandparent-friendly</span>
+      <span class="marquee__item"><i></i>Naturalist-guided</span>
+      <span class="marquee__item"><i></i>Farm-to-table meals</span>
+      <span class="marquee__item"><i></i>First-aid trained hosts</span>
+      <span class="marquee__item"><i></i>Offbeat, crowd-free trails</span>
+      <span class="marquee__item"><i></i>90 minutes from Mumbai</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ 02 · THE PROMISE ══════════════════ -->
+<section class="section wrap bloom" id="promise">
+  <div class="head head--split reveal">
+    <div>
+      <div class="waypoint">
+        <i class="waypoint__dot"></i><span class="waypoint__num">01</span>
+        <span class="waypoint__txt">The Promise</span><span class="waypoint__rule"></span>
+      </div>
+      <h2>You don’t have to be<br>an <em class="serif-it u-accent">adventurer.</em></h2>
+    </div>
+    <p class="lead">
+      We believe meaningful experiences in nature should be accessible to anyone who can walk.
+      No gear to buy. No fitness test. No summit to prove.
+    </p>
+  </div>
+
+  <div class="pillars stagger">
+    <article class="pillar">
+      <div class="pillar__img"><img src="assets/img/join-with-me-s-riverside-nature-walk-river-on-the-trail-kids.jpg" alt="A parent carrying a toddler through a shallow river on the trail"></div>
+      <div class="pillar__b">
+        <div class="pillar__ico">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9.5" cy="7" r="3.5"/><path d="M22 20v-2a4 4 0 0 0-3-3.9M16 3.6a4 4 0 0 1 0 7"/></svg>
+        </div>
+        <h3>Built for families</h3>
+        <p>Simple, beginner-friendly routes that children, parents and grandparents can genuinely enjoy together.</p>
+      </div>
+    </article>
+
+    <article class="pillar">
+      <div class="pillar__img"><img src="assets/img/pet-frindly-join-with-me-s-exclusive-family-friendly-pet-friendly-lake.jpg" alt="A dog on a lakeside meadow with its owner on a Join With Me walk"></div>
+      <div class="pillar__b">
+        <div class="pillar__ico">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M11.5 21c-3 0-5-2-5-4.3 0-2 1.6-3.3 2.7-4.6 1-1.1 1.4-2.1 2.3-2.1s1.3 1 2.3 2.1c1.1 1.3 2.7 2.6 2.7 4.6C16.5 19 14.5 21 11.5 21Z"/><ellipse cx="5" cy="10" rx="2" ry="2.6"/><ellipse cx="18" cy="10" rx="2" ry="2.6"/><ellipse cx="8.5" cy="5" rx="1.8" ry="2.4"/><ellipse cx="14.5" cy="5" rx="1.8" ry="2.4"/></svg>
+        </div>
+        <h3>The whole family, pets included</h3>
+        <p>Most of our experiences welcome dogs — because adventures are better when nobody stays home.</p>
+      </div>
+    </article>
+
+    <article class="pillar">
+      <div class="pillar__img"><img src="assets/img/join-with-me-s-kids-friendly-hike-with-botanist.jpg" alt="A naturalist showing a group of children plants along the trail"></div>
+      <div class="pillar__b">
+        <div class="pillar__ico">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-5 2-9 8-10-1 6-4 9-8 10Z"/><path d="M12 21c0-5-2-9-8-10 1 6 4 9 8 10Z"/><path d="M12 21V9"/></svg>
+        </div>
+        <h3>Guided by naturalists</h3>
+        <p>Trained hosts and naturalists who name the birds, read the forest, and carry a first-aid kit.</p>
+      </div>
+    </article>
+
+    <article class="pillar">
+      <div class="pillar__img"><img src="assets/img/riveside-nature-walk-vegetable-farm-pet-friendly-papaya.jpg" alt="A child picking papaya on the farm before the meal is cooked"></div>
+      <div class="pillar__b">
+        <div class="pillar__ico">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v8a3 3 0 0 0 6 0V3M7 11v10M17 3c-1.5 2-2 4-2 6s.5 3 2 3 2-1 2-3-.5-4-2-6Z"/><path d="M17 12v9"/></svg>
+        </div>
+        <h3>Farm-to-table meals</h3>
+        <p>Breakfast and a home-cooked lunch made by the host village — included in every walk.</p>
+      </div>
+    </article>
+  </div>
+
+  <div class="anyone reveal">
+    <div>
+      <h3>“Anyone can do this. Nature is for everyone, at any age.”</h3>
+      <p>That belief is the reason we design every route, every pace and every meal the way we do.</p>
+    </div>
+    <a class="btn btn--primary" href="#walks">
+      See the walks
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ══════════════════ 03 · THE WALKS ══════════════════ -->
+<section class="section wrap bloom--r" id="walks" style="padding-top:0">
+  <div class="head head--split reveal">
+    <div>
+      <div class="waypoint">
+        <i class="waypoint__dot"></i><span class="waypoint__num">02</span>
+        <span class="waypoint__txt">The Walks</span><span class="waypoint__rule"></span>
+      </div>
+      <h2>Pick a Saturday.<br>We’ll handle the rest.</h2>
+    </div>
+    <p class="lead">
+      Every experience runs on fixed dates with a capped group size, so the trail stays quiet.
+      Dates marked <b style="color:var(--status-full)">Full</b> are closed —
+      <b style="color:var(--status-filling)">Filling</b> means a handful of seats left.
+    </p>
+  </div>
+
+  <div class="walks">
+
+    <!-- Walk 1 -->
+    <article class="walk reveal">
+      <div class="walk__media">
+        <img src="assets/img/1776506452691-one-more-break-join-with-me-s-exclusive-family-friendly-.jpg" alt="Families resting on the grass beside the lake in Karjat">
+        <span class="walk__place">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+          Karjat
+        </span>
+        <span class="walk__price"><b>₹1,699</b><span>per person</span></span>
+      </div>
+      <div class="walk__b">
+        <h3>Lakeside Nature Walk &amp; Waterfall</h3>
+        <p class="walk__desc">An exclusive lakeside trail kept for our group alone, ending at a private waterfall that’s shallow enough for children.</p>
+        <div class="walk__meta">
+          <span class="tag">Half a day</span>
+          <span class="tag">Beginner friendly</span>
+          <span class="tag">Pets welcome</span>
+        </div>
+        <div class="walk__dates">
+          <div class="dates__hd">
+            <span>Upcoming batches</span>
+            <span>12 dates</span>
+          </div>
+          <div class="chips">
+            <span class="chip chip--full"><b>15 Aug</b><i>Full</i></span>
+            <span class="chip chip--full"><b>16 Aug</b><i>Full</i></span>
+            <span class="chip chip--full"><b>22 Aug</b><i>Full</i></span>
+            <span class="chip chip--open"><b>23 Aug</b><i>Open</i></span>
+            <span class="chip chip--open"><b>29 Aug</b><i>Open</i></span>
+            <span class="chip chip--open"><b>30 Aug</b><i>Open</i></span>
+            <span class="chip chip--open"><b>5 Sep</b><i>Open</i></span>
+            <span class="chip chip--open"><b>6 Sep</b><i>Open</i></span>
+                      <span class="chip chips__more">+8 more</span>
+          </div>
+        </div>
+        <div class="walk__foot">
+          <a class="btn btn--ghost btn--sm" href="#day">Details</a>
+          <a class="btn btn--primary btn--sm" href="#walks">Book now</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Walk 2 -->
+    <article class="walk reveal">
+      <div class="walk__media">
+        <img src="assets/img/forest-lakeside-nature-walk-badlapur-by-join-with-me-1.jpg" alt="The group in the water at the forest lake near Badlapur">
+        <span class="walk__place">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+          Badlapur, Thane
+        </span>
+        <span class="walk__price"><b>₹1,799</b><span>per person</span></span>
+      </div>
+      <div class="walk__b">
+        <h3>Forest Lakeside Nature Walk</h3>
+        <p class="walk__desc">A shaded forest path opening onto a wide monsoon lake — our most popular walk for first-timers and school groups.</p>
+        <div class="walk__meta">
+          <span class="tag">Half a day</span>
+          <span class="tag">Forest trail</span>
+          <span class="tag">Family</span>
+        </div>
+        <div class="walk__dates">
+          <div class="dates__hd">
+            <span>Upcoming batches</span>
+            <span>15 dates</span>
+          </div>
+          <div class="chips">
+            <span class="chip chip--fill"><b>15 Aug</b><i>Filling</i></span>
+            <span class="chip chip--fill"><b>16 Aug</b><i>Filling</i></span>
+            <span class="chip chip--open"><b>22 Aug</b><i>Open</i></span>
+            <span class="chip chip--fill"><b>23 Aug</b><i>Filling</i></span>
+            <span class="chip chip--open"><b>29 Aug</b><i>Open</i></span>
+            <span class="chip chip--open"><b>30 Aug</b><i>Open</i></span>
+            <span class="chip chip--open"><b>5 Sep</b><i>Open</i></span>
+            <span class="chip chip--open"><b>6 Sep</b><i>Open</i></span>
+                      <span class="chip chips__more">+11 more</span>
+          </div>
+        </div>
+        <div class="walk__foot">
+          <a class="btn btn--ghost btn--sm" href="#day">Details</a>
+          <a class="btn btn--primary btn--sm" href="#walks">Book now</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Walk 3 -->
+    <article class="walk reveal">
+      <div class="walk__media">
+        <img src="assets/img/join-with-me-s-riverside-nature-walk-1.jpg" alt="Walkers crossing the shallow river on the Palghar trail">
+        <span class="walk__place">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+          Palghar
+        </span>
+        <span class="walk__price"><b>₹1,599</b><span>per person</span></span>
+      </div>
+      <div class="walk__b">
+        <h3>Riverside Nature Walk</h3>
+        <p class="walk__desc">Wade a clear river, plant rice in an actual paddy field, pick vegetables from the farm and eat what you helped harvest.</p>
+        <div class="walk__meta">
+          <span class="tag">Half a day</span>
+          <span class="tag">Farm experience</span>
+          <span class="tag">River play</span>
+        </div>
+        <div class="walk__dates">
+          <div class="dates__hd">
+            <span>Upcoming batches</span>
+            <span>2 dates</span>
+          </div>
+          <div class="chips">
+            <span class="chip chip--open"><b>15 Aug</b><i>Open</i></span>
+            <span class="chip chip--open"><b>16 Aug</b><i>Open</i></span>
+          </div>
+        </div>
+        <div class="walk__foot">
+          <a class="btn btn--ghost btn--sm" href="#day">Details</a>
+          <a class="btn btn--primary btn--sm" href="#walks">Book now</a>
+        </div>
+      </div>
+    </article>
+
+
+    <!-- ⚠ DUMMY CARD — placeholder experience, not a real Join With Me listing.
+         Swap the name, copy, price and video before this goes anywhere near live. -->
+    <article class="feature reveal">
+      <div class="feature__arch">
+        <video autoplay muted loop playsinline preload="none"
+               poster="assets/img/feature-arch-poster.jpg" src="assets/video/feature-arch.mp4"></video>
+        <span class="feature__glow"></span>
+        <span class="feature__badges">
+          <span class="feature__badge feature__badge--price">₹2,400 <small>pp</small></span>
+          <span class="feature__badge">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.4 6.4 6.6.4-5.1 4.3 1.7 6.5L12 16l-5.6 3.6 1.7-6.5L3 8.8l6.6-.4Z"/></svg>
+            New this season
+          </span>
+        </span>
+      </div>
+
+      <div class="feature__body">
+        <span class="feature__eyebrow"><i></i>Coming soon · limited batches</span>
+        <h3>Firefly Night Walk,<br><em>Purushwadi</em></h3>
+        <p class="feature__lede">
+          One week a year, the hills above Purushwadi fill with fireflies. We walk in at dusk,
+          sit still in the dark, and let them find us. No torches, no noise — just a few hours
+          of something most people only ever see in photographs.
+        </p>
+
+        <div class="feature__facts">
+          <span class="ftag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/><circle cx="12" cy="12" r="3.4"/></svg>
+            Dusk to 10 PM
+          </span>
+          <span class="ftag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9.5" cy="7" r="3.5"/><path d="M22 20v-2a4 4 0 0 0-3-3.9"/></svg>
+            Capped at 20
+          </span>
+          <span class="ftag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+            Ahmednagar
+          </span>
+          <span class="ftag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v8a3 3 0 0 0 6 0V3M7 11v10M17 3c-1.5 2-2 4-2 6s.5 3 2 3 2-1 2-3-.5-4-2-6Z"/><path d="M17 12v9"/></svg>
+            Village dinner
+          </span>
+        </div>
+
+        <div class="feature__foot">
+          <a class="btn btn--accent btn--sm" href="#help">
+            Join the waitlist
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn--onforest btn--sm" href="#help">Ask us about it</a>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ══════════════════ 04 · NUMBERS ══════════════════ -->
+<section class="section on-forest" id="numbers">
+  <div class="ambient" aria-hidden="true">
+    <video muted loop playsinline autoplay preload="none"
+           poster="assets/img/ambient-forest-poster.jpg" src="assets/video/ambient-forest.mp4"></video>
+    <span class="ambient__veil"></span>
+  </div>
+
+  <div class="wrap">
+    <div class="numbers__grid">
+
+      <div class="numbers__copy reveal">
+        <div class="waypoint">
+          <i class="waypoint__dot"></i><span class="waypoint__num">03</span>
+          <span class="waypoint__txt">Since we started</span><span class="waypoint__rule"></span>
+        </div>
+        <h2>16,000 people have<br>walked with us.</h2>
+        <p class="lead" style="margin-top:18px;max-width:46ch">
+          Most of them had never done a trail before. That is the number we are proudest of.
+        </p>
+
+        <div class="stats stagger">
+          <div class="stat">
+            <div class="stat__n" data-count="16000" data-suffix="+">16,000+</div>
+            <div class="stat__l">People reconnected</div>
+          </div>
+          <div class="stat">
+            <div class="stat__n" data-count="898" data-suffix="+">898+</div>
+            <div class="stat__l">Walks led</div>
+          </div>
+          <div class="stat">
+            <div class="stat__n">4.9<span style="font-size:.45em;letter-spacing:0">/5</span></div>
+            <div class="stat__l">From 1,000+ reviews</div>
+          </div>
+          <div class="stat">
+            <div class="stat__n" data-count="5" data-suffix="">5</div>
+            <div class="stat__l">Regions we walk</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- the people behind the number, pinned like photos on a board -->
+      <div class="cluster reveal">
+        <figure class="pframe pframe--1">
+          <img src="assets/img/join-with-me-s-riverside-nature-walk-river-on-the-trail-kids.jpg" alt="A parent carrying a child across the river">
+          <figcaption>Palghar</figcaption>
+        </figure>
+        <figure class="pframe pframe--2">
+          <img src="assets/img/join-with-me-s-kids-friendly-hike.jpg" alt="Children on a naturalist-led walk">
+          <figcaption>School outing</figcaption>
+        </figure>
+        <figure class="pframe pframe--3">
+          <img src="assets/img/tug-of-war-at-lakeside-with-join-with-me.jpg" alt="Tug of war on the grass beside the lake">
+          <figcaption>Lakeside</figcaption>
+        </figure>
+        <figure class="pframe pframe--4">
+          <img src="assets/img/whatsapp-image-2026-06-02-at-00-42-20.jpg" alt="A family and their dog resting by the water">
+          <figcaption>Pets welcome</figcaption>
+        </figure>
+        <figure class="pframe pframe--5">
+          <img src="assets/img/57.jpg" alt="The group setting off along the trail">
+          <figcaption>Every Saturday</figcaption>
+        </figure>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ 05 · A DAY WITH US ══════════════════ -->
+<section class="section bloom" id="day">
+ <div class="day__pin">
+  <div class="wrap head head--split reveal">
+    <div>
+      <div class="waypoint">
+        <i class="waypoint__dot"></i><span class="waypoint__num">04</span>
+        <span class="waypoint__txt">A day with us</span><span class="waypoint__rule"></span>
+      </div>
+      <h2>Five hours, start<br>to <em class="serif-it">finish.</em></h2>
+    </div>
+    <p class="lead">
+      Every Join With Me experience follows the same — arrive, eat, walk, play, eat again, go home tired and happy. Here it is, hour by hour.
+    </p>
+  </div>
+
+  <div class="trail" id="trail">
+    <div class="trail__track">
+        <article class="stop">
+          <span class="stop__time">8:00 AM</span>
+          <div class="stop__rail"><span class="stop__line"></span><span class="stop__pip"></span></div>
+          <h3>Arrival &amp; breakfast</h3>
+          <p>Start the morning with a simple, hot breakfast at the host house while you meet the rest of the group. No early-morning heroics.</p>
+          <div class="stop__img"><img src="assets/img/homely-food-join-with-me-s-exclusive-family-friendly-lakeside-nature-w.jpg" alt="Home-cooked breakfast laid out before the walk"></div>
+        </article>
+        <article class="stop">
+          <span class="stop__time">8:30 AM</span>
+          <div class="stop__rail"><span class="stop__line"></span><span class="stop__pip"></span></div>
+          <h3>Introductions &amp; briefing</h3>
+          <p>Your host runs through the route, the pace, the water crossings and the plan for children and pets. Questions welcome.</p>
+          <div class="stop__img"><img src="assets/img/instructions-session-before-join-with-me-s-family-friendly-lakeside-hi.jpg" alt="The group gathered for the safety briefing"></div>
+        </article>
+        <article class="stop">
+          <span class="stop__time">8:45 AM</span>
+          <div class="stop__rail"><span class="stop__line"></span><span class="stop__pip"></span></div>
+          <h3>The walk begins</h3>
+          <p>An offbeat trail — through paddy, past streams, with plenty of stops to look at whatever your naturalist points out.</p>
+          <div class="stop__img"><img src="assets/img/57.jpg" alt="Setting off along the trail with the hosts"></div>
+        </article>
+        <article class="stop">
+          <span class="stop__time">9:45 AM</span>
+          <div class="stop__rail"><span class="stop__line"></span><span class="stop__pip"></span></div>
+          <h3>The water stop</h3>
+          <p>A waterfall, a river bend or a forest lake, depending on the walk — always shallow, always safe. Where the children stop wanting to go home.</p>
+          <div class="stop__img"><img src="assets/img/destitantion-the-waterfall-safe-for-kids-join-with-me-s-exclusive-fami.jpg" alt="Families in the shallow pool at the waterfall"></div>
+        </article>
+        <article class="stop">
+          <span class="stop__time">11:00 AM</span>
+          <div class="stop__rail"><span class="stop__line"></span><span class="stop__pip"></span></div>
+          <h3>Open ground &amp; water play</h3>
+          <p>Games, a swim for those who want one, and an hour of doing absolutely nothing in particular.</p>
+          <div class="stop__img"><img src="assets/img/best-lake-view-join-with-me-s-exclusive-family-friendly-lakeside-natur.jpg" alt="The group relaxing on the grass beside the lake"></div>
+        </article>
+        <article class="stop">
+          <span class="stop__time">12:00 PM</span>
+          <div class="stop__rail"><span class="stop__line"></span><span class="stop__pip"></span></div>
+          <h3>Back for lunch</h3>
+          <p>Return to the host house for a farm-to-table thali cooked by the village — the meal people write to us about afterwards.</p>
+          <div class="stop__img"><img src="assets/img/join-with-me-s-riverside-nature-walk-farm-to-table-food.jpg" alt="A farm-to-table thali served after the walk"></div>
+        </article>
+        <article class="stop stop--end">
+          <span class="stop__time">1:00 PM</span>
+          <div class="stop__rail"><span class="stop__line"></span><span class="stop__pip"></span></div>
+          <h3>Conclusion</h3>
+          <p>Best Hiker awards for the children, a group photo, and you’re back in Mumbai by early evening.</p>
+          <div class="stop__img"><img src="assets/img/tug-of-war-at-lakeside-with-join-with-me.jpg" alt="Tug of war on the grass at the end of the day"></div>
+        </article>
+    </div>
+  </div>
+
+  <div class="wrap trail__foot reveal">
+    <span class="trail__bar"><i id="trail-bar"></i></span>
+    <span class="trail__hint">
+      Scroll the day
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </span>
+  </div>
+
+  <div class="wrap itin__note reveal">
+    <span class="pin"><i class="pin__dot"></i>Exact location shared a day prior</span>
+    <span class="pin"><i class="pin__dot"></i>Timings shift slightly by season</span>
+    <span class="pin"><i class="pin__dot"></i>Group size capped</span>
+  </div>
+ </div>
+</section>
+
+<!-- ══════════════════ 06 · FILM & GALLERY ══════════════════ -->
+<section class="section wrap bloom--r" id="gallery" style="padding-top:0">
+  <div class="head head--split reveal">
+    <div>
+      <div class="waypoint">
+        <i class="waypoint__dot"></i><span class="waypoint__num">05</span>
+        <span class="waypoint__txt">Film &amp; gallery</span><span class="waypoint__rule"></span>
+      </div>
+      <h2>Ninety minutes from<br>your front door.</h2>
+    </div>
+    <p class="lead">
+      Sunflower fields in Boisar, rivers in Palghar, forest lakes in Badlapur, waterfalls in Karjat.
+      All of it is closer than you think — and every photograph here is from our own walks.
+    </p>
+  </div>
+
+  <figure class="film reveal" id="film">
+    <video id="film-video" poster="assets/img/video-poster.jpg" playsinline preload="none"
+           src="assets/video/jwm-film.mp4"></video>
+    <span class="film__veil" id="film-veil"></span>
+    <div class="film__ui" id="film-ui">
+      <div class="film__top">
+        <span class="film__tag"><i style="width:6px;height:6px;border-radius:50%;background:var(--accent);display:block"></i>The film · 0:21</span>
+        <span class="film__tag">Shot on our trails</span>
+      </div>
+      <div class="film__bot">
+        <h3 class="film__ttl">This is what a Saturday can look like.</h3>
+      </div>
+    </div>
+    <div class="film__center" id="film-center">
+      <button class="playbtn" id="film-play" aria-label="Play the film">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.1v13.8c0 .8.9 1.3 1.5.8l10-6.9a1 1 0 0 0 0-1.6l-10-6.9A1 1 0 0 0 8 5.1Z"/></svg>
+      </button>
+    </div>
+  </figure>
+
+  <div class="gallery stagger">
+    <button class="gal gal--feature"><img src="assets/img/waterfall-with-kids.jpg" alt="Children and parents playing in the shallow pool beneath the waterfall"><video muted loop playsinline preload="none" src="assets/video/gal/g1.mp4"></video><span class="gal__badge">▶ Karjat</span></button>
+    <button class="gal"><img src="assets/img/join-with-me-s-riverside-nature-walk-rice-plantation-tree-plantation.jpg" alt="A child in a raincoat holding rice saplings in a flooded paddy field"></button>
+    <button class="gal"><img src="assets/img/join-with-me-sunflowerfarm.jpg" alt="A group standing in a sunflower field at Boisar"><video muted loop playsinline preload="none" src="assets/video/gal/g2.mp4"></video><span class="gal__badge">▶ Boisar</span></button>
+    <button class="gal"><img src="assets/img/pet-friendly-join-with-me-s-exclusive-family-friendly-pet-friendly-lak.jpg" alt="Dogs resting in the water on a pet-friendly walk"></button>
+    <button class="gal"><img src="assets/img/join-with-me-s-kids-friendly-hike-with-botanist.jpg" alt="Children learning about plants with a botanist"><video muted loop playsinline preload="none" src="assets/video/gal/g3.mp4"></video><span class="gal__badge">▶ On the trail</span></button>
+    <button class="gal"><img src="assets/img/join-with-me-s-riverside-nature-walk-river-on-the-trail-kids.jpg" alt="A parent and child crossing the river together"></button>
+    <button class="gal"><img src="assets/img/join-with-me-s-riverside-nature-walk-rice-plantation-banana.jpg" alt="Bananas picked fresh on the farm walk"><video muted loop playsinline preload="none" src="assets/video/gal/g5.mp4"></video><span class="gal__badge">▶ Palghar</span></button>
+    <button class="gal"><img src="assets/img/join-with-me-s-riverside-nature-walk-rice-plantation-1.jpg" alt="A family walking through the flooded paddy fields in Palghar"><video muted loop playsinline preload="none" src="assets/video/gal/g6.mp4"></video><span class="gal__badge">▶ Paddy fields</span></button>
+    <span class="gal gal__more">
+      <b>14+</b>
+      <span>More photos</span>
+    </span>
+  </div>
+</section>
+
+<!-- ══════════════════ 07 · INCLUDED / CARRY ══════════════════ -->
+<section class="section wrap bloom" id="included" style="padding-top:0">
+  <div class="head reveal">
+    <div class="waypoint">
+      <i class="waypoint__dot"></i><span class="waypoint__num">06</span>
+      <span class="waypoint__txt">The practical bit</span><span class="waypoint__rule"></span>
+    </div>
+    <h2>What’s included.<br>What to carry.</h2>
+  </div>
+
+  <!-- Phone-only switch between the two lists; on desktop both panels show
+       side by side and this is hidden. -->
+  <div class="segs" id="incseg" data-view="inc" role="tablist" aria-label="Included or to carry">
+    <span class="segs__pill" aria-hidden="true"></span>
+    <button type="button" class="seg is-on" role="tab" aria-selected="true" data-view="inc">
+      Included <b>6</b>
+    </button>
+    <button type="button" class="seg" role="tab" aria-selected="false" data-view="carry">
+      To carry <b>6</b>
+    </button>
+  </div>
+
+  <div class="panels" id="panels" data-view="inc">
+    <div class="panel panel--inc reveal">
+      <div class="panel__hd">
+        <span class="panel__ico">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5.2 5L20 6.5"/></svg>
+        </span>
+        <h3>Included in your ticket</h3>
+      </div>
+      <p class="panel__sub">One price. Nothing added at the trailhead.</p>
+      <ul>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5.2 5L20 6.5"/></svg><span>A professionally crafted, route-tested hiking experience</span></li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5.2 5L20 6.5"/></svg><span>An adventure host equipped with a first-aid kit</span></li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5.2 5L20 6.5"/></svg><span>Nutritious breakfast and a home-cooked lunch</span></li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5.2 5L20 6.5"/></svg><span>Water time — a lake, river or waterfall stop</span></li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5.2 5L20 6.5"/></svg><span>Access to private, offbeat spots kept for our group</span></li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5.2 5L20 6.5"/></svg><span>Parking, entry fees and all permits</span></li>
+      </ul>
+    </div>
+
+    <div class="panel panel--carry reveal">
+      <div class="panel__hd">
+        <span class="panel__ico">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l1 12H5L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        </span>
+        <h3>Things to carry</h3>
+      </div>
+      <p class="panel__sub">Six items. That is genuinely the whole list.</p>
+      <ul>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5.2 5L20 6.5"/></svg><span>Comfortable shoes — and camouflage-coloured clothes if you have them</span></li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5.2 5L20 6.5"/></svg><span>One litre of water per person</span></li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5.2 5L20 6.5"/></svg><span>Mosquito repellent</span></li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5.2 5L20 6.5"/></svg><span>Dry snacks or energy bars, if you like to graze</span></li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5.2 5L20 6.5"/></svg><span>A cap</span></li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5.2 5L20 6.5"/></svg><span>Any personal medication</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ 08 · TRUSTED BY ══════════════════ -->
+<section class="section wrap bloom--r" id="trusted" style="padding-top:0">
+  <div class="head reveal" style="max-width:60ch">
+    <div class="waypoint">
+      <i class="waypoint__dot"></i><span class="waypoint__num">07</span>
+      <span class="waypoint__txt">Trusted by</span><span class="waypoint__rule"></span>
+    </div>
+    <h2>Schools, offices and<br>a lot of birthdays.</h2>
+  </div>
+
+  <div class="logos stagger">
+    <span class="logowrap"><img src="assets/img/asb.jpg" alt="American School of Bombay"></span>
+    <span class="logowrap"><img src="assets/img/jbcn-logo-universal.jpg" alt="JBCN International School"></span>
+    <span class="logowrap"><img src="assets/img/shishuvan-logo.png" alt="Shishuvan School"></span>
+    <span class="logowrap"><img src="assets/img/inodai-waldorf-logo.png" alt="Inodai Waldorf School"></span>
+    <span class="logowrap"><img src="assets/img/idalogo-r.jpg" alt="Indian Dental Association"></span>
+  </div>
+
+  <div class="usecases stagger">
+    <div class="usecase"><b>Birthday nature walks</b><span>Turn a birthday into a trail, a waterfall and a proper meal.</span></div>
+    <div class="usecase"><b>School outings</b><span>Naturalist-led field days that teachers can actually plan around.</span></div>
+    <div class="usecase"><b>Family adventures</b><span>Three generations on the same route, at the same pace.</span></div>
+    <div class="usecase"><b>Corporate wellness</b><span>A day out of the office that isn’t another conference room.</span></div>
+  </div>
+</section>
+
+<!-- ══════════════════ 09 · WHERE WE WALK ══════════════════ -->
+<section class="section on-forest" id="where">
+  <div class="wrap">
+    <div class="where">
+      <div class="reveal">
+        <div class="waypoint">
+          <i class="waypoint__dot"></i><span class="waypoint__num">08</span>
+          <span class="waypoint__txt">Where we walk</span><span class="waypoint__rule"></span>
+        </div>
+        <h2>All of it within<br>reach of Mumbai.</h2>
+        <p class="lead" style="margin-top:20px">
+          Every trail is reachable by local train and an auto from the station. We share the exact
+          meeting point the day before, along with a suggested train.
+        </p>
+
+        <div class="regions">
+          <div class="region"><span class="region__i">01</span><span class="region__n">Karjat</span><span class="region__d">Bhivpuri Rd · 07:34</span></div>
+          <div class="region"><span class="region__i">02</span><span class="region__n">Badlapur, Thane</span><span class="region__d">Central line</span></div>
+          <div class="region"><span class="region__i">03</span><span class="region__n">Palghar</span><span class="region__d">Western line</span></div>
+          <div class="region"><span class="region__i">04</span><span class="region__n">Mumbai</span><span class="region__d">Private hikes</span></div>
+          <div class="region"><span class="region__i">05</span><span class="region__n">Pench, MP</span><span class="region__d">3D / 2N safari</span></div>
+        </div>
+
+        <div class="reach">
+          <span>CSMT <b>05:46</b></span>
+          <span>Dadar <b>05:59</b></span>
+          <span>Thane <b>06:25</b></span>
+          <span>Kalyan <b>06:50</b></span>
+          <span>Bhivpuri Rd <b>07:34</b></span>
+        </div>
+      </div>
+
+      <div class="mapcard reveal">
+        <img src="assets/img/join-with-me-s-exclusive-lakeside-nature-walk.jpg" alt="Aerial view of the lake and hills where the walks take place">
+        <span class="mapchip mapchip--a"><i></i>Karjat</span>
+        <span class="mapchip mapchip--b"><i></i>Badlapur</span>
+        <span class="mapchip mapchip--c"><i></i>Palghar</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ 09 · REELS — testimonials ══════════════════
+     VIDEO FILES: drop the five real reels in as
+       assets/video/reels/reel-01.mp4  …  reel-05.mp4
+     and their first frames as
+       assets/img/reel-01-poster.jpg   …  reel-05-poster.jpg
+     Nothing else needs changing — sizes, playback and ordering are automatic.
+     The clips currently in place are 9:16 crops of the brand film, used only
+     so the section demos; they are NOT the Instagram reels.
+
+     CAPTIONS: the .reel__cap / .reels__cap lines below are placeholders naming
+     the experience. Replace them with the real reel captions.
+     ══════════════════════════════════════════════════════════════ -->
+<section class="reels" id="reels">
+
+  <div class="reels__track" id="reels-track">
+    <div class="reels__stage">
+
+      <div class="reels__bar" id="reels-bar" aria-hidden="true">
+        <span class="reels__seg"><i></i></span><span class="reels__seg"><i></i></span>
+        <span class="reels__seg"><i></i></span><span class="reels__seg"><i></i></span>
+        <span class="reels__seg"><i></i></span>
+      </div>
+
+      <div class="reels__inner">
+
+        <!-- The stack -->
+        <div class="reels__view">
+          <div class="reels__strip" id="reels-strip">
+
+            <article class="reel is-active" data-i="0">
+              <video muted loop playsinline preload="metadata"
+                     poster="assets/img/reel-01-poster.jpg" src="assets/video/reels/reel-01.mp4"></video>
+              <span class="reel__veil"></span><span class="reel__live"></span><span class="reel__dim"></span>
+              <div class="reel__ui">
+                <div class="reel__top">
+                  <span class="reel__av"><img src="assets/img/jwm-logo.png" alt=""></span>
+                  <span class="reel__handle">joinwithme.in</span>
+                  <span class="reel__follow">Follow</span>
+                </div>
+                <div class="reel__bottom">
+                  <p class="reel__cap">1.5 hours from Mumbai</p>
+                  <div class="reel__rail">
+                    <span><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20s-7-4.6-7-9.4A4.1 4.1 0 0 1 12 8a4.1 4.1 0 0 1 7 2.6C19 15.4 12 20 12 20Z"/></svg></span>
+                    <span><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12a7.5 7.5 0 0 1-10.9 6.7L4 20l1.3-4.8A7.5 7.5 0 1 1 20 12Z"/></svg></span>
+                    <a href="https://www.instagram.com/reel/Db8hZvJA1LC/" target="_blank" rel="noopener" aria-label="Open reel 1 on Instagram"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m21 3-9.5 9.5M21 3l-6.6 18-3.9-8.5L2 8.6 21 3Z"/></svg></a>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="reel" data-i="1">
+              <video muted loop playsinline preload="none"
+                     poster="assets/img/reel-02-poster.jpg" src="assets/video/reels/reel-02.mp4"></video>
+              <span class="reel__veil"></span><span class="reel__live"></span><span class="reel__dim"></span>
+              <div class="reel__ui">
+                <div class="reel__top">
+                  <span class="reel__av"><img src="assets/img/jwm-logo.png" alt=""></span>
+                  <span class="reel__handle">joinwithme.in</span>
+                  <span class="reel__follow">Follow</span>
+                </div>
+                <div class="reel__bottom">
+                  <p class="reel__cap">Monsoon is here</p>
+                  <div class="reel__rail">
+                    <span><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20s-7-4.6-7-9.4A4.1 4.1 0 0 1 12 8a4.1 4.1 0 0 1 7 2.6C19 15.4 12 20 12 20Z"/></svg></span>
+                    <span><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12a7.5 7.5 0 0 1-10.9 6.7L4 20l1.3-4.8A7.5 7.5 0 1 1 20 12Z"/></svg></span>
+                    <a href="https://www.instagram.com/reel/Dbsz8fxA8u5/" target="_blank" rel="noopener" aria-label="Open reel 2 on Instagram"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m21 3-9.5 9.5M21 3l-6.6 18-3.9-8.5L2 8.6 21 3Z"/></svg></a>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="reel" data-i="2">
+              <video muted loop playsinline preload="none"
+                     poster="assets/img/reel-03-poster.jpg" src="assets/video/reels/reel-03.mp4"></video>
+              <span class="reel__veil"></span><span class="reel__live"></span><span class="reel__dim"></span>
+              <div class="reel__ui">
+                <div class="reel__top">
+                  <span class="reel__av"><img src="assets/img/jwm-logo.png" alt=""></span>
+                  <span class="reel__handle">joinwithme.in</span>
+                  <span class="reel__follow">Follow</span>
+                </div>
+                <div class="reel__bottom">
+                  <p class="reel__cap">Forest Lakeside Nature Walk · Badlapur</p>
+                  <div class="reel__rail">
+                    <span><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20s-7-4.6-7-9.4A4.1 4.1 0 0 1 12 8a4.1 4.1 0 0 1 7 2.6C19 15.4 12 20 12 20Z"/></svg></span>
+                    <span><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12a7.5 7.5 0 0 1-10.9 6.7L4 20l1.3-4.8A7.5 7.5 0 1 1 20 12Z"/></svg></span>
+                    <a href="https://www.instagram.com/reel/DbnM81nAyNS/" target="_blank" rel="noopener" aria-label="Open reel 3 on Instagram"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m21 3-9.5 9.5M21 3l-6.6 18-3.9-8.5L2 8.6 21 3Z"/></svg></a>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="reel" data-i="3">
+              <video muted loop playsinline preload="none"
+                     poster="assets/img/reel-04-poster.jpg" src="assets/video/reels/reel-04.mp4"></video>
+              <span class="reel__veil"></span><span class="reel__live"></span><span class="reel__dim"></span>
+              <div class="reel__ui">
+                <div class="reel__top">
+                  <span class="reel__av"><img src="assets/img/jwm-logo.png" alt=""></span>
+                  <span class="reel__handle">joinwithme.in</span>
+                  <span class="reel__follow">Follow</span>
+                </div>
+                <div class="reel__bottom">
+                  <p class="reel__cap">A family-friendly riverside nature walk</p>
+                  <div class="reel__rail">
+                    <span><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20s-7-4.6-7-9.4A4.1 4.1 0 0 1 12 8a4.1 4.1 0 0 1 7 2.6C19 15.4 12 20 12 20Z"/></svg></span>
+                    <span><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12a7.5 7.5 0 0 1-10.9 6.7L4 20l1.3-4.8A7.5 7.5 0 1 1 20 12Z"/></svg></span>
+                    <a href="https://www.instagram.com/reel/DbuSNmdshi6/" target="_blank" rel="noopener" aria-label="Open reel 4 on Instagram"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m21 3-9.5 9.5M21 3l-6.6 18-3.9-8.5L2 8.6 21 3Z"/></svg></a>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="reel" data-i="4">
+              <video muted loop playsinline preload="none"
+                     poster="assets/img/reel-05-poster.jpg" src="assets/video/reels/reel-05.mp4"></video>
+              <span class="reel__veil"></span><span class="reel__live"></span><span class="reel__dim"></span>
+              <div class="reel__ui">
+                <div class="reel__top">
+                  <span class="reel__av"><img src="assets/img/jwm-logo.png" alt=""></span>
+                  <span class="reel__handle">barefootsagar</span>
+                  <span class="reel__follow">Follow</span>
+                </div>
+                <div class="reel__bottom">
+                  <p class="reel__cap">“I knew girls are powerful — now I’ve witnessed it live”</p>
+                  <div class="reel__rail">
+                    <span><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20s-7-4.6-7-9.4A4.1 4.1 0 0 1 12 8a4.1 4.1 0 0 1 7 2.6C19 15.4 12 20 12 20Z"/></svg></span>
+                    <span><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12a7.5 7.5 0 0 1-10.9 6.7L4 20l1.3-4.8A7.5 7.5 0 1 1 20 12Z"/></svg></span>
+                    <a href="https://www.instagram.com/reel/DbQ23IKt3Ka/" target="_blank" rel="noopener" aria-label="Open reel 5 on Instagram"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m21 3-9.5 9.5M21 3l-6.6 18-3.9-8.5L2 8.6 21 3Z"/></svg></a>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- Compact meta bar — deliberately light on words -->
+        <div class="reels__meta">
+          <div class="reels__slides" id="reels-slides">
+            <div class="reels__slide" data-i="0">
+              <span class="reels__idx">01<span>/ 05</span></span>
+              <p class="reels__cap">1.5 hours from Mumbai</p>
+              <a class="btn btn--ghost btn--sm" href="https://www.instagram.com/reel/Db8hZvJA1LC/" target="_blank" rel="noopener">Watch ↗</a>
+            </div>
+            <div class="reels__slide" data-i="1" aria-hidden="true">
+              <span class="reels__idx">02<span>/ 05</span></span>
+              <p class="reels__cap">Monsoon is here</p>
+              <a class="btn btn--ghost btn--sm" href="https://www.instagram.com/reel/Dbsz8fxA8u5/" target="_blank" rel="noopener">Watch ↗</a>
+            </div>
+            <div class="reels__slide" data-i="2" aria-hidden="true">
+              <span class="reels__idx">03<span>/ 05</span></span>
+              <p class="reels__cap">Forest Lakeside Nature Walk, Badlapur</p>
+              <a class="btn btn--ghost btn--sm" href="https://www.instagram.com/reel/DbnM81nAyNS/" target="_blank" rel="noopener">Watch ↗</a>
+            </div>
+            <div class="reels__slide" data-i="3" aria-hidden="true">
+              <span class="reels__idx">04<span>/ 05</span></span>
+              <p class="reels__cap">A family-friendly riverside nature walk</p>
+              <a class="btn btn--ghost btn--sm" href="https://www.instagram.com/reel/DbuSNmdshi6/" target="_blank" rel="noopener">Watch ↗</a>
+            </div>
+            <div class="reels__slide" data-i="4" aria-hidden="true">
+              <span class="reels__idx">05<span>/ 05</span></span>
+              <p class="reels__cap">“I knew girls are powerful — now I’ve witnessed it live”</p>
+              <a class="btn btn--ghost btn--sm" href="https://www.instagram.com/reel/DbQ23IKt3Ka/" target="_blank" rel="noopener">Watch ↗</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ 10 · STORIES ══════════════════ -->
+<section class="section wrap bloom" id="stories">
+  <div class="head reveal" style="max-width:62ch">
+    <div class="waypoint">
+      <i class="waypoint__dot"></i><span class="waypoint__num">09</span>
+      <span class="waypoint__txt">Stories</span><span class="waypoint__rule"></span>
+    </div>
+    <h2>What people say when<br>they get home.</h2>
+  </div>
+
+  <div class="story">
+    <div class="story__img reveal">
+      <img src="assets/img/join-with-me-sunflowerfarm.jpg" alt="A group standing among sunflowers on the Boisar walk">
+    </div>
+    <div class="reveal">
+      <blockquote class="quote">
+        “The golden blooms stretched as far as the eye could see. It had been on my
+        bucket list for years — and standing in the middle of the sunflowers,
+        <em>it was an emotional moment.</em>”
+      </blockquote>
+      <p class="story__body">
+        The hike itself was a perfect blend of adventure and serenity. We found a hidden pond,
+        explored a Shiv temple on the way, and stopped at a banyan tree said to be 150 years old —
+        its sprawling roots made the perfect place to pause. The farm-to-table breakfast and lunch
+        were fresh, wholesome and delicious; you could feel the care that went into them.
+      </p>
+      <div class="byline">
+        <img src="assets/img/whatsapp-image-2026-05-20-at-14-14-48-1.jpg" alt="">
+        <span>
+          <b>Ruchika Agrawal</b>
+          <span>Sunflower Hike, Boisar</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOTE FOR CLIENT: the Ruchika Agrawal quote above is a real, verbatim review from the
+       existing site. The three short quotes below are PLACEHOLDER copy written to show the
+       layout — replace them with real Google reviews before this page goes live. -->
+  <div class="minis stagger">
+    <div class="mini">
+      <p>“Our seven-year-old asked when the next one is before we’d even reached the car. The hosts were patient with every single question.”</p>
+      <div class="byline">
+        <img src="assets/img/whatsapp-image-2026-05-20-at-14-14-48-3.jpg" alt="">
+        <span><b>Parent, Mumbai</b><span>Lakeside Nature Walk</span></span>
+      </div>
+    </div>
+    <div class="mini">
+      <p>“My mother is 68 and she finished the whole trail. That has never happened on any trip we’ve booked before.”</p>
+      <div class="byline">
+        <img src="assets/img/whatsapp-image-2026-01-09-at-22-30-41.jpg" alt="">
+        <span><b>Family group</b><span>Forest Lakeside, Badlapur</span></span>
+      </div>
+    </div>
+    <div class="mini">
+      <p>“We took our dog. He swam, ate better than us, and slept for two days. Ten out of ten from him too.”</p>
+      <div class="byline">
+        <img src="assets/img/whatsapp-image-2026-05-20-at-14-13-26-2.jpg" alt="">
+        <span><b>Pet parent</b><span>Riverside Nature Walk</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ 11 · FAQ ══════════════════ -->
+<section class="section wrap bloom--r" id="faq" style="padding-top:0">
+  <div class="head reveal" style="max-width:60ch">
+    <div class="waypoint">
+      <i class="waypoint__dot"></i><span class="waypoint__num">10</span>
+      <span class="waypoint__txt">Questions</span><span class="waypoint__rule"></span>
+    </div>
+    <h2>Everything people<br>ask us first.</h2>
+  </div>
+
+  <div class="faq">
+    <div class="qa" data-open="1">
+      <button class="qa__q"><h3>I’m not fit at all. Can I still do this?</h3>
+        <span class="qa__ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+      </button>
+      <div class="qa__a"><p>Yes. Every route is chosen to be beginner-friendly and walkable at a slow pace, with regular stops. If you can walk comfortably for a few hours with breaks, you can do a Join With Me walk. Our hosts set the pace to the slowest person in the group, never the fastest.</p></div>
+    </div>
+
+    <div class="qa">
+      <button class="qa__q"><h3>What ages is this suitable for?</h3>
+        <span class="qa__ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+      </button>
+      <div class="qa__a"><p>Children, parents and grandparents all join the same walks — that is the point of them. Younger children usually manage the full route with a carry or two from a parent. If you’re bringing someone very young or very senior, message us before booking and we’ll tell you honestly which walk suits them best.</p></div>
+    </div>
+
+    <div class="qa">
+      <button class="qa__q"><h3>Can I bring my dog?</h3>
+        <span class="qa__ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+      </button>
+      <div class="qa__a"><p>Many of our experiences are pet-friendly, including the Lakeside and Riverside walks. Dogs need to be comfortable around children and other dogs. Confirm with us when you book so we can plan the group.</p></div>
+    </div>
+
+    <div class="qa">
+      <button class="qa__q"><h3>What happens if it rains?</h3>
+        <span class="qa__ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+      </button>
+      <div class="qa__a"><p>Rain is usually the best part — the monsoon is when the waterfalls run and the paddy fields flood. Walks go ahead in normal rain. We only reschedule for genuinely unsafe weather, and we let you know as early as we can.</p></div>
+    </div>
+
+    <div class="qa">
+      <button class="qa__q"><h3>How do I get there?</h3>
+        <span class="qa__ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+      </button>
+      <div class="qa__a"><p>Local train is the most budget-friendly option, and autos and cabs are readily available from the station to the base village. We share the exact location a day before your walk, along with a suggested train schedule. You can also drive — parking is included.</p></div>
+    </div>
+
+    <div class="qa">
+      <button class="qa__q"><h3>Is the food vegetarian?</h3>
+        <span class="qa__ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+      </button>
+      <div class="qa__a"><p>Breakfast and lunch are home-cooked by the host village and are vegetarian by default. Tell us about allergies or dietary needs when you book and we’ll pass it on to the kitchen.</p></div>
+    </div>
+
+    <div class="qa">
+      <button class="qa__q"><h3>Can I book a private or group date?</h3>
+        <span class="qa__ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+      </button>
+      <div class="qa__a"><p>Yes. We run private hikes from ₹999 per person for birthdays, school outings, corporate teams and family groups, on a date you choose. Call or WhatsApp us and we’ll build it around your group.</p></div>
+    </div>
+
+    <div class="qa">
+      <button class="qa__q"><h3>What if I need to cancel?</h3>
+        <span class="qa__ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+      </button>
+      <div class="qa__a"><p>Cancellations and transfers are covered by our refund policy. If your plans change, message us as early as possible — we will always try to move you to another date first.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ 12 · NEED HELP ══════════════════ -->
+<section class="wrap" id="help" style="padding-bottom:var(--sec-y)">
+  <div class="help reveal">
+    <div class="help__tex" aria-hidden="true">
+      <img src="assets/img/texture-moss.jpg" alt="">
+      <span></span>
+    </div>
+    <div>
+      <div class="waypoint">
+        <i class="waypoint__dot"></i><span class="waypoint__num">11</span>
+        <span class="waypoint__txt">Need help?</span><span class="waypoint__rule"></span>
+      </div>
+      <h2>Not sure which walk<br>is right for you?</h2>
+      <p class="lead" style="margin-top:18px;max-width:46ch">
+        Tell us who is coming — ages, fitness, dogs, prams — and we’ll tell you which trail fits.
+        A real person replies, usually within the hour.
+      </p>
+    </div>
+
+    <div class="contacts">
+      <a class="contact" href="tel:+918850733138">
+        <span class="contact__i"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z"/></svg></span>
+        <span><b>+91 88507 33138</b><span>Call or WhatsApp</span></span>
+      </a>
+      <a class="contact" href="tel:+917977631324">
+        <span class="contact__i"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z"/></svg></span>
+        <span><b>+91 79776 31324</b><span>Bookings &amp; group enquiries</span></span>
+      </a>
+      <a class="contact" href="#walks">
+        <span class="contact__i"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="3"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg></span>
+        <span><b>See all dates</b><span>Book a seat in under a minute</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr__top">
+      <div class="ftr__brand">
+        <a class="brand" href="#top">
+          <span class="brand__mark" style="background:rgba(255,255,255,.08)"><img src="assets/img/jwm-logo.png" alt=""></span>
+          <span>
+            <span class="brand__name" style="color:var(--on-dark)">Join With Me</span>
+            <span class="brand__sub" style="color:var(--on-dark-muted)">Est. Mumbai</span>
+          </span>
+        </a>
+        <p>Curating beginner-friendly nature walks and adventure hikes across Maharashtra,
+           guided by naturalists and trained hosts. Exploring nature, one step at a time.</p>
+        <div class="socials">
+          <a href="https://www.instagram.com/joinwithme.in/" aria-label="Instagram">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="tel:+918850733138" aria-label="Call us">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Experiences</h4>
+        <ul>
+          <li><a href="#walks">Lakeside Nature Walk &amp; Waterfall</a></li>
+          <li><a href="#walks">Forest Lakeside Nature Walk</a></li>
+          <li><a href="#walks">Riverside Nature Walk</a></li>
+          <li><a href="#walks">Nature Walk in Mumbai</a></li>
+          <li><a href="#walks">Pench Wildlife Safari</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Join With Me</h4>
+        <ul>
+          <li><a href="#top">Home</a></li>
+          <li><a href="#promise">About us</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#stories">Blogs</a></li>
+          <li><a href="#help">Contact us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Customer care</h4>
+        <ul>
+          <li><a href="#stories">Write a review</a></li>
+          <li><a href="#faq">FAQs</a></li>
+          <li><a href="#">Terms &amp; conditions</a></li>
+          <li><a href="#">Privacy policy</a></li>
+          <li><a href="#">Refund policy</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ftr__wordmark" aria-hidden="true">Join With Me</div>
+
+    <div class="ftr__bot">
+      <span>© 2026 Join With Me. All rights reserved. · Mumbai, Maharashtra</span>
+      <span style="display:flex;gap:22px">
+        <a href="#">Privacy</a><a href="#">Cookies</a><a href="#">Terms</a><a href="#help">Support</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<!-- Sunflower — the nature-connect assistant -->
+<a class="sprout" href="#help" aria-label="Ask us which walk suits you">
+  <span class="sprout__mark">
+    <span class="sprout__ring"></span>
+    <span class="sprout__stem" aria-hidden="true"></span>
+    <img src="assets/img/sunflower-mark.png" alt="">
+  </span>
+  <span class="sprout__label">Which walk suits us?</span>
+</a>
+
+<div class="lb" id="lb">
+  <button class="lb__x" id="lb-x" aria-label="Close">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+  </button>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<script>
+(function(){
+  var qs=new URLSearchParams(location.search);
+  var flat=qs.has('flat')||qs.has('export');
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root=document.documentElement;
+
+  if(flat){root.classList.add('export');}
+  else if(!reduce){root.classList.add('anim');}
+
+  /* ---- Theme ----
+     Only the master file (which ships the switcher) restores a saved palette.
+     The standalone theme-0x.html builds stay locked to their own palette. */
+  var hasSwitcher=!!document.getElementById('themer');
+  var saved=qs.get('theme')||(hasSwitcher?localStorage.getItem('jwm-theme'):null);
+  if(saved){root.setAttribute('data-theme',saved);}
+  function syncSwatches(){
+    var t=root.getAttribute('data-theme');
+    document.querySelectorAll('.sw').forEach(function(b){
+      b.setAttribute('aria-pressed', String(b.dataset.theme===t));
+    });
+  }
+  document.querySelectorAll('.sw').forEach(function(b){
+    b.addEventListener('click',function(){
+      root.setAttribute('data-theme',b.dataset.theme);
+      localStorage.setItem('jwm-theme',b.dataset.theme);
+      syncSwatches();
+    });
+  });
+  syncSwatches();
+
+  /* ---- Reveal on scroll (fails safe to visible) ---- */
+  var heroEl=document.getElementById('hero');
+  if(heroEl){requestAnimationFrame(function(){heroEl.classList.add('in');});}
+
+  var revealables=document.querySelectorAll('.reveal,.stagger');
+  function showAll(){revealables.forEach(function(el){el.classList.add('in');});}
+  if(root.classList.contains('anim') && 'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+      });
+    },{rootMargin:'0px 0px -8% 0px',threshold:.08});
+    revealables.forEach(function(el){io.observe(el);});
+    setTimeout(showAll,2500);   /* safety net for headless renderers */
+  }else{showAll();}
+
+  /* ---- Header ---- */
+  var hdr=document.getElementById('site-header');
+  function onScroll(){
+    hdr.classList.toggle('is-stuck', (window.scrollY||0) > 10);
+  }
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  /* ---- Count-up ---- */
+  function animateCount(el){
+    var target=parseFloat(el.dataset.count), suffix=el.dataset.suffix||'';
+    if(!target)return;
+    var start=performance.now(), dur=1600;
+    function tick(now){
+      var p=Math.min((now-start)/dur,1);
+      var eased=1-Math.pow(1-p,3);
+      el.textContent=Math.round(target*eased).toLocaleString('en-IN')+suffix;
+      if(p<1)requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  if(root.classList.contains('anim') && 'IntersectionObserver' in window){
+    var co=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){animateCount(e.target);co.unobserve(e.target);}});
+    },{threshold:.5});
+    document.querySelectorAll('[data-count]').forEach(function(el){co.observe(el);});
+  }
+
+  /* ---- FAQ accordion ---- */
+  document.querySelectorAll('.qa').forEach(function(qa){
+    var btn=qa.querySelector('.qa__q'), panel=qa.querySelector('.qa__a');
+    function set(open,instant){
+      qa.dataset.open=open?'1':'0';
+      if(instant){panel.style.transition='none';}
+      panel.style.height=open?panel.scrollHeight+'px':'0px';
+      if(instant){panel.offsetHeight;panel.style.transition='';}
+    }
+    set(qa.dataset.open==='1',true);
+    btn.addEventListener('click',function(){
+      var willOpen=qa.dataset.open!=='1';
+      document.querySelectorAll('.qa').forEach(function(o){
+        if(o!==qa && o.dataset.open==='1'){
+          o.dataset.open='0';o.querySelector('.qa__a').style.height='0px';
+        }
+      });
+      set(willOpen);
+    });
+  });
+  addEventListener('resize',function(){
+    document.querySelectorAll('.qa[data-open="1"] .qa__a').forEach(function(p){
+      p.style.height=p.scrollHeight+'px';
+    });
+  });
+
+  /* ---- Film ---- */
+  var vid=document.getElementById('film-video');
+  var center=document.getElementById('film-center');
+  var ui=document.getElementById('film-ui');
+  var veil=document.getElementById('film-veil');
+  function playFilm(){
+    document.getElementById('film').scrollIntoView({behavior:'smooth',block:'center'});
+    vid.play().then(function(){
+      vid.setAttribute('controls','');
+      center.style.display='none';ui.style.opacity='0';veil.style.opacity='0';
+    }).catch(function(){});
+  }
+  document.getElementById('film-play').addEventListener('click',playFilm);
+  document.getElementById('play-film').addEventListener('click',playFilm);
+  vid.addEventListener('pause',function(){
+    center.style.display='';ui.style.opacity='';veil.style.opacity='';
+  });
+
+  /* ---- Included / to carry: one list at a time on a phone ----
+     Switching re-arms the panel's reveal class so the rows and their ticks
+     replay rather than snapping in already drawn. */
+  (function(){
+    var segs=document.getElementById('incseg'), panels=document.getElementById('panels');
+    if(!segs||!panels)return;
+    segs.addEventListener('click',function(e){
+      var btn=e.target.closest('.seg');
+      if(!btn)return;
+      var view=btn.getAttribute('data-view');
+      if(view===segs.getAttribute('data-view'))return;
+      segs.setAttribute('data-view',view);
+      panels.setAttribute('data-view',view);
+      Array.prototype.forEach.call(segs.querySelectorAll('.seg'),function(b){
+        var on=b===btn;
+        b.classList.toggle('is-on',on);
+        b.setAttribute('aria-selected',on?'true':'false');
+      });
+      var panel=panels.querySelector(view==='carry'?'.panel--carry':'.panel--inc');
+      if(panel && !reduce){
+        panel.classList.remove('in');
+        void panel.offsetWidth;   /* reflow, so the animations start over */
+        panel.classList.add('in');
+      }
+    });
+  })();
+
+  /* ---- The day, walked sideways ----
+     Page scroll walks the trail along while the section is on screen. The
+     moment you scroll it yourself, we hand control back and never take it. */
+  (function(){
+    var trail=document.getElementById('trail');
+    var bar=document.getElementById('trail-bar');
+    if(!trail)return;
+    var manual=false, ticking=false;
+    function span(){return Math.max(1, trail.scrollWidth - trail.clientWidth);}
+    function paint(){
+      if(bar)bar.style.width=(12 + (trail.scrollLeft/span())*88)+'%';
+    }
+    trail.addEventListener('scroll',function(){
+      if(!ticking){ticking=true;requestAnimationFrame(function(){ticking=false;paint();});}
+    },{passive:true});
+    /* Only a *sideways* gesture counts as taking over. On a phone the page is
+       scrolled by dragging, and that drag often starts on top of the trail —
+       treating any touch as manual handed control away before the trail had
+       moved at all, which is why it never walked itself on mobile. */
+    /* Snap points fight a programmatic scrollLeft on touch devices — the trail
+       gets tugged back to the nearest card and stutters. Snapping is off while
+       the page is driving, and comes back the moment you take over. */
+    function grab(){manual=true;trail.style.scrollSnapType='';}
+    trail.addEventListener('wheel',function(e){
+      if(Math.abs(e.deltaX)>Math.abs(e.deltaY))grab();
+    },{passive:true});
+    trail.addEventListener('keydown',grab,{passive:true});
+    var tx=0,ty=0;
+    trail.addEventListener('touchstart',function(e){
+      var t=e.touches[0];tx=t.clientX;ty=t.clientY;
+    },{passive:true});
+    trail.addEventListener('touchmove',function(e){
+      if(manual)return;
+      var t=e.touches[0];
+      if(Math.abs(t.clientX-tx)>Math.abs(t.clientY-ty)+6)grab();
+    },{passive:true});
+    if(!flat && !reduce){
+      trail.style.scrollSnapType='none';
+      var day=document.getElementById('day');
+      var pin=day&&day.querySelector('.day__pin');
+      /* Two ways to read progress. Pinned (phones): the section holds still at
+         the top of the screen and its leftover height is the budget — the day
+         cannot be scrolled past until the last hour is on screen. Unpinned
+         (desktop): the trail simply walks as it crosses the viewport. */
+      function pinned(){return pin && getComputedStyle(pin).position==='sticky';}
+      /* Forward only. Scrolling back up used to rewind the day sideways, which
+         reads as the page fighting you on the way out. The walk holds where it
+         got to, and only rearms once the section has left the screen below —
+         so coming down to it again replays it from the first hour. */
+      var lastY=window.scrollY, reached=0;
+      addEventListener('scroll',function(){
+        if(manual)return;
+        var y=window.scrollY, up=y<lastY;
+        lastY=y;
+        if(day && day.getBoundingClientRect().top>window.innerHeight){
+          reached=0;trail.scrollLeft=0;return;
+        }
+        if(up)return;
+        var prog;
+        if(pinned()){
+          var travel=day.offsetHeight - window.innerHeight;
+          prog=(-day.getBoundingClientRect().top)/Math.max(travel,1);
+          /* held for a beat once it lands, and finished a little before the
+             release, so the last card is readable before the page moves on */
+          prog=(prog-0.10)/0.78;
+        }else{
+          var r=trail.getBoundingClientRect();
+          var vh=window.innerHeight;
+          prog=((vh - r.top)/(vh + r.height) - 0.18)/0.64;
+        }
+        prog=Math.min(Math.max(prog,0),1);
+        if(prog<=reached)return;
+        reached=prog;
+        trail.scrollLeft=prog*span();
+      },{passive:true});
+    }
+    paint();
+  })();
+
+  /* ---- Reels: page scroll drives the deck ----
+     One rAF loop. Only transforms and opacity are touched, and only the
+     reel nearest the centre is allowed to play — so five videos cost about
+     as much as one. Scroll past the last reel and the page continues to
+     the footer on its own; nothing is a nested scroller. */
+  (function(){
+    var track=document.getElementById('reels-track');
+    if(!track||flat||reduce){root.classList.add('nojs');return;}
+
+    var strip=document.getElementById('reels-strip');
+    var reels=[].slice.call(strip.querySelectorAll('.reel'));
+    var dims=reels.map(function(r){return r.querySelector('.reel__dim');});
+    var vids=reels.map(function(r){return r.querySelector('video');});
+    var slides=[].slice.call(document.querySelectorAll('.reels__slide'));
+    var segs=[].slice.call(document.querySelectorAll('.reels__seg i'));
+    var N=reels.length, last=-1;
+
+    function isMobile(){return window.innerWidth<=900;}
+
+    function layout(p){
+      /* p: 0 → 1 across the whole runway. pos: continuous reel index. */
+      var pos=p*(N-1);
+      var mob=isMobile();
+
+      for(var i=0;i<N;i++){
+        var d=i-pos;                 /* signed distance from the front card */
+        var ad=Math.abs(d);
+        var cap=Math.min(ad,3);
+        var st=reels[i].style;
+
+        if(mob){
+          /* The frame is fixed. The front card flies up and out of it; the
+             next one rises and grows into its place from behind the stack. */
+          if(d<=0){
+            st.transform='translateY('+(d*116)+'%) scale('+(1-d*0.06)+') rotate('+(d*3)+'deg)';
+            st.opacity=String(Math.max(0,1+d*1.6));
+            dims[i].style.opacity='0';
+          }else{
+            st.transform='translateY('+(cap*26)+'px) scale('+(1-cap*0.075)+')';
+            st.opacity='1';
+            dims[i].style.opacity=String(Math.min(cap,1)*0.52);
+          }
+          st.zIndex=String(100-i);
+        }else{
+          /* Overlapping fan — passed cards peel off to the left, upcoming ones
+             stay tucked behind on the right. Cards stay opaque and are darkened
+             instead of faded, so they read as solid cards, not ghosts. */
+          var x=(d<0?-1:1)*Math.min(ad,2.2)*168;
+          var rot=Math.max(-34,Math.min(34,d*-19));
+          st.transform='translate(-50%,-50%) translateX('+x+'px) translateZ('+(-cap*150)+'px)'
+                      +' rotateY('+rot+'deg) scale('+(1-cap*0.05)+')';
+          st.opacity=String(Math.max(0,1-Math.max(0,cap-2)*0.9));
+          dims[i].style.opacity=String(Math.min(cap,1)*0.42);
+          st.zIndex=String(100-Math.round(ad*10));
+        }
+      }
+
+      var act=Math.round(pos);
+      for(var s=0;s<N;s++){
+        segs[s].style.width=(s<act?100:s>act?0:(pos-act+0.5)*100)+'%';
+      }
+
+      if(act!==last){
+        last=act;
+        for(var k=0;k<N;k++){
+          var v=vids[k];
+          if(k===act){
+            reels[k].classList.add('is-active');
+            if(v.preload==='none'){v.preload='auto';v.load();}
+            var pr=v.play();
+            if(pr&&pr.catch)pr.catch(function(){});
+          }else{
+            reels[k].classList.remove('is-active');
+            if(!v.paused)v.pause();
+          }
+          if(slides[k])slides[k].setAttribute('aria-hidden',String(k!==act));
+        }
+      }
+    }
+
+    /* Scroll sets a target; a rAF loop eases towards it. Without this the deck
+       is pinned 1:1 to the wheel and reads as snapping rather than sliding. */
+    var target=0, cur=0, running=false;
+    function tick(){
+      cur+=(target-cur)*0.16;
+      if(Math.abs(target-cur)<0.0004){cur=target;running=false;}
+      layout(cur);
+      if(running)requestAnimationFrame(tick);
+    }
+    function measure(){
+      var runway=track.offsetHeight-window.innerHeight;
+      if(runway<=0)return;
+      target=Math.min(Math.max(-track.getBoundingClientRect().top/runway,0),1);
+      if(!running){running=true;requestAnimationFrame(tick);}
+    }
+    addEventListener('scroll',measure,{passive:true});
+    addEventListener('resize',function(){last=-1;measure();},{passive:true});
+    measure();
+    layout(target); cur=target;
+  })();
+
+  /* ---- Gallery: load and play a clip only while it is hovered ---- */
+  document.querySelectorAll('.gal').forEach(function(g){
+    var v=g.querySelector('video');
+    if(!v)return;
+    g.addEventListener('pointerenter',function(){
+      if(v.preload==='none'){v.preload='auto';v.load();}
+      var pr=v.play(); if(pr&&pr.catch)pr.catch(function(){});
+    });
+    g.addEventListener('pointerleave',function(){ if(!v.paused)v.pause(); });
+  });
+
+  /* ---- Lightbox ---- */
+  var lb=document.getElementById('lb'), lbi=document.getElementById('lb-img');
+  document.querySelectorAll('.gal > img').forEach(function(img){
+    img.parentElement.addEventListener('click',function(){
+      lbi.src=img.src;lbi.alt=img.alt;lb.classList.add('is-on');
+    });
+  });
+  function closeLb(){lb.classList.remove('is-on');}
+  document.getElementById('lb-x').addEventListener('click',closeLb);
+  lb.addEventListener('click',function(e){if(e.target===lb)closeLb();});
+  addEventListener('keydown',function(e){if(e.key==='Escape')closeLb();});
+})();
+</script>
+</body>
+</html>

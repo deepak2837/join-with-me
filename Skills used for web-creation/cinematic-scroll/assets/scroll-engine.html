@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!--
+  CINEMATIC-SCROLL ENGINE — brand-neutral base.
+  The JavaScript below is the proven engine; leave it intact.
+  Restyle the CSS + copy per brand using the `frontend-design` and `ui-ux-pro-max` skills.
+  Replace the design tokens, fonts, nav, beats copy, and CTA to fit the concept.
+  On deploy, swap the <source src> to your public jsDelivr CDN URL (see references/deploy.md).
+-->
+<title>{{BRAND}} — {{TAGLINE}}</title>
+<!-- Pick DISTINCTIVE fonts per brand (frontend-design forbids generic Inter/Roboto and cross-build repetition). -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    /* CUSTOMIZE per brand (ui-ux-pro-max --design-system gives you a palette) */
+    --bg:#08090f;
+    --ink:#f2f1ea;
+    --muted:#9a9aa6;
+    --accent:#d8c08a;
+    --hair:rgba(240,240,240,.14);
+    --accent-hair:rgba(216,192,138,.34);
+    --display:'Fraunces',Georgia,serif;
+    --body:'Hanken Grotesk',system-ui,sans-serif;
+    --edge:clamp(20px,5vw,76px);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  ::selection{background:rgba(216,192,138,.3);color:#fff}
+  body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+  /* ---------- fixed cinematic stage ---------- */
+  #stage{position:fixed;inset:0;z-index:0;background:#04050c;overflow:hidden}
+  #film{position:absolute;top:50%;left:50%;min-width:100%;min-height:100%;width:auto;height:auto;object-fit:cover;
+    transform:translate(-50%,-50%) scale(1.05)}
+  /* Restrained directional grade so copy stays legible over the CALM side of the frame.
+     Tune the left-bias / vignette / bottom to match where YOUR video's focal action sits. */
+  #stage::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      linear-gradient(90deg, rgba(5,6,13,.78) 0%, rgba(5,6,13,.42) 32%, transparent 64%),
+      radial-gradient(135% 110% at 52% 40%, transparent 48%, rgba(4,5,12,.5) 100%),
+      linear-gradient(180deg, rgba(4,5,12,.5) 0%, transparent 22%, transparent 62%, rgba(4,5,12,.9) 100%)}
+  .grain{position:fixed;inset:-50%;z-index:1;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+  /* ---------- top bar ---------- */
+  nav{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:28px var(--edge)}
+  .brand{font-family:var(--display);font-weight:600;font-size:22px;letter-spacing:.02em}
+  .brand i{font-style:italic;color:var(--accent);font-weight:400}
+  .navlinks{display:flex;gap:32px;font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+  .navlinks a{color:inherit;text-decoration:none;transition:color .25s}
+  .navlinks a:hover{color:var(--accent)}
+  @media(max-width:720px){.navlinks{display:none}}
+
+  /* ---------- scroll driver (tall body drives the scrub) ---------- */
+  #scroller{position:relative;z-index:10;height:660vh}
+  .beat{position:fixed;top:50%;left:0;transform:translateY(-44%);
+    padding-left:var(--edge);padding-right:var(--edge);max-width:min(720px,92vw);
+    opacity:0;filter:blur(7px);pointer-events:none;
+    transition:opacity .9s cubic-bezier(.22,.8,.24,1),transform 1.1s cubic-bezier(.22,.8,.24,1),filter .9s;
+    will-change:opacity,transform,filter}
+  .beat.show{opacity:1;filter:blur(0);transform:translateY(-50%);pointer-events:auto}
+
+  .label{display:flex;align-items:center;gap:16px;font-size:11px;font-weight:500;letter-spacing:.3em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:26px}
+  .label .ln{width:46px;height:1px;background:var(--accent-hair)}
+  h1{font-family:var(--display);font-weight:400;font-size:clamp(44px,8vw,112px);line-height:.97;letter-spacing:-.018em;text-wrap:balance;max-width:14ch}
+  h1 i{font-style:italic;color:var(--accent)}
+  h2{font-family:var(--display);font-weight:400;font-size:clamp(32px,5.4vw,72px);line-height:1;letter-spacing:-.014em;max-width:15ch}
+  h2 i{font-style:italic;color:var(--accent)}
+  p.lead{margin-top:26px;font-size:clamp(15px,1.55vw,20px);line-height:1.64;color:#d6d4c8;max-width:42ch}
+  p.lead b{font-weight:500;color:var(--ink)}
+
+  .specs{display:flex;margin-top:46px}
+  .spec{padding-right:clamp(24px,4vw,52px);margin-right:clamp(24px,4vw,52px);border-right:1px solid var(--hair)}
+  .spec:last-child{border-right:none;margin-right:0}
+  .spec .n{font-family:var(--display);font-weight:400;font-size:clamp(32px,4.2vw,56px);line-height:1;font-variant-numeric:tabular-nums}
+  .spec .n u{text-decoration:none;font-family:var(--body);font-size:.32em;color:var(--accent);margin-left:5px;letter-spacing:.04em}
+  .spec .l{margin-top:12px;font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+
+  /* CTA — press & hold */
+  .reserve{margin-top:40px;display:flex;flex-direction:column;align-items:flex-start;gap:16px}
+  .holdbtn{position:relative;width:min(360px,86vw);height:62px;cursor:pointer;border-radius:2px;
+    border:1px solid var(--accent-hair);background:rgba(216,192,138,.06);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    display:flex;align-items:center;justify-content:space-between;padding:0 24px;overflow:hidden;user-select:none;
+    font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);transition:border-color .4s}
+  .holdbtn .fill{position:absolute;inset:0;width:0%;background:linear-gradient(90deg,rgba(216,192,138,.28),rgba(216,192,138,.14));transition:width .05s linear}
+  .holdbtn .txt,.holdbtn .arrow{position:relative;z-index:2}
+  .holdbtn .arrow{color:var(--accent)}
+  .holdbtn:hover{border-color:var(--accent)}
+  .holdbtn.done{border-color:var(--accent);background:rgba(216,192,138,.12)}
+  .fineprint{font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+
+  /* ---------- bottom HUD: flow-tour + progress ---------- */
+  #hud{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:24px var(--edge);pointer-events:none}
+  .tour{pointer-events:auto;display:flex;align-items:center;gap:14px;cursor:pointer;font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);opacity:.92;transition:opacity .2s}
+  .tour:hover{opacity:1}
+  .tour .ring{width:38px;height:38px;border-radius:50%;border:1px solid var(--accent-hair);display:flex;align-items:center;justify-content:center;background:rgba(9,10,20,.4);backdrop-filter:blur(8px);transition:border-color .3s}
+  .tour:hover .ring{border-color:var(--accent)}
+  .tour .ring svg{width:11px;height:11px;fill:var(--accent)}
+  .meter{flex:1;max-width:300px;display:flex;align-items:center;gap:16px;margin:0 28px}
+  .meter .track{flex:1;height:1px;background:rgba(240,240,240,.18);position:relative}
+  .meter .track i{position:absolute;left:0;top:0;height:100%;width:0;background:var(--accent)}
+  .meter .pct{font-family:var(--display);font-size:12px;color:var(--muted);min-width:38px;text-align:right;font-variant-numeric:tabular-nums}
+  .scrollhint{font-size:10px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+  @media(max-width:640px){.scrollhint{display:none}}
+
+  /* loader — covers the first-frame buffer so scrubbing is ready when revealed */
+  #load{position:fixed;inset:0;z-index:40;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;transition:opacity .9s ease}
+  #load.hide{opacity:0;pointer-events:none}
+  #load .lb{font-family:var(--display);font-weight:600;font-size:24px}
+  #load .lb i{font-style:italic;color:var(--accent)}
+  #load .bar{width:180px;height:1px;background:rgba(240,240,240,.18);position:relative;overflow:hidden}
+  #load .bar i{position:absolute;left:-40%;top:0;height:100%;width:40%;background:var(--accent);animation:sweep 1.2s infinite}
+  @keyframes sweep{to{left:100%}}
+
+  @media(prefers-reduced-motion:reduce){
+    .beat{transition:opacity .25s;filter:none!important}
+    #load .bar i{animation:none}
+  }
+</style>
+</head>
+<body>
+
+  <div id="stage">
+    <!-- LOCAL preview: assets/scroll.mp4. On deploy, swap to your public jsDelivr URL (references/deploy.md). -->
+    <video id="film" muted playsinline preload="auto">
+      <source src="assets/scroll.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <div class="grain"></div>
+
+  <nav>
+    <div class="brand">{{BRAND}}<i>.</i></div>
+    <div class="navlinks"><a href="#">One</a><a href="#">Two</a><a href="#">Three</a></div>
+  </nav>
+
+  <!-- BEATS: one per narrative moment. data-in / data-out are scroll-progress ranges (0..1)
+       mapped to points in the video. Tune them to your video's key moments. -->
+  <div id="scroller">
+    <section class="beat" data-k="0" data-in="0" data-out="0.14">
+      <div class="label">Chapter <span class="ln"></span></div>
+      <h1>Your <i>opening</i> line here.</h1>
+      <p class="lead">One or two sentences that set the scene as the journey begins.</p>
+    </section>
+
+    <section class="beat" data-k="1" data-in="0.20" data-out="0.40">
+      <div class="label">I — Beat <span class="ln"></span></div>
+      <h2>Second <i>moment</i>.</h2>
+      <p class="lead">Copy revealed over a calm part of the frame mid-journey.</p>
+    </section>
+
+    <section class="beat" data-k="2" data-in="0.44" data-out="0.66">
+      <div class="label">II — Beat <span class="ln"></span></div>
+      <h2>Third <i>moment</i>.</h2>
+      <p class="lead">Keep it tight — the video carries the emotion.</p>
+    </section>
+
+    <section class="beat" data-k="3" data-in="0.68" data-out="0.82">
+      <div class="label">III — Detail <span class="ln"></span></div>
+      <div class="specs">
+        <div class="spec"><div class="n">00<u>unit</u></div><div class="l">Label</div></div>
+        <div class="spec"><div class="n">00<u>unit</u></div><div class="l">Label</div></div>
+        <div class="spec"><div class="n">00</div><div class="l">Label</div></div>
+      </div>
+    </section>
+
+    <section class="beat" data-k="4" data-in="0.86" data-out="1.01">
+      <div class="label">Call to action <span class="ln"></span></div>
+      <h2>The <i>payoff</i> line.</h2>
+      <p class="lead">A short line that leads into the CTA.</p>
+      <div class="reserve">
+        <div class="holdbtn" id="hold" role="button" tabindex="0" aria-label="Press and hold to confirm">
+          <span class="fill"></span><span class="txt">Hold to confirm</span><span class="arrow">&rarr;</span>
+        </div>
+        <div class="fineprint" id="fine">Press &amp; hold</div>
+      </div>
+    </section>
+  </div>
+
+  <div id="hud">
+    <div class="tour" id="tour" role="button" tabindex="0">
+      <span class="ring"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+      <span id="tourlabel">Play the journey</span>
+    </div>
+    <div class="meter"><div class="track"><i id="progbar"></i></div><div class="pct" id="pct">00</div></div>
+    <div class="scrollhint">Scroll to explore</div>
+  </div>
+
+  <div id="load"><div class="lb">{{BRAND}}<i>.</i></div><div class="bar"><i></i></div></div>
+
+<script>
+/* ---- Cinematic-scroll engine. Do not rewrite; only tune constants if needed. ---- */
+(function(){
+  var film=document.getElementById('film'),scroller=document.getElementById('scroller');
+  var beats=[].slice.call(document.querySelectorAll('.beat'));
+  var progbar=document.getElementById('progbar'),pct=document.getElementById('pct'),loadEl=document.getElementById('load');
+  var duration=8,targetTime=0,currentTime=0,ready=false;
+
+  // Fallback to a local file if the primary (CDN) source fails.
+  film.addEventListener('error',function(){
+    var s=film.querySelector('source');
+    if(s.src.indexOf('assets/scroll.mp4')===-1){s.src='assets/scroll.mp4';film.load();}
+  });
+  film.addEventListener('loadedmetadata',function(){duration=film.duration||8});
+  function onReady(){if(ready)return;ready=true;loadEl.classList.add('hide');}
+  film.addEventListener('canplay',onReady);film.addEventListener('loadeddata',onReady);setTimeout(onReady,4000);
+
+  function progress(){var max=scroller.offsetHeight-window.innerHeight;return Math.min(1,Math.max(0,window.scrollY/max));}
+  function update(p){
+    beats.forEach(function(b){var a=parseFloat(b.dataset.in),z=parseFloat(b.dataset.out);b.classList.toggle('show',p>=a&&p<=z);});
+    progbar.style.width=(p*100).toFixed(2)+'%';pct.textContent=(p*100<10?'0':'')+Math.round(p*100);
+  }
+  // The key to smoothness: ease currentTime toward the scroll target every frame.
+  function raf(){
+    var p=progress();targetTime=p*(duration-0.05);
+    currentTime+=(targetTime-currentTime)*0.12;
+    if(ready&&Math.abs(targetTime-currentTime)>0.001){try{film.currentTime=currentTime;}catch(e){}}
+    update(p);requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+  window.addEventListener('resize',function(){update(progress());});
+
+  /* flow tour: auto-scroll drives the scrub */
+  var touring=false,tourRAF,tourBtn=document.getElementById('tour'),tourLabel=document.getElementById('tourlabel');
+  function toggleTour(){
+    if(touring){stopTour();return;}touring=true;tourLabel.textContent='Stop';
+    var max=scroller.offsetHeight-window.innerHeight,start=window.scrollY,from=start>=max-4?0:start,dur=15000,t0=performance.now();
+    if(from===0)window.scrollTo(0,0);
+    function step(now){var e=Math.min(1,(now-t0)/dur);var eased=e<0.5?2*e*e:1-Math.pow(-2*e+2,2)/2;window.scrollTo(0,from+(max-from)*eased);if(e<1&&touring){tourRAF=requestAnimationFrame(step);}else stopTour();}
+    tourRAF=requestAnimationFrame(step);
+  }
+  function stopTour(){touring=false;cancelAnimationFrame(tourRAF);tourLabel.textContent='Play the journey';}
+  tourBtn.addEventListener('click',toggleTour);
+  tourBtn.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleTour();}});
+  window.addEventListener('wheel',function(){if(touring)stopTour();},{passive:true});
+  window.addEventListener('touchstart',function(){if(touring)stopTour();},{passive:true});
+
+  /* press & hold CTA */
+  var hold=document.getElementById('hold');
+  if(hold){
+    var fill=hold.querySelector('.fill'),txt=hold.querySelector('.txt'),fine=document.getElementById('fine');
+    var holding=false,hp=0,hRAF;
+    function startHold(){if(hold.classList.contains('done'))return;holding=true;loopHold();}
+    function endHold(){holding=false;if(hp<100){hp=0;fill.style.width='0%';}}
+    function loopHold(){if(!holding)return;hp=Math.min(100,hp+1.7);fill.style.width=hp+'%';
+      if(hp>=100){hold.classList.add('done');txt.textContent='Confirmed';if(fine)fine.textContent='Done';holding=false;return;}hRAF=requestAnimationFrame(loopHold);}
+    hold.addEventListener('mousedown',startHold);
+    hold.addEventListener('touchstart',function(e){e.preventDefault();startHold();},{passive:false});
+    hold.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&!holding){e.preventDefault();startHold();}});
+    hold.addEventListener('keyup',endHold);
+    window.addEventListener('mouseup',endHold);window.addEventListener('touchend',endHold);
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="sahyadri">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Join With Me — Design System</title>
+<meta name="description" content="Tokens, type scale, spacing, colour themes and components for the Join With Me landing page design.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#10221A;--forest:#143C2B;--forest-2:#1B4C36;
+  --primary:#1F6B47;--primary-700:#175338;--primary-100:#E2EFE7;--primary-50:#EFF6F1;
+  --accent:#D9E64A;--accent-700:#B9C62B;--accent-ink:#2A3208;
+  --paper:#F7F4EC;--paper-2:#EFEADE;--surface:#FFFFFF;
+  --line:#DCD6C6;--line-soft:#E8E3D6;--muted:#5C6B60;
+  --on-dark:#F1F0E7;--on-dark-muted:#A9BCAE;
+  --status-full:#B4483C;--status-filling:#C98A16;--status-open:#1F6B47;
+  --f-display:"Fraunces",Georgia,serif;
+  --f-sans:"Plus Jakarta Sans",system-ui,sans-serif;
+  --f-mono:"DM Mono",ui-monospace,monospace;
+  --r-xs:6px;--r-sm:12px;--r-md:20px;--r-lg:28px;--r-xl:40px;--r-pill:999px;
+  --sh-1:0 1px 2px rgba(16,34,26,.06),0 4px 16px rgba(16,34,26,.05);
+  --sh-2:0 2px 6px rgba(16,34,26,.07),0 18px 48px rgba(16,34,26,.10);
+  --sh-3:0 8px 24px rgba(16,34,26,.10),0 40px 90px rgba(16,34,26,.16);
+  --gutter:clamp(20px,5vw,64px);--max:1280px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{overflow-x:hidden}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-sans);line-height:1.6}
+img{display:block;max-width:100%}
+h1,h2,h3,h4{margin:0;font-family:var(--f-display);font-weight:600;letter-spacing:-.028em;line-height:1.05}
+p{margin:0}
+ul{margin:0;padding:0;list-style:none}
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gutter)}
+.block{padding-block:clamp(48px,6vw,88px);border-top:1.5px dashed var(--line)}
+.block:first-of-type{border-top:0}
+.mono{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.eyebrow i{width:11px;height:11px;border-radius:50%;background:var(--primary);box-shadow:0 0 0 4px var(--primary-100);flex:none}
+.eyebrow span{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.eyebrow .rule{flex:1;height:1px;border-top:1.5px dashed var(--line)}
+.block h2{font-size:clamp(1.7rem,3.2vw,2.6rem);margin-bottom:12px}
+.block .sub{color:var(--muted);max-width:62ch;margin-bottom:34px}
+
+/* cover */
+.cover{background:var(--forest);color:var(--on-dark);padding-block:clamp(56px,8vw,110px)}
+.cover h1{font-size:clamp(2.6rem,7vw,5.4rem);letter-spacing:-.04em;color:var(--on-dark);margin-bottom:22px}
+.cover h1 em{font-style:italic;font-weight:400;color:var(--accent)}
+.cover p{color:var(--on-dark-muted);max-width:56ch;font-size:1.1rem}
+.cover .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+.cover .meta span{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  padding:9px 15px;border-radius:999px;border:1px solid rgba(255,255,255,.22);color:var(--on-dark)}
+
+/* palettes */
+.themes{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,26px)}
+.theme{background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--r-lg);overflow:hidden}
+.theme__hd{padding:24px 24px 18px}
+.theme__hd h3{font-size:1.35rem;margin-bottom:6px}
+.theme__hd p{font-size:.87rem;color:var(--muted)}
+.ramp{display:flex;height:76px}
+.ramp span{flex:1}
+.swatches{padding:20px 24px 26px;display:grid;gap:9px}
+.sw{display:flex;align-items:center;gap:12px}
+.sw i{width:34px;height:34px;border-radius:9px;border:1px solid rgba(0,0,0,.08);flex:none}
+.sw b{font-size:.83rem;font-weight:600;flex:1}
+.sw code{font-family:var(--f-mono);font-size:.72rem;color:var(--muted)}
+
+/* type */
+.type{display:grid;gap:0}
+.trow{display:grid;grid-template-columns:190px 1fr;gap:clamp(16px,3vw,44px);
+  padding-block:26px;border-top:1.5px dashed var(--line);align-items:baseline}
+.trow:last-child{border-bottom:1.5px dashed var(--line)}
+.tmeta{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.08em;color:var(--muted);line-height:1.7}
+.tmeta b{display:block;color:var(--ink);letter-spacing:.16em;text-transform:uppercase;font-weight:500;margin-bottom:4px}
+.d-xl{font-family:var(--f-display);font-size:clamp(3rem,8.4vw,7.2rem);font-weight:600;letter-spacing:-.04em;line-height:.9}
+.d-l{font-family:var(--f-display);font-size:clamp(2.5rem,5.6vw,4.6rem);font-weight:600;letter-spacing:-.035em;line-height:1}
+.d-h2{font-family:var(--f-display);font-size:clamp(2rem,4.2vw,3.5rem);font-weight:600;letter-spacing:-.028em;line-height:1.05}
+.d-h3{font-family:var(--f-display);font-size:clamp(1.3rem,2.1vw,1.75rem);font-weight:600;letter-spacing:-.025em}
+.d-lead{font-size:clamp(1.05rem,1.35vw,1.25rem);line-height:1.62;color:var(--muted)}
+.d-body{font-size:1rem;line-height:1.6}
+.d-small{font-size:.875rem;line-height:1.55;color:var(--muted)}
+.d-label{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase}
+
+/* scale strips */
+.strip{display:flex;flex-wrap:wrap;gap:12px}
+.chipbox{background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--r-sm);
+  padding:14px 16px;min-width:120px}
+.chipbox b{display:block;font-family:var(--f-mono);font-size:.8rem;margin-bottom:4px}
+.chipbox span{font-size:.75rem;color:var(--muted)}
+.spacebar{display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap}
+.spaceitem{text-align:center}
+.spaceitem i{display:block;background:var(--primary);border-radius:3px;margin-bottom:8px}
+.spaceitem span{font-family:var(--f-mono);font-size:.66rem;color:var(--muted)}
+
+.radii{display:flex;flex-wrap:wrap;gap:16px}
+.radii div{width:104px;height:104px;background:var(--primary-100);border:1.5px solid var(--primary);
+  display:flex;align-items:flex-end;justify-content:center;padding-bottom:10px;
+  font-family:var(--f-mono);font-size:.68rem;color:var(--primary-700)}
+
+.shadows{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.shadows div{background:var(--surface);border-radius:var(--r-md);padding:28px;
+  font-family:var(--f-mono);font-size:.7rem;color:var(--muted)}
+
+/* components */
+.comps{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(16px,2vw,26px)}
+.card{background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--r-lg);padding:clamp(22px,2.6vw,32px)}
+.card h4{font-size:1.05rem;margin-bottom:6px}
+.card .note{font-size:.82rem;color:var(--muted);margin-bottom:22px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 28px;
+  border-radius:999px;font-weight:600;font-size:.95rem;font-family:var(--f-sans)}
+.btn--primary{background:var(--primary);color:#fff}
+.btn--accent{background:var(--accent);color:var(--accent-ink)}
+.btn--ghost{border:1.5px solid var(--line);background:var(--surface)}
+.btn--sm{padding:11px 20px;font-size:.85rem}
+.tag{display:inline-flex;padding:5px 11px;border-radius:999px;background:var(--paper-2);font-size:.74rem;
+  font-weight:500;color:var(--muted)}
+.pin{display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:999px;background:var(--surface);
+  border:1px solid var(--line-soft);font-family:var(--f-mono);font-size:.68rem;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--muted)}
+.pin i{width:6px;height:6px;border-radius:50%;background:var(--primary)}
+.datechip{display:inline-flex;flex-direction:column;align-items:center;gap:1px;min-width:60px;padding:7px 9px;
+  border-radius:10px;border:1px solid var(--line-soft);background:var(--paper)}
+.datechip b{font-size:.78rem}
+.datechip i{font-family:var(--f-mono);font-style:normal;font-size:.55rem;letter-spacing:.09em;text-transform:uppercase}
+.c-open i{color:var(--status-open)}
+.c-fill i{color:var(--status-filling)}
+.c-full{opacity:.44}.c-full i{color:var(--status-full)}.c-full b{text-decoration:line-through}
+
+.rules{display:grid;gap:0;max-width:none}
+.rule{display:grid;grid-template-columns:34px 1fr;gap:16px;padding-block:16px;border-top:1.5px dashed var(--line)}
+.rule:last-child{border-bottom:1.5px dashed var(--line)}
+.rule b{font-family:var(--f-mono);font-size:.72rem;color:var(--primary);letter-spacing:.08em}
+.rule p{font-size:.94rem}
+.rule p strong{font-weight:600}
+
+.ftr{background:var(--ink);color:var(--on-dark);padding-block:44px;margin-top:clamp(40px,6vw,80px)}
+.ftr .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;
+  font-family:var(--f-mono);font-size:.72rem;letter-spacing:.1em;color:var(--on-dark-muted)}
+
+@media (max-width:900px){
+  .themes,.comps,.shadows{grid-template-columns:1fr}
+  .trow{grid-template-columns:1fr;gap:10px}
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="wrap">
+    <div class="eyebrow"><i style="background:var(--accent);box-shadow:0 0 0 4px rgba(217,230,74,.16)"></i>
+      <span style="color:var(--on-dark-muted)">Design system · v1</span>
+      <span class="rule" style="border-color:rgba(255,255,255,.22)"></span></div>
+    <h1>Join With Me<br><em>Design System</em></h1>
+    <p>One design direction — “The Trail” — with three interchangeable palettes.
+       Everything on the landing page is built from the tokens below.</p>
+    <div class="meta">
+      <span>Fraunces · Display</span>
+      <span>Plus Jakarta Sans · UI</span>
+      <span>DM Mono · Data</span>
+      <span>3 palettes</span>
+      <span>Mobile-first</span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ── PALETTES ── -->
+<section class="block wrap">
+  <div class="eyebrow"><i></i><span>01 · Colour themes</span><span class="rule"></span></div>
+  <h2>Three palettes, one system</h2>
+  <p class="sub">Every theme keeps green as the primary and a yellow as the secondary, as agreed.
+     Swapping a theme changes only the CSS variables — no layout, type or spacing changes.
+     Pick one and the whole page follows.</p>
+
+  <div class="themes">
+    <article class="theme">
+      <div class="ramp">
+        <span style="background:#10221A"></span><span style="background:#143C2B"></span>
+        <span style="background:#1F6B47"></span><span style="background:#D9E64A"></span>
+        <span style="background:#F7F4EC"></span>
+      </div>
+      <div class="theme__hd">
+        <h3>01 · Sahyadri</h3>
+        <p>Deep forest + the logo's lime. The most premium and the closest to the existing brand mark.
+           <b>Recommended default.</b></p>
+      </div>
+      <div class="swatches">
+        <div class="sw"><i style="background:#10221A"></i><b>Ink</b><code>#10221A</code></div>
+        <div class="sw"><i style="background:#143C2B"></i><b>Forest</b><code>#143C2B</code></div>
+        <div class="sw"><i style="background:#1F6B47"></i><b>Primary</b><code>#1F6B47</code></div>
+        <div class="sw"><i style="background:#E2EFE7"></i><b>Primary 100</b><code>#E2EFE7</code></div>
+        <div class="sw"><i style="background:#D9E64A"></i><b>Accent</b><code>#D9E64A</code></div>
+        <div class="sw"><i style="background:#F7F4EC"></i><b>Paper</b><code>#F7F4EC</code></div>
+        <div class="sw"><i style="background:#5C6B60"></i><b>Muted text</b><code>#5C6B60</code></div>
+      </div>
+    </article>
+
+    <article class="theme">
+      <div class="ramp">
+        <span style="background:#0A2320"></span><span style="background:#0D3833"></span>
+        <span style="background:#0E7C63"></span><span style="background:#F2C230"></span>
+        <span style="background:#F2F6F2"></span>
+      </div>
+      <div class="theme__hd">
+        <h3>02 · Monsoon</h3>
+        <p>Cooler, wetter greens with a warm golden yellow. Reads fresher and more “river”;
+           strongest during the monsoon season.</p>
+      </div>
+      <div class="swatches">
+        <div class="sw"><i style="background:#0A2320"></i><b>Ink</b><code>#0A2320</code></div>
+        <div class="sw"><i style="background:#0D3833"></i><b>Forest</b><code>#0D3833</code></div>
+        <div class="sw"><i style="background:#0E7C63"></i><b>Primary</b><code>#0E7C63</code></div>
+        <div class="sw"><i style="background:#DCEFE9"></i><b>Primary 100</b><code>#DCEFE9</code></div>
+        <div class="sw"><i style="background:#F2C230"></i><b>Accent</b><code>#F2C230</code></div>
+        <div class="sw"><i style="background:#F2F6F2"></i><b>Paper</b><code>#F2F6F2</code></div>
+        <div class="sw"><i style="background:#4F6660"></i><b>Muted text</b><code>#4F6660</code></div>
+      </div>
+    </article>
+
+    <article class="theme">
+      <div class="ramp">
+        <span style="background:#1F1C13"></span><span style="background:#2E3A24"></span>
+        <span style="background:#4E7A3A"></span><span style="background:#E2A32E"></span>
+        <span style="background:#F8F1E4"></span>
+      </div>
+      <div class="theme__hd">
+        <h3>03 · Terracotta Trail</h3>
+        <p>Farm olive with ochre and a warm cream paper. Leans into soil, harvest and
+           farm-to-table; the warmest and most editorial of the three.</p>
+      </div>
+      <div class="swatches">
+        <div class="sw"><i style="background:#1F1C13"></i><b>Ink</b><code>#1F1C13</code></div>
+        <div class="sw"><i style="background:#2E3A24"></i><b>Forest</b><code>#2E3A24</code></div>
+        <div class="sw"><i style="background:#4E7A3A"></i><b>Primary</b><code>#4E7A3A</code></div>
+        <div class="sw"><i style="background:#E7EDDD"></i><b>Primary 100</b><code>#E7EDDD</code></div>
+        <div class="sw"><i style="background:#E2A32E"></i><b>Accent</b><code>#E2A32E</code></div>
+        <div class="sw"><i style="background:#F8F1E4"></i><b>Paper</b><code>#F8F1E4</code></div>
+        <div class="sw"><i style="background:#6A6350"></i><b>Muted text</b><code>#6A6350</code></div>
+      </div>
+    </article>
+  </div>
+
+  <h3 style="margin-top:44px;margin-bottom:16px;font-size:1.2rem">Availability states (shared across all themes)</h3>
+  <div class="strip">
+    <div class="chipbox"><b style="color:#1F6B47">OPEN</b><span>Seats available · #1F6B47</span></div>
+    <div class="chipbox"><b style="color:#C98A16">FILLING</b><span>A few seats left · #C98A16</span></div>
+    <div class="chipbox"><b style="color:#B4483C">FULL</b><span>Closed, struck through · #B4483C</span></div>
+  </div>
+</section>
+
+<!-- ── TYPE ── -->
+<section class="block wrap">
+  <div class="eyebrow"><i></i><span>02 · Typography</span><span class="rule"></span></div>
+  <h2>Three typefaces, clear jobs</h2>
+  <p class="sub"><b>Fraunces</b> carries every headline — a soft, organic serif that gives the brand
+     warmth without stiffness. <b>Plus Jakarta Sans</b> handles all reading text and UI. <b>DM Mono</b>
+     is reserved for data: dates, prices, times, labels and section numbers. All three are free
+     Google Fonts, so they map straight into Figma.</p>
+
+  <div class="type">
+    <div class="trow">
+      <div class="tmeta"><b>Display XL</b>Fraunces 600<br>clamp(3rem, 8.4vw, 7.2rem)<br>LH 0.90 · LS −0.04em</div>
+      <div class="d-xl">Nature.</div>
+    </div>
+    <div class="trow">
+      <div class="tmeta"><b>Display L</b>Fraunces 400 italic<br>clamp(2.5rem, 5.6vw, 4.6rem)<br>LH 1.00 · LS −0.035em</div>
+      <div class="d-l" style="font-style:italic;font-weight:400;color:var(--primary)">everyone.</div>
+    </div>
+    <div class="trow">
+      <div class="tmeta"><b>Heading 2</b>Fraunces 600<br>clamp(2rem, 4.2vw, 3.5rem)<br>LH 1.05 · LS −0.028em</div>
+      <div class="d-h2">Pick a Saturday.</div>
+    </div>
+    <div class="trow">
+      <div class="tmeta"><b>Heading 3</b>Fraunces 600<br>clamp(1.3rem, 2.1vw, 1.75rem)<br>LH 1.05 · LS −0.025em</div>
+      <div class="d-h3">Arrival &amp; breakfast</div>
+    </div>
+    <div class="trow">
+      <div class="tmeta"><b>Lead</b>Plus Jakarta Sans 400<br>clamp(1.05rem, 1.35vw, 1.25rem)<br>LH 1.62</div>
+      <div class="d-lead">Guided, beginner-friendly nature walks around Mumbai — designed so children,
+        parents, grandparents and pets can all walk the same trail.</div>
+    </div>
+    <div class="trow">
+      <div class="tmeta"><b>Body</b>Plus Jakarta Sans 400<br>16px / 1rem<br>LH 1.60</div>
+      <div class="d-body">An exclusive lakeside trail kept for our group alone, ending at a private
+        waterfall that’s shallow enough for children.</div>
+    </div>
+    <div class="trow">
+      <div class="tmeta"><b>Small</b>Plus Jakarta Sans 400<br>14px / 0.875rem<br>LH 1.55</div>
+      <div class="d-small">Exact location will be shared with you a day prior.</div>
+    </div>
+    <div class="trow">
+      <div class="tmeta"><b>Label / data</b>DM Mono 500<br>11.5px / 0.72rem<br>LS 0.20em · UPPERCASE</div>
+      <div class="d-label">04 · A day with us</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SPACE / SHAPE ── -->
+<section class="block wrap">
+  <div class="eyebrow"><i></i><span>03 · Space, shape &amp; depth</span><span class="rule"></span></div>
+  <h2>The measurements</h2>
+  <p class="sub">Everything sits on a 4px base. Section rhythm and page gutters are fluid so the
+     layout breathes correctly from 360px up to 1600px without a single fixed breakpoint hack.</p>
+
+  <h3 style="font-size:1.1rem;margin-bottom:14px">Spacing scale (px)</h3>
+  <div class="spacebar" style="margin-bottom:40px">
+    <div class="spaceitem"><i style="width:4px;height:4px"></i><span>4</span></div>
+    <div class="spaceitem"><i style="width:8px;height:8px"></i><span>8</span></div>
+    <div class="spaceitem"><i style="width:12px;height:12px"></i><span>12</span></div>
+    <div class="spaceitem"><i style="width:16px;height:16px"></i><span>16</span></div>
+    <div class="spaceitem"><i style="width:22px;height:22px"></i><span>22</span></div>
+    <div class="spaceitem"><i style="width:28px;height:28px"></i><span>28</span></div>
+    <div class="spaceitem"><i style="width:40px;height:40px"></i><span>40</span></div>
+    <div class="spaceitem"><i style="width:56px;height:56px"></i><span>56</span></div>
+    <div class="spaceitem"><i style="width:80px;height:80px"></i><span>80</span></div>
+    <div class="spaceitem"><i style="width:120px;height:120px"></i><span>120</span></div>
+  </div>
+
+  <div class="strip" style="margin-bottom:40px">
+    <div class="chipbox"><b>Container</b><span>max-width 1320px</span></div>
+    <div class="chipbox"><b>Gutter</b><span>clamp(20px, 5vw, 64px)</span></div>
+    <div class="chipbox"><b>Section Y</b><span>clamp(80px, 11vw, 160px)</span></div>
+    <div class="chipbox"><b>Grid gap</b><span>clamp(14px, 1.8vw, 26px)</span></div>
+    <div class="chipbox"><b>Columns</b><span>12 · desktop</span></div>
+    <div class="chipbox"><b>Breakpoints</b><span>720 · 860 · 1100 · 1300</span></div>
+  </div>
+
+  <h3 style="font-size:1.1rem;margin-bottom:14px">Corner radii</h3>
+  <div class="radii" style="margin-bottom:40px">
+    <div style="border-radius:6px">6 · xs</div>
+    <div style="border-radius:12px">12 · sm</div>
+    <div style="border-radius:20px">20 · md</div>
+    <div style="border-radius:28px">28 · lg</div>
+    <div style="border-radius:40px">40 · xl</div>
+    <div style="border-radius:999px">pill</div>
+  </div>
+
+  <h3 style="font-size:1.1rem;margin-bottom:14px">Elevation</h3>
+  <div class="shadows">
+    <div style="box-shadow:var(--sh-1)">sh-1 — chips, resting buttons</div>
+    <div style="box-shadow:var(--sh-2)">sh-2 — cards on hover, floating panels</div>
+    <div style="box-shadow:var(--sh-3)">sh-3 — hero photo, film, map</div>
+  </div>
+</section>
+
+<!-- ── COMPONENTS ── -->
+<section class="block wrap">
+  <div class="eyebrow"><i></i><span>04 · Components</span><span class="rule"></span></div>
+  <h2>The pieces</h2>
+  <p class="sub">Each of these is used at least twice on the page. Hover and focus states are
+     built into the HTML — open any of the theme files and interact with them directly.</p>
+
+  <div class="comps">
+    <div class="card">
+      <h4>Buttons</h4>
+      <p class="note">Pill, 16/28 padding. Small variant 11/20. Hover lifts 2px and the arrow slides 4px.</p>
+      <div class="row">
+        <span class="btn btn--primary">Find your walk →</span>
+        <span class="btn btn--ghost">Watch the film</span>
+        <span class="btn btn--accent">Book now</span>
+      </div>
+      <div class="row" style="margin-top:12px">
+        <span class="btn btn--primary btn--sm">Book a Walk →</span>
+        <span class="btn btn--ghost btn--sm">Details</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4>Date chips — the booking surface</h4>
+      <p class="note">The single most important component on the page. Three states, always visible,
+        never behind a dropdown.</p>
+      <div class="row">
+        <span class="datechip c-full"><b>15 Aug</b><i>Full</i></span>
+        <span class="datechip c-full"><b>16 Aug</b><i>Full</i></span>
+        <span class="datechip c-fill"><b>22 Aug</b><i>Filling</i></span>
+        <span class="datechip c-open"><b>23 Aug</b><i>Open</i></span>
+        <span class="datechip c-open"><b>29 Aug</b><i>Open</i></span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4>Tags &amp; location pins</h4>
+      <p class="note">Tags describe the walk. Pins carry mono data — places, times, conditions.</p>
+      <div class="row" style="margin-bottom:12px">
+        <span class="tag">Half a day</span><span class="tag">Beginner friendly</span>
+        <span class="tag">Hidden gem</span><span class="tag">Pets welcome</span>
+      </div>
+      <div class="row">
+        <span class="pin"><i></i>Karjat</span><span class="pin"><i></i>Badlapur</span>
+        <span class="pin"><i></i>Group size capped</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4>Waypoint — the section marker</h4>
+      <p class="note">Every section opens with one. The dot, the number and the dashed rule are the
+        signature device of this design: the page reads as a trail you walk down.</p>
+      <div class="eyebrow" style="margin-bottom:0"><i></i>
+        <span style="color:var(--primary)">04</span>
+        <span>A day with us</span><span class="rule"></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── RULES ── -->
+<section class="block wrap">
+  <div class="eyebrow"><i></i><span>05 · Rules for whoever builds this</span><span class="rule"></span></div>
+  <h2>Non-negotiables</h2>
+  <p class="sub">These are the decisions that keep the design intact when the copy changes,
+     which the brief specifically asked for.</p>
+
+  <div class="rules">
+    <div class="rule"><b>01</b><p><strong>Text length must not break layout.</strong> Every headline, card and
+      list item is set in a flexible container with wrapping allowed. Cards stretch to the tallest
+      sibling in the row; nothing relies on a fixed height.</p></div>
+    <div class="rule"><b>02</b><p><strong>Type scales fluidly, never jumps.</strong> All sizes use
+      <code>clamp()</code>, so 360px and 1600px both look deliberate. Do not swap in fixed px sizes.</p></div>
+    <div class="rule"><b>03</b><p><strong>Green is primary, yellow is secondary — always.</strong>
+      Yellow is an accent only: price badges, stat numbers, the play button, one icon per panel.
+      It never carries body text.</p></div>
+    <div class="rule"><b>04</b><p><strong>The logo is untouched.</strong> It sits on a forest-green rounded
+      square at 44px so the lime mark stays legible on the paper background.</p></div>
+    <div class="rule"><b>05</b><p><strong>Photography is real.</strong> Every image on the page is from
+      Join With Me's own walks. No stock, no AI imagery. Promo graphics with baked-in text were
+      deliberately replaced with clean photographs so the card titles do the talking.</p></div>
+    <div class="rule"><b>06</b><p><strong>The sticky bar is the safety net.</strong> It appears once the
+      hero scrolls past and never leaves. On mobile it replaces the header CTA entirely.</p></div>
+    <div class="rule"><b>07</b><p><strong>Motion is enhancement, not structure.</strong> Everything reads
+      correctly with JavaScript off and with <code>prefers-reduced-motion</code> on. Add <code>?flat=1</code>
+      to any URL to freeze all animation in its final state.</p></div>
+    <div class="rule"><b>08</b><p><strong>Contrast holds.</strong> Body text on paper, white on forest and
+      muted-on-dark all clear WCAG AA at their used sizes.</p></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <span>Join With Me — landing page design system · v1</span>
+    <span>Sahyadri · Monsoon · Terracotta Trail</span>
+  </div>
+</footer>
+
+</body>
+</html>
